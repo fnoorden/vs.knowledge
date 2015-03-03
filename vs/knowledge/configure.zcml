@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="vs.knowledge">
+
+  <five:registerPackage package="." initialize=".initialize" />
+  <i18n:registerTranslations directory="locales" />
+  <include package="Products.CMFCore" file="permissions.zcml" />
+  
+  <genericsetup:registerProfile
+      name="default"
+      title="Knowledge Profiles"
+      directory="profiles/default"
+      description="Installs the vs.knowledge package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>
