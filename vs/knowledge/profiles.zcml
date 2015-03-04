@@ -3,6 +3,27 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="vs.knowledge">
 
+  <!-- 
+  <genericsetup:registerProfile
+      name="v1-v2"
+      title="Migration profile for Sciencelab CMaaS 1 to 2"
+      description="Migration profile for cmaas.sciencelab 1 to 2"
+      directory="profiles/v1-v2"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:upgradeStep
+      sortkey="2"
+      source="1"
+      destination="2"
+      title="Upgrade for Knowledge Profile from 1 to 2"
+      description="Runs a migration profile"
+      profile="vs.knowledge:default"
+      handler=".upgrades.v1_to_v2"
+      />
+   -->
+
   <genericsetup:registerProfile
       name="default"
       title="Knowledge Profiles"
