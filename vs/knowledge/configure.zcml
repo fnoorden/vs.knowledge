@@ -8,14 +8,10 @@
   <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales" />
 
+  <!-- Include sub-packages that use their own configure.zcml files. -->
   <include package=".browser" />
 
-  <genericsetup:registerProfile
-      name="default"
-      title="Knowledge Profiles"
-      directory="profiles/default"
-      description="Installs the vs.knowledge package"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+  <!-- Include generic setup profiles. -->
+  <include file="profiles.zcml" />
 
 </configure>
