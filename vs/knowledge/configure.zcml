@@ -14,4 +14,10 @@
   <!-- Include generic setup profiles. -->
   <include file="profiles.zcml" />
 
+  <!-- Vocabularies -->
+  <utility
+    component=".vocabularies.GroupsVocabularyFactory"
+    name="vs.knowledge.GroupsVocabularyFactory"
+    />
+
 </configure>
