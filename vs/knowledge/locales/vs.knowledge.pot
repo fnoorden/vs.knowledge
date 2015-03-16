@@ -1,0 +1,75 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-03-16 09:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: vs.knowledge\n"
+
+#: ./browser/templates/knowledge-utils.pt:34
+msgid "(Experience level unknown)"
+msgstr ""
+
+#: ./browser/templates/knowledge-cv.pt:26
+msgid "Automation knowledge"
+msgstr ""
+
+#: ./browser/templates/knowledge-utils.pt:10
+msgid "CV display"
+msgstr ""
+
+#: ./browser/templates/knowledge-utils.pt:27
+msgid "Change profile"
+msgstr ""
+
+#: ./browser/templates/knowledge-utils.pt:19
+msgid "Complete profile"
+msgstr ""
+
+#: ./browser/templates/knowledge-profile.pt:40
+#: ./browser/templates/knowledge.pt:59
+msgid "Expertise"
+msgstr ""
+
+#: ./browser/templates/knowledge-utils.pt:6
+msgid "Full profile"
+msgstr ""
+
+#: ./browser/templates/knowledge.pt:39
+msgid "Legend"
+msgstr ""
+
+#: ./browser/templates/knowledge-utils.pt:8
+msgid "My profile"
+msgstr ""
+
+#: ./browser/templates/knowledge-profile.pt:42
+#: ./browser/templates/knowledge.pt:61
+msgid "Name"
+msgstr ""
+
+#: ./browser/templates/knowledge-profile.pt:43
+#: ./browser/templates/knowledge.pt:62
+msgid "Searchterms"
+msgstr ""
+
+#: ./browser/templates/knowledge-profile.pt:41
+#: ./browser/templates/knowledge.pt:60
+msgid "Subgroup"
+msgstr ""
+
+#: ./browser/templates/knowledge-utils.pt:23
+msgid "Update profile"
+msgstr ""
+

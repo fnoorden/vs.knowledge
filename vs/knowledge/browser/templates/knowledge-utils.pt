@@ -1,6 +1,7 @@
 
 <div class="buttons btn-group"
      metal:define-macro="links"
+     i18n:domain="vs.knowledge"
      tal:define="template_id view/__name__">
   <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge' else 'btn btn-info'" 
      class="btn btn-info" href="knowledge" i18n:translate="" >Full profile</a>
@@ -11,6 +12,7 @@
 </div>
 
 <div class="buttons" metal:define-macro="actions"
+     i18n:domain="vs.knowledge"
      tal:define="url python:skills[0].absolute_url() if skills else ''"
      tal:attributes="data-empty-count empty_count;
                      data-update-count update_count;">
@@ -28,7 +30,7 @@
      i18n:translate="">Change profile</a>
 </div>
 
-<select name="level" metal:define-macro="select">
+<select name="level" metal:define-macro="select" i18n:domain="vs.knowledge">
   <option value="X" selected="selected" tal:condition="x_val"
           i18n:translate="">(Experience level unknown)</option>
   <tal:level repeat="level view/levels">
