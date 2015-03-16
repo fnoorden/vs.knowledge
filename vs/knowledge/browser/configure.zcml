@@ -28,6 +28,14 @@
       class=".knowledge.KnowledgeView"
       template="templates/knowledge-profile.pt"
       permission="cmf.ReviewPortalContent"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="knowledge-utils"
+      for="*"
+      template="templates/knowledge-utils.pt"
+      permission="zope2.View"
       />
 
   <browser:page

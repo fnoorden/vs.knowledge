@@ -1,0 +1,190 @@
+
+<div class="buttons btn-group"
+     metal:define-macro="links"
+     tal:define="template_id view/__name__">
+  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge' else 'btn btn-info'" 
+     class="btn btn-info" href="knowledge" i18n:translate="" >Full profile</a>
+  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-profile' else 'btn btn-info'" 
+     class="btn btn-info" href="knowledge-profile" i18n:translate="">My profile</a>
+  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-cv' else 'btn btn-info'" 
+     class="btn btn-info" href="knowledge-cv" i18n:translate="">CV display</a>
+</div>
+
+<div class="buttons" metal:define-macro="actions"
+     tal:define="url python:skills[0].absolute_url() if skills else ''"
+     tal:attributes="data-empty-count empty_count;
+                     data-update-count update_count;">
+  <a class="btn btn-danger" href="knowledge-cv"
+     tal:condition="empty_count"
+     tal:attributes="href url"
+     i18n:translate="">Complete profile</a>
+  <a class="btn btn-warning" href="knowledge-cv"
+     tal:condition="python:not empty_count and update_count"
+     tal:attributes="href url"
+     i18n:translate="">Update profile</a>
+  <a class="btn btn-primary" href="knowledge-cv"
+     tal:condition="python:not empty_count and not update_count"
+     tal:attributes="href url"
+     i18n:translate="">Change profile</a>
+</div>
+
+<select name="level" metal:define-macro="select">
+  <option value="X" selected="selected" tal:condition="x_val"
+          i18n:translate="">(Experience level unknown)</option>
+  <tal:level repeat="level view/levels">
+    <tal:selected tal:define="value python:level[0];
+                              title python:level[1];
+                              selected python:value == current_level">
+      <option tal:attributes="value value;"
+              tal:condition="not:selected"
+              tal:content="title"/>
+      <option tal:attributes="value value;"
+              selected="selected"
+              tal:condition="selected"
+              tal:content="title"/>
+    </tal:selected>
+  </tal:level>
+</select>
+
+<form metal:define-macro="levels"
+      tal:attributes="action string:${skill/absolute_url}/change">
+  <select metal:use-macro="view/context/@@knowledge-utils/select"/>
+  <input type="submit" value=">"/>
+</form>
+
+<style>
+<metal:style define-macro="style">/* Generic vs.knowledge styles */
+  .buttons { padding: 2em 0; }
+  .knowledge + .buttons { position: absolute; top: 0; right: 0; }
+  .table-wrap {
+    position: relative;
+    overflow: auto;
+  }
+  .template-knowledge .table-wrap {
+    font-size: 75%;
+  }
+  table { background-color: #fff; }
+  thead th { white-space: nowrap; }
+  tbody { border-top: 1px solid rgba(0,0,0,.1); }
+  tbody th { vertical-align: top; }
+  th { padding: .2em; }
+  tr:nth-child(odd) td { background-color: rgba(0,0,0,.05); }
+  td {
+    /*border-left: 1px solid rgba(0,0,0,.1);*/
+    text-align: center;
+    padding: .2em 0;
+    position: relative;
+  }
+  .knowledge { margin-bottom: 2em; }
+  #content-core a.btn:link, #content-core a.btn:hover, #content-core a.btn:visited { color: white !important; }
+</metal:style>
+
+<metal:full define-macro="full">/* Full knowledge profile styles */
+  thead .employee {
+    max-width: 1em !important; 
+    position: relative;
+    height: 12em !important; 
+  }
+  .employee span {
+    transform: rotate(-75deg); 
+    white-space: nowrap; 
+    display: block; 
+    text-align: right;
+    position: relative;
+    top: -.5em;
+    left: .15em;
+  }
+  th { max-width: 6.6em; }
+  tbody th { border-top: 1px solid rgba(0,0,0,.1); }
+  tbody .blank { border-top: 0; }
+  th:nth-child(3) { max-width: 14em; }
+  tr:nth-child(odd) td { background-color: rgba(255, 255, 153, .5); }
+  tr:nth-child(odd) td.ct-devops { background-color: rgba(204, 204, 255, .5); }
+  tr:nth-child(odd) td.ct-infrastructuur { background-color: rgba(204, 255, 204, .5); }
+  tr:nth-child(odd) td.ct-integratie { background-color: rgba(255, 204, 204, .5); }
+  td { border-left: 1px solid #CC6; }
+  .ct-devops { border-color: #99C; }
+  .ct-infrastructuur { border-color: #9C9; }
+  .ct-integratie { border-color: #C99; }
+  .current-member { border: 1px solid #000; border-width: 0 1px; font-weight: bold; }
+  .legend { min-width: 20em; margin: 0 5em -12em 0 !important; float: left;}
+  .legend td { min-width: 1em; border-color: rgba(0,0,0,.1); }
+  .legend tr:nth-child(odd) td { background-color: transparent; }
+  .level-1, .level-2, .level-3, .level-4, .level-5 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: -1px;
+    bottom: 0;
+    display: block;
+    padding: .2em;
+  } 
+  .level-1, .level-2, .level-3 { text-shadow: 0 0 1px #fff; }
+  .level-4, .level-5 { color: #fff; text-shadow: 0 0 1px #000; }
+  .level-1 { background-color: rgba(0,0,0,.05); }
+  .level-2 { background-color: rgba(0,0,0,.125); }
+  .level-3 { background-color: rgba(0,0,0,.2); }
+  .level-4 { background-color: rgba(0,0,0,.3); }
+  .level-5 { background-color: rgba(0,0,0,.4); }
+  .total {
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0,0,0,.1);
+    background: transparent !important;
+    font-weight: bold;
+  }
+</metal:full>
+
+<metal:profile define-macro="profile">
+  tbody, .mark { border-top: 1px solid rgba(0,0,0,.1); }
+  th { padding: .2em .5em; }
+  /*tbody th { vertical-align: top; }*/
+  tr:nth-child(odd) td,
+  tr:nth-child(odd) th { background-color: #eee; }
+  thead tr:first-child th,
+  tr:nth-child(odd) th:first-child, 
+  tr:nth-child(odd) th:first-child + th {
+    background-color: transparent !important;
+    color: black !important;
+  }
+  th:nth-child(3) {
+    border-left: 1px solid  rgba(0,0,0,.1);
+  }
+/*  td {
+    padding: .2em 0;
+  }*/
+  td a {
+    float: right;
+    padding: 0 .5em;
+  }
+  .empty td, 
+  .empty th {
+    color: rgba(0,0,0,.4);
+  }
+  .update a {
+    color: orange;
+  }
+  .empty a {
+    color: red;
+  }
+</metal:profile>
+
+<metal:cv define-macro="cv">
+  /*tbody, .mark { border-top: 1px solid rgba(0,0,0,.1); }*/
+  th { padding: .2em; }
+  tbody th { vertical-align: top; }
+  tr:nth-child(odd) td,
+  tr:nth-child(odd) th { background-color: #eee; }
+  thead tr:first-child th,
+  tr:nth-child(odd) th:first-child, 
+  tr:nth-child(odd) th:first-child + th {
+    background-color: transparent !important;
+    color: black !important;
+  }
+  th:nth-child(3) { border-left: 1px solid  rgba(0,0,0,.1); }
+  td { padding: .2em .5em; }
+  td a { float: right; padding: 0 .2em; }
+  .empty td,  .empty th { color: rgba(0,0,0,.4); }
+  .update a { color: orange; }
+  .empty a { color: red; }
+</metal:cv>
+</style>

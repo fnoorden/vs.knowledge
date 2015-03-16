@@ -16,6 +16,26 @@
 <body>
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+    <style>
+      <metal:style use-macro="view/context/@@knowledge-utils/style"/>
+      <metal:profile metal:use-macro="view/context/@@knowledge-utils/cv"/>
+    </style>
+    <div class="table-wrap" i18n:domain="vs.knowledge">
+      <metal:links use-macro="view/context/@@knowledge-utils/links"/>
+
+      <h2 i18n:translate="">Automation knowledge</h2>
+      <table class="knowledge cv" 
+             tal:define="current_skills view/current_skills;
+                         order python:current_skills.pop('o') if 'o' in current_skills else [];
+                         groups python:[(i, current_skills[i]) for i in order]">
+        <tbody>
+          <tr tal:repeat="group groups">
+            <th tal:content="python:group[0]">Group</th>
+            <td tal:content="python:', '.join(group[1])">Skills</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </metal:content-core>
 </metal:content-core>
 </body>

@@ -4,6 +4,13 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
+      tal:define="values view/values;
+                  current_level values/level|nothing;
+                  x_val python:current_level == 'X';
+                  current_show values/show|nothing;
+                  directions view/directions;
+                  back directions/back;
+                  forward directions/forward;"
       i18n:domain="plone">
 
 <head>
@@ -16,6 +23,26 @@
 <body>
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+    <form action="." method="POST" i18n:domain="vs.online">
+      <div tal:attributes="class python:'field error' if x_val else None">
+        <label>Skill experience level</label>
+        <div class="formHelp" tal:condition="x_val"
+             i18n:translate="">This is an imported value. Please specify the level of your experience with this skill.</div>
+        <metal:select use-macro="view/context/@@knowledge-utils/select" />
+      </div>
+      <div>
+        <label tal:define="show python:current_show not in ['', 'n']">
+          <input type="checkbox" name="show" tal:condition="show" checked="checked"/>
+          <input type="checkbox" name="show" tal:condition="not:show"/>
+          Show on profile page
+        </label>
+      </div>
+      <div class="formControls">
+        <input type="submit" name="update" value="<<" tal:condition="back"/>
+        <input type="submit" name="update" value="Update"/>
+        <input type="submit" name="update" value=">>" tal:condition="forward"/>
+      </div>
+    </form>
   </metal:content-core>
 </metal:content-core>
 </body>
