@@ -15,6 +15,13 @@
       />
 
   <browser:page
+      name="knowledge.csv"
+      for="*"
+      class=".knowledge.KnowledgeExport"
+      permission="cmf.ReviewPortalContent"
+      />
+
+  <browser:page
       name="knowledge-cv"
       for="*"
       class=".knowledge.KnowledgeView"
@@ -27,7 +34,6 @@
       for="*"
       class=".knowledge.KnowledgeView"
       template="templates/knowledge-profile.pt"
-      permission="cmf.ReviewPortalContent"
       permission="zope2.View"
       />
 
