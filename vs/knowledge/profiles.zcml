@@ -32,4 +32,10 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:importStep
+      name="vs.knowledge.various"
+      title="Knowledge Profile miscellaneous import steps"
+      description="Various import steps that are not handled by GS import/export handlers."
+      handler="vs.knowledge.setuphandlers.setupVarious"/>
+
 </configure>
