@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-16 09:05+0000\n"
+"POT-Creation-Date: 2015-03-16 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: vs.knowledge\n"
 
-#: ./browser/templates/knowledge-utils.pt:34
+#: ./browser/templates/knowledge-utils.pt:38
 msgid "(Experience level unknown)"
 msgstr ""
 
@@ -25,18 +25,23 @@ msgstr ""
 msgid "Automation knowledge"
 msgstr ""
 
+#: ./browser/templates/knowledge-utils.pt:14
+msgid "CSV Export"
+msgstr ""
+
 #: ./browser/templates/knowledge-utils.pt:10
 msgid "CV display"
 msgstr ""
 
-#: ./browser/templates/knowledge-utils.pt:27
+#: ./browser/templates/knowledge-utils.pt:31
 msgid "Change profile"
 msgstr ""
 
-#: ./browser/templates/knowledge-utils.pt:19
+#: ./browser/templates/knowledge-utils.pt:23
 msgid "Complete profile"
 msgstr ""
 
+#: ./browser/knowledge.py:85
 #: ./browser/templates/knowledge-profile.pt:40
 #: ./browser/templates/knowledge.pt:59
 msgid "Expertise"
@@ -46,6 +51,7 @@ msgstr ""
 msgid "Full profile"
 msgstr ""
 
+#: ./browser/knowledge.py:233
 #: ./browser/templates/knowledge.pt:39
 msgid "Legend"
 msgstr ""
@@ -54,22 +60,29 @@ msgstr ""
 msgid "My profile"
 msgstr ""
 
+#: ./browser/knowledge.py:87
 #: ./browser/templates/knowledge-profile.pt:42
 #: ./browser/templates/knowledge.pt:61
 msgid "Name"
 msgstr ""
 
+#: ./browser/knowledge.py:88
 #: ./browser/templates/knowledge-profile.pt:43
 #: ./browser/templates/knowledge.pt:62
 msgid "Searchterms"
 msgstr ""
 
+#: ./browser/knowledge.py:86
 #: ./browser/templates/knowledge-profile.pt:41
 #: ./browser/templates/knowledge.pt:60
 msgid "Subgroup"
 msgstr ""
 
-#: ./browser/templates/knowledge-utils.pt:23
+#: ./browser/knowledge.py:78
+msgid "Total"
+msgstr ""
+
+#: ./browser/templates/knowledge-utils.pt:27
 msgid "Update profile"
 msgstr ""
 
