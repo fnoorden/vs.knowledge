@@ -5,7 +5,7 @@ from plone import api
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from vs.knowledge import VSKnowledgeMessageFactory as _
-from vs.knowledge.interfaces import IKnowledgeView
+from vs.knowledge import interfaces
 from zope.interface import implements
 
 
@@ -14,34 +14,32 @@ import csv, time
 class Knowledge(BrowserView):
 
     def current(self):
-        return api.user.get_current()
-
-    def current_properties(self):
-        current = self.current()
-        c_id = current.getId()
-        cteam = current.getProperty('cteam')
-        fullname = current.getProperty('fullname')
-        return { 'id': c_id, 'cteam': cteam, 'fullname': fullname }
+        """ Current member
+        """
+        current = api.user.get_current()
+        self.current_id = current.getId()
+        self.current_cteam = current.getProperty('cteam')
+        self.current_fullname = current.getProperty('fullname')
 
     def current_entry(self, skill=None):
+        """ Entry of the current member in member_level_show
         """
-        """
-        c_id = self.current().getId()
-
         if not skill:
             skill = self.context
             # Check assumption and escape if necessary
             if skill.portal_type != 'skill':
-                return (-1, (c_id, None, None))
+                return (-1, (self.current_id, None, None))
 
         for position, mls in enumerate(skill.member_level_show):
             member, level, show = tuple(mls.split('|'))
-            if member == c_id:
+            if member == self.current_id:
                 return (position, (member, level, show))
 
-        return (-1, (c_id, None, None))
+        return (-1, (self.current_id, None, None))
 
     def knowledge_profile(self):
+        """ For contained skills and itself return the knowledge_profile object
+        """
         context = self.context
 
         if context.portal_type == 'knowledge_profile':
@@ -56,6 +54,9 @@ class Knowledge(BrowserView):
         return False
 
     def skills(self):
+        """ Return the skills sorted by the order of expertises and groups
+            set on the knowledge_profile
+        """
         context = self.knowledge_profile()
         eg = context.expertises_groups
 
@@ -64,8 +65,9 @@ class Knowledge(BrowserView):
 
     def levels(self):
         kp = self.knowledge_profile()
-
-        return [l.split('|') for l in kp.levels if l.index('|') > -1]
+        levels = [l.split('|') for l in kp.levels if l.index('|') > -1]
+        self.legend = levels[1:]
+        return levels
 
     def data(self):
         """
@@ -107,8 +109,10 @@ class Knowledge(BrowserView):
 
             # Headers
             expertise_group = skill.group.split('|')
-            expertise = expertise_group[0] if len(expertise_group) == 2 else ''
-            group = expertise_group[1] if len(expertise_group) == 2 else ''
+            if len(expertise_group) == 2:
+                expertise, group = expertise_group
+            else:
+                expertise, group = ('', '')
             title = skill.title
             description = skill.description
 
@@ -116,6 +120,7 @@ class Knowledge(BrowserView):
             row = [expertise if expertise != _expertise else '',
                    group if group != _group else '',
                    title, description]
+            _expertise, _group = expertise, group
             levels = dict([
                 (x.split('|')[0], x.split('|')[1]) 
                 for x in skill.member_level_show if len(x.split('|')) == 3])
@@ -160,7 +165,9 @@ class Knowledge(BrowserView):
 
 
 class KnowledgeView(Knowledge):
-    implements(IKnowledgeView)
+    implements(interfaces.IKnowledgeView)
+
+    template = ViewPageTemplateFile('templates/knowledge.pt')
 
     def set_column_totals(self, memberorder):
         amount = 0
@@ -170,6 +177,16 @@ class KnowledgeView(Knowledge):
 
     def update_column_totals(self, i, value):
         self.column_totals[i] += value
+
+    def __call__(self):
+        self.current()
+        return self.template()
+
+
+class ProfileView(KnowledgeView):
+    implements(interfaces.IProfileView)
+
+    template = ViewPageTemplateFile('templates/profile.pt')
 
     def current_skills(self):
         grouped_skills = defaultdict(list)
@@ -190,9 +207,23 @@ class KnowledgeView(Knowledge):
 
         return grouped_skills
 
+    def __call__(self):
+        self.current()
+        return self.template()
+
+
+class CVView(ProfileView):
+    implements(interfaces.ICVView)
+
+    template = ViewPageTemplateFile('templates/cv.pt')
+
+    def __call__(self):
+        self.current()
+        return self.template()
+
 
 class KnowledgeExport(Knowledge):
-    implements(IKnowledgeView)
+    implements(interfaces.IKnowledgeExport)
 
     def processEntry(self, entry):
         """ Some processing to clean up entries
@@ -235,12 +266,13 @@ class KnowledgeExport(Knowledge):
         """ 
         """
         data = self.data()
+        levels = self.levels()
 
         # Add legend with some space
         data.append([])
         data.append([])
         data.append([self.context.translate(_(u"Legend"))])
-        data += self.levels()[1:]
+        data += self.legend
 
         # Clean up entries
         data = [[self.processEntry(column) for column in row] for row in data]
@@ -249,11 +281,10 @@ class KnowledgeExport(Knowledge):
         return self.export_csv('knowledge', data, self.request.RESPONSE)
 
 
-class KnowledgeCleanup(Knowledge):
-    """
-    """
+class CleanupView(Knowledge):
+    implements(interfaces.ICleanupView)
 
-    template = ViewPageTemplateFile('templates/knowledge-cleanup.pt')
+    template = ViewPageTemplateFile('templates/cleanup.pt')
 
     def __call__(self):
         skills = self.skills()

@@ -16,20 +16,24 @@
 <body>
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+    <style>
+      <metal:style use-macro="view/context/@@knowledge-utils/style"/>
+    </style>
+    <metal:links use-macro="view/context/@@knowledge-utils/links"/>
 
-  <form method="POST" action="knowledge-cleanup">
-    <legend i18n:translate="">Clean old members from skills</legend>
-    <p>
-      <select name="remove" size="4" multiple>
-        <option tal:repeat="member view/cleanup"
-                tal:content="member">1</option>
-      </select>
-    </p>
-    <p>
-      <input type="submit" value="Remove users"
-             i18n:attributes="value remove_users"/>
-    </p>
-  </form>
+    <form method="POST" action="knowledge-cleanup">
+      <legend i18n:translate="">Clean old members from skills</legend>
+      <p>
+        <select name="remove" size="4" multiple>
+          <option tal:repeat="member view/cleanup"
+                  tal:content="member">1</option>
+        </select>
+      </p>
+      <p>
+        <input type="submit" value="Remove users"
+               i18n:attributes="value remove_users"/>
+      </p>
+    </form>
   </metal:content-core>
 </metal:content-core>
 </body>

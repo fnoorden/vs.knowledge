@@ -13,7 +13,8 @@
     <a class="btn btn-info" href="knowledge.csv" i18n:translate="">CSV Export</a>
   </tal:checkPermission>
   <tal:checkPermission condition="python:context.portal_membership.checkPermission('Modify portal content', context)">
-    <a class="btn btn-info" href="knowledge-cleanup" i18n:translate="">Cleanup</a>
+    <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-cleanup' else 'btn btn-info'" 
+       class="btn btn-info" href="knowledge-cleanup" i18n:translate="">Cleanup</a>
   </tal:checkPermission>
 </div>
 

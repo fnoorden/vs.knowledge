@@ -5,10 +5,9 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       tal:define="skills view/skills;
-                  current_properties view/current_properties|nothing;
-                  current_id current_properties/id|nothing;
-                  current_cteam current_properties/cteam|nothing;
-                  current_fullname current_properties/fullname|nothing;
+                  current_id view/current_id|nothing;
+                  current_cteam view/current_cteam|nothing;
+                  current_fullname view/current_fullname|nothing;
                   expertise python:'';
                   exp_group python:'';
                   skills_count python:len(skills);

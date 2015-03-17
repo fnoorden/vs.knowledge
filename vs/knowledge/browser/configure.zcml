@@ -10,30 +10,27 @@
       name="knowledge"
       for="*"
       class=".knowledge.KnowledgeView"
-      template="templates/knowledge.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="knowledge-cv"
-      for="*"
-      class=".knowledge.KnowledgeView"
-      template="templates/knowledge-cv.pt"
       permission="zope2.View"
       />
 
   <browser:page
       name="knowledge-profile"
       for="*"
-      class=".knowledge.KnowledgeView"
-      template="templates/knowledge-profile.pt"
+      class=".knowledge.ProfileView"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="knowledge-cv"
+      for="*"
+      class=".knowledge.CVView"
       permission="zope2.View"
       />
 
   <browser:page
       name="knowledge-utils"
       for="*"
-      template="templates/knowledge-utils.pt"
+      template="templates/utils.pt"
       permission="zope2.View"
       />
 
@@ -47,8 +44,7 @@
   <browser:page
       name="knowledge-cleanup"
       for="*"
-      class=".knowledge.KnowledgeCleanup"
-      template="templates/knowledge-cleanup.pt"
+      class=".knowledge.CleanupView"
       permission="cmf.ModifyPortalContent"
       />
 
@@ -56,7 +52,6 @@
       name="skill"
       for="*"
       class=".skill.SkillView"
-      template="templates/skill.pt"
       permission="zope2.View"
       />
 
