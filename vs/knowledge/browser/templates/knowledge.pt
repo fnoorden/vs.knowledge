@@ -8,8 +8,7 @@
                   skills view/skills;
                   memberorder python:view.memberorder(members);
                   dummy python:view.set_column_totals(memberorder);
-                  current_properties view/current_properties|nothing;
-                  current_id current_properties/id|nothing;
+                  current_id view/current_id|nothing;
                   expertise python:'';
                   exp_group python:'';
                   empty_count python:0;
