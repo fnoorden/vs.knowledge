@@ -17,20 +17,20 @@ class SkillView(Knowledge):
 
     def __call__(self):
         self.current()
+        self.directions()
         form = self.request.form
         position, (member, self.level, self.show) = self.current_entry()
 
         if form:
             update = form.get('update', None)
-            self.update(position, member, level, show, form)
+            self.update(position, member, self.level, self.show, form)
 
-            directions = self.directions()
-            if update == 'Update' and directions['up']:
-                return self.request.response.redirect(directions['up'])
-            if update == '<<' and directions['back']:
-                return self.request.response.redirect(directions['back'])
-            if update == '>>' and directions['forward']:
-                return self.request.response.redirect(directions['forward'])
+            if update == 'Update' and self.up:
+                return self.request.response.redirect(self.up)
+            if update == '<<' and self.back:
+                return self.request.response.redirect(self.back)
+            if update == '>>' and self.forward:
+                return self.request.response.redirect(self.forward)
 
         return self.template()
 
@@ -53,13 +53,16 @@ class SkillView(Knowledge):
         """
         """
         skills = self.skills()
-        amount = len(skills)
+        self.amount = len(skills)
 
-        if not skills or amount < 2:
+        if not skills or self.amount < 2:
             return (None, None)
 
-        index = skills.index(self.context)
-        back = skills[index-1].absolute_url() if index > 0 else ''
-        forward = skills[index+1].absolute_url() if index < (amount-1) else ''
-        up = self.knowledge_profile().absolute_url()
-        return {'up': up, 'back': back, 'forward': forward}
+        self.index = skills.index(self.context)
+        self.back, self.forward = '', ''
+        if self.index > 0:
+            self.back = skills[self.index - 1].absolute_url()
+        if self.index < (self.amount - 1):
+            self.forward = skills[self.index + 1].absolute_url()
+
+        self.up = self.knowledge_profile().absolute_url()
