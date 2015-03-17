@@ -3,12 +3,13 @@ from cStringIO import StringIO
 from collections import defaultdict
 from plone import api
 from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from vs.knowledge import VSKnowledgeMessageFactory as _
 from vs.knowledge.interfaces import IKnowledgeView
 from zope.interface import implements
 
-import csv, time
 
+import csv, time
 
 class Knowledge(BrowserView):
 
@@ -26,6 +27,7 @@ class Knowledge(BrowserView):
         """
         """
         c_id = self.current().getId()
+
         if not skill:
             skill = self.context
             # Check assumption and escape if necessary
@@ -41,23 +43,28 @@ class Knowledge(BrowserView):
 
     def knowledge_profile(self):
         context = self.context
+
         if context.portal_type == 'knowledge_profile':
             return context
+
         if context.portal_type == 'skill':
             parent = aq_parent(context)
             if parent.portal_type != 'knowledge_profile':
                 return False
             return parent
+
         return False
 
     def skills(self):
         context = self.knowledge_profile()
         eg = context.expertises_groups
+
         return sorted(
             context.contentValues(), key=lambda x: (eg.index(x.group), x.id))
 
     def levels(self):
         kp = self.knowledge_profile()
+
         return [l.split('|') for l in kp.levels if l.index('|') > -1]
 
     def data(self):
@@ -67,6 +74,7 @@ class Knowledge(BrowserView):
         members = self.members()
         skills = self.skills()
         memberorder = self.memberorder(members)
+
         ordered_members = []
         group_lengths = []
         for cteam, cteam_members in memberorder:
@@ -135,15 +143,18 @@ class Knowledge(BrowserView):
 
     def members(self):
         userdict = defaultdict(list)
+
         for u in sorted(api.user.get_users(), 
                         key=lambda x: x.getProperty('fullname')):
             cteam = u.getProperty('cteam').strip()
             userdict[cteam if cteam else 'other'].append(u)
+
         return userdict
 
     def memberorder(self, members=None):
         if not members:
             members = self.members()
+
         return tuple([(k, tuple([m.getId() for m in members[k]])) 
                       for k in sorted(members.keys())])
 
@@ -155,9 +166,7 @@ class KnowledgeView(Knowledge):
         amount = 0
         for cteam in memberorder:
             amount += len(cteam[1])
-        self.column_totals = [0] * amount        
-        # import sys;sys.stdout=file('/dev/stdout','w')
-        # import pdb; pdb.set_trace()
+        self.column_totals = [0] * amount
 
     def update_column_totals(self, i, value):
         self.column_totals[i] += value
@@ -238,3 +247,54 @@ class KnowledgeExport(Knowledge):
 
         # Create and send back a *.csv file
         return self.export_csv('knowledge', data, self.request.RESPONSE)
+
+
+class KnowledgeCleanup(Knowledge):
+    """
+    """
+
+    template = ViewPageTemplateFile('templates/knowledge-cleanup.pt')
+
+    def __call__(self):
+        skills = self.skills()
+
+        form = self.request.form
+        if 'remove' in form:
+            remove = form['remove']
+            if isinstance(remove, str):
+                remove = [remove,]
+            self.cleanup_skills(remove, skills)
+
+        self.cleanup = self.missing_members(skills)
+
+        return self.template()
+
+    def cleanup_skills(self, remove, skills):
+        for skill in skills:
+            new_member_level_show = []
+            for mls in skill.member_level_show:
+                member, level, show = mls.split('|')
+                member = member.strip()
+                if member not in remove:
+                    new_member_level_show.append(mls)
+            skill.member_level_show = new_member_level_show
+            self.context.plone_utils.addPortalMessage(
+                'The following users were removed from all skills: %s' % 
+                    ', '.join(remove))
+
+    def missing_members(self, skills):
+        missing_members = set()
+        existing_members = set()
+
+        for skill in skills:
+            for mls in skill.member_level_show:
+                member, level, show = mls.split('|')
+                member = member.strip()
+                if (member not in existing_members and
+                    member not in missing_members):
+                    if not api.user.get(member):
+                        missing_members.add(member)
+                    else:
+                        existing_members.add(member)
+
+        return missing_members

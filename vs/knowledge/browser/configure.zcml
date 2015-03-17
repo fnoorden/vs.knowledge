@@ -15,13 +15,6 @@
       />
 
   <browser:page
-      name="knowledge.csv"
-      for="*"
-      class=".knowledge.KnowledgeExport"
-      permission="cmf.ReviewPortalContent"
-      />
-
-  <browser:page
       name="knowledge-cv"
       for="*"
       class=".knowledge.KnowledgeView"
@@ -42,6 +35,21 @@
       for="*"
       template="templates/knowledge-utils.pt"
       permission="zope2.View"
+      />
+
+  <browser:page
+      name="knowledge.csv"
+      for="*"
+      class=".knowledge.KnowledgeExport"
+      permission="cmf.ReviewPortalContent"
+      />
+
+  <browser:page
+      name="knowledge-cleanup"
+      for="*"
+      class=".knowledge.KnowledgeCleanup"
+      template="templates/knowledge-cleanup.pt"
+      permission="cmf.ModifyPortalContent"
       />
 
   <browser:page

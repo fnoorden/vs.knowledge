@@ -7,7 +7,6 @@ from zope.interface import implements
 
 from vs.knowledge.interfaces import ISkillView
 from vs.knowledge.browser.knowledge import Knowledge
-from vs.knowledge.vocabularies import LevelsVocabularyFactory as Levels
 
 
 class SkillView(Knowledge):
