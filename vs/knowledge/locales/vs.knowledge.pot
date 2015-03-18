@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-18 09:30+0000\n"
+"POT-Creation-Date: 2015-03-18 09:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "(Experience level unknown)"
 msgstr ""
 
-#: ./browser/templates/cv.pt:27
+#: ./browser/templates/cv.pt:28
 msgid "Automation knowledge"
 msgstr ""
 
@@ -35,6 +35,10 @@ msgstr ""
 
 #: ./browser/templates/utils.pt:36
 msgid "Change profile"
+msgstr ""
+
+#: ./browser/templates/cleanup.pt:25
+msgid "Clean old members from skills"
 msgstr ""
 
 #: ./browser/templates/utils.pt:16
@@ -100,5 +104,10 @@ msgstr ""
 
 #: ./browser/knowledge.py:103
 msgid "You have entries with an x value in your profile, please qualify your experience level."
+msgstr ""
+
+#. Default: "Remove users"
+#: ./browser/templates/cleanup.pt:33
+msgid "remove_users"
 msgstr ""
 

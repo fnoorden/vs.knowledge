@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: vs.knowledge\n"
-"POT-Creation-Date: 2015-03-18 09:30+0000\n"
+"POT-Creation-Date: 2015-03-18 09:38+0000\n"
 "PO-Revision-Date: 2015-03-16 10:05+0000\n"
 "Last-Translator: THijs <thijs.jonkman@virtualsciences.nl>\n"
 "Language-Team: VS <info@virtualsciences.nl>\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "(Experience level unknown)"
 msgstr "(Kennis niveau onbekend)"
 
-#: ./browser/templates/cv.pt:27
+#: ./browser/templates/cv.pt:28
 msgid "Automation knowledge"
 msgstr "Automatiserings kennis"
 
@@ -33,6 +33,10 @@ msgstr "CV weergave"
 #: ./browser/templates/utils.pt:36
 msgid "Change profile"
 msgstr "Profiel wijzigen"
+
+#: ./browser/templates/cleanup.pt:25
+msgid "Clean old members from skills"
+msgstr "Verwijder ex-medewerkers uit de skills"
 
 #: ./browser/templates/utils.pt:16
 msgid "Cleanup"
@@ -98,4 +102,9 @@ msgstr "Jouw kennis profiel is leeg. Vul je kennis profiel in en geef elke skill
 #: ./browser/knowledge.py:103
 msgid "You have entries with an x value in your profile, please qualify your experience level."
 msgstr "Er zijn skills met een 'X' waarde in jouw profiel. Vul deze a.u.b. aan met een kennis niveau."
+
+#. Default: "Remove users"
+#: ./browser/templates/cleanup.pt:33
+msgid "remove_users"
+msgstr "Verwijderen"
 
