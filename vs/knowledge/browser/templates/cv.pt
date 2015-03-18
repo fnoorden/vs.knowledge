@@ -22,12 +22,13 @@
     </style>
     <metal:links use-macro="view/context/@@knowledge-utils/links"/>
     <div class="table-wrap" i18n:domain="vs.knowledge"
-         tal:condition="python:view.e_count != view.skill_count">
+         tal:define="groups view/data"
+         tal:condition="groups">
 
       <h2 i18n:translate="">Automation knowledge</h2>
       <table class="knowledge cv">
         <tbody>
-          <tr tal:repeat="group view/data">
+          <tr tal:repeat="group groups">
             <th tal:content="python:group[0]">Group</th>
             <td tal:content="python:', '.join(group[1])">Skills</td>
           </tr>
