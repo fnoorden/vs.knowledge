@@ -4,15 +4,8 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      tal:define="skills view/skills;
-                  current_id view/current_id|nothing;
-                  current_cteam view/current_cteam|nothing;
-                  current_fullname view/current_fullname|nothing;
-                  expertise python:'';
-                  exp_group python:'';
-                  skills_count python:len(skills);
-                  empty_count python:0;
-                  update_count python:0;"
+      tal:define="data python:view.data(single=True);
+                  levels view/levels;"
       i18n:domain="plone">
 
 <head>
@@ -33,51 +26,32 @@
     <div class="table-wrap" i18n:domain="vs.knowledge">
       <metal:links use-macro="view/context/@@knowledge-utils/links"/>
 
-      <table class="knowledge profile">
-        <thead>
+      <table class="knowledge full"
+             tal:condition="python:view.e_count != view.skill_count">
+        <thead tal:define="headers python:data.pop(0)">
           <tr>
-            <th i18n:translate="">Expertise</th>
-            <th i18n:translate="">Subgroup</th>
-            <th i18n:translate="">Name</th>
-            <th i18n:translate="">Searchterms</th>
-            <th tal:content="current_fullname">
-              <span tal:content="python:member.getProperty('fullname')">
-              Fullname
-              </span>
-            </th>
+            <th tal:repeat="header headers" tal:content="header">Header</th>
           </tr>
         </thead>
         <tbody>
-          <tal:skill repeat="skill skills">
-            <tr tal:define="group skill/group|nothing;
-                            expertise_group python:group.split('|');
-                            xp python:expertise_group[0] if len(expertise_group) == 2 else '';
-                            gr python:expertise_group[1] if len(expertise_group) == 2 else '';
-                            mls skill/member_level_show|nothing; 
-                            data python:dict([(x.split('|')[0], x.split('|')[1]) for x in mls if len(x.split('|')) == 3]);
-                            value python:data.get(current_id, False);
-                            x_val python:value == 'X';
-                            e_val python:value == False;"
-                tal:attributes="class python:x_val and 'update' or e_val and 'empty' or None;">
-              <tal:e condition="e_val"><tal:empty  define="global empty_count python:empty_count + 1"/></tal:e>
-              <tal:x condition="x_val"><tal:update  define="global update_count python:update_count + 1"/></tal:x>
-              <th tal:define="show python:expertise != xp"
-                  tal:attributes="class python:'mark' if show else None;"
-                  tal:content="python:xp if show else ''">Expertise</th>
-              <tal:expertise define="global expertise xp"/>
-              <th tal:define="show python:exp_group != gr"
-                  tal:attributes="class python:'mark' if show else None;"
-                  tal:content="python:gr if show else ''">Group</th>
-              <tal:exp_group define="global exp_group gr"/>
-              <th tal:content="skill/title|nothing">Name</th>
-              <th tal:content="skill/description|nothing"></th>
+          <tal:row repeat="row data">
+            <tr tal:define="headers python:row[:4];
+                            cell python:row[4];
+                            value cell/value;
+                            url cell/url;
+                            cclass cell/cclass;"
+                tal:attributes="class cclass">
+              <tal:header repeat="header headers">
+                <th tal:omit-tag="python:header is ''" tal:content="header"></th>
+                <th tal:omit-tag="python:not header is ''" class="blank">&nbsp;</th>
+              </tal:header>
               <td>
-                <a tal:content="python:x_val and 'edit' or e_val and 'fill' or 'edit'"
-                   tal:attributes="href skill/absolute_url"></a>
-                <tal:value content="python:value if value else ''">X</tal:value>
+                <a tal:content="python:cclass == 'update' and 'edit' or cclass == 'empty' and 'fill' or 'edit'"
+                   tal:attributes="href url"></a>
+                <tal:value content="value">X</tal:value>
               </td>
             </tr>
-          </tal:skill>
+          </tal:row>
         </tbody>
       </table>
 

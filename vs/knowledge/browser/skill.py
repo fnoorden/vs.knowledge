@@ -52,7 +52,7 @@ class SkillView(Knowledge):
     def directions(self):
         """
         """
-        skills = self.skills()
+        skills = self.skills
         self.amount = len(skills)
 
         if not skills or self.amount < 2:
@@ -65,4 +65,5 @@ class SkillView(Knowledge):
         if self.index < (self.amount - 1):
             self.forward = skills[self.index + 1].absolute_url()
 
-        self.up = self.knowledge_profile().absolute_url()
+        self.up = '/'.join([
+            self.knowledge_profile.absolute_url(), 'knowledge-profile'])

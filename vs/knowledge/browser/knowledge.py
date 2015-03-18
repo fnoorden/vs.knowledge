@@ -8,7 +8,6 @@ from vs.knowledge import VSKnowledgeMessageFactory as _
 from vs.knowledge import interfaces
 from zope.interface import implements
 
-
 import csv, time
 
 class Knowledge(BrowserView):
@@ -17,9 +16,40 @@ class Knowledge(BrowserView):
         """ Current member
         """
         current = api.user.get_current()
-        self.current_id = current.getId()
+        c_id = current.getId()
+        self.current_id = c_id
         self.current_cteam = current.getProperty('cteam')
-        self.current_fullname = current.getProperty('fullname')
+        self.current_fullname = current.getProperty('fullname') or c_id
+
+    @property
+    def knowledge_profile(self):
+        """ For contained skills and itself return the knowledge_profile object
+        """
+        context = self.context
+
+        if context.portal_type == 'knowledge_profile':
+            return context
+
+        if context.portal_type == 'skill':
+            parent = aq_parent(context)
+            if parent.portal_type != 'knowledge_profile':
+                return False
+            return parent
+
+        return False
+
+    @property
+    def skills(self):
+        """ Return the skills sorted by the order of expertises and groups
+            set on the knowledge_profile
+        """
+        context = self.knowledge_profile
+        eg = context.expertises_groups
+
+        skills = sorted(
+            context.contentValues(), key=lambda x: (eg.index(x.group), x.id))
+        self.skill_count = len(skills)
+        return skills
 
     def current_entry(self, skill=None):
         """ Entry of the current member in member_level_show
@@ -37,77 +67,83 @@ class Knowledge(BrowserView):
 
         return (-1, (self.current_id, None, None))
 
-    def knowledge_profile(self):
-        """ For contained skills and itself return the knowledge_profile object
-        """
-        context = self.context
-
-        if context.portal_type == 'knowledge_profile':
-            return context
-
-        if context.portal_type == 'skill':
-            parent = aq_parent(context)
-            if parent.portal_type != 'knowledge_profile':
-                return False
-            return parent
-
-        return False
-
-    def skills(self):
-        """ Return the skills sorted by the order of expertises and groups
-            set on the knowledge_profile
-        """
-        context = self.knowledge_profile()
-        eg = context.expertises_groups
-
-        return sorted(
-            context.contentValues(), key=lambda x: (eg.index(x.group), x.id))
-
+    @property
     def levels(self):
-        kp = self.knowledge_profile()
-        levels = [l.split('|') for l in kp.levels if l.index('|') > -1]
+        context = self.knowledge_profile
+        levels = [l.split('|') for l in context.levels if l.index('|') > -1]
         self.legend = levels[1:]
         return levels
 
-    def data(self):
+    def _setup_members(self, single):
+        """ Member handling
         """
+        self.current()
+        if not single:
+            self.order_members()
+        else:
+            self.ordered_members = [self.current_id]
+
+    def _set_messages(self):
+        """ Add portal messages
+        """
+        ptools = self.context.plone_utils
+        if self.e_count:
+            if self.e_count == self.skill_count:
+                ptools.addPortalMessage(
+                    _(u'You have empty profile, '
+                       'please qualify your experise level for each skill.'),
+                    'error')
+            else:
+                ptools.addPortalMessage(
+                    _(u'You have empty entries in your profile, '
+                       'please add an experise level.'),
+                    'error')
+        if self.x_count:
+            ptools.addPortalMessage(
+                _(u'You have entries with an x value in your profile, '
+                   'please qualify your experise level.'),
+                'warning')
+
+    def data(self, single=False):
+        """ Build up data table
         """
         context = self.context
-        members = self.members()
-        skills = self.skills()
-        memberorder = self.memberorder(members)
 
-        ordered_members = []
-        group_lengths = []
-        for cteam, cteam_members in memberorder:
-            group_lengths.append(len(cteam_members))
-            ordered_members += cteam_members
+        self._setup_members(single)
 
-        # Row with employee names
-        names = [''] * 4 # Prefill with 5 empties
-        Total = context.translate(_(u"Total"))
-        names.append(Total)
-        for cteam in sorted(members.keys()):
-            names += [m.getProperty('fullname') for m in members[cteam]]
-        employee_count = len(names) - 5
-
-        # Row with headers and column_counts
+        # Set up headers
         Expertise = context.translate(_(u"Expertise"))
         Subgroup = context.translate(_(u"Subgroup"))
         Name = context.translate(_(u"Name"))
         Searchterms = context.translate(_(u"Searchterms"))
+        if not single:
+            Total = context.translate(_(u"Total"))
 
-        total = 0
-        totals = [Expertise, Subgroup, Name, Searchterms]
-        totals += [0] * employee_count
+            # Row with employee names
+            names = [''] * 4 # Prefill with 5 empties
+            names.append(Total)
+            names += self.fullnames
+            employee_count = len(self.fullnames)
+
+            # Row with headers and column_counts
+            total = 0
+            totals = [Expertise, Subgroup, Name, Searchterms]
+            totals += [0] * employee_count
+        else:
+            # Row with headers
+            headers = [
+                Expertise, Subgroup, Name, Searchterms, self.current_fullname]
 
         # Full data set
         _d = [] # Data
-        _expertise, _group = '', ''
-        for skill in skills:
+
+        self.x_count, self.e_count = 0, 0 # Count
+        _expertise, _group = '', '' # Sticky expertise and group
+
+        for skill in self.skills:
             row_total = 0
 
-            # Headers
+            # Row headers
             expertise_group = skill.group.split('|')
             if len(expertise_group) == 2:
                 expertise, group = expertise_group
@@ -116,33 +152,64 @@ class Knowledge(BrowserView):
             title = skill.title
             description = skill.description
 
-            # Fill row data
+            # Prepend headers
             row = [expertise if expertise != _expertise else '',
                    group if group != _group else '',
                    title, description]
+
+            # Update sticky expertise and group
             _expertise, _group = expertise, group
+
+            # Parse member_level_show
             levels = dict([
                 (x.split('|')[0], x.split('|')[1]) 
                 for x in skill.member_level_show if len(x.split('|')) == 3])
-            for i, member in enumerate(ordered_members):
+            for i, member in enumerate(self.ordered_members):
                 value = levels.get(member, False)
-                # Add value to row
-                row.append(value if value else '')
+                is_current = member == self.current_id
+                cell_class = ''
 
                 # Calculations
-                try:
-                    amount = int(value)
-                except ValueError:
-                    amount = 1 if value in ['x', 'X'] else 0
-                row_total += amount
-                total += amount
-                totals[i + 4] += amount
-            row.insert(4, row_total)
+                if value:
+                    try:
+                        amount = int(value)
+                    except ValueError:
+                        if value in ['x', 'X']:
+                            amount = 1
+                            if is_current:
+                                self.x_count += 1
+                                cell_class = 'update'
+                else:
+                    amount = 0
+                if value is False and is_current:
+                    self.e_count += 1
+                    cell_class = 'empty'
+
+                # Add value to row
+                if not single:
+                    row.append(value if value else '')
+                    row_total += amount
+                    total += amount
+                    totals[i + 4] += amount
+                else:
+                    row.append({
+                        "value": value if value else '',
+                        'url': skill.absolute_url(),
+                        'cclass': cell_class
+                    })
+
+            if not single:
+                row.insert(4, row_total)
             _d.append(row)
 
-        totals.insert(4, total)
-        _d.insert(0, names)
-        _d.insert(1, totals)
+        if not single:
+            totals.insert(4, total)
+            _d.insert(0, names)
+            _d.insert(1, totals)
+        else:
+            _d.insert(0, headers)
+
+        self._set_messages()
 
         return _d
 
@@ -156,70 +223,68 @@ class Knowledge(BrowserView):
 
         return userdict
 
-    def memberorder(self, members=None):
+    def order_members(self, members=None):
         if not members:
             members = self.members()
 
-        return tuple([(k, tuple([m.getId() for m in members[k]])) 
-                      for k in sorted(members.keys())])
+        self.ordered_cteams = [] # Tuples of (cteam, member_ids)
+        self.ordered_members = [] # Memberids ordered on cteam
+        # self.group_lengths = []
+        self.column_classes = []
+        self.fullnames = []
+        for k in sorted(members.keys()):
+            cteam, cteam_members = k, []
+            for m in members[k]:
+                m_id = m.getId()
+                cteam_members.append(m_id)
+                self.ordered_members.append(m_id)
+                self.fullnames.append(m.getProperty('fullname'))
+                if m_id == self.current_id:
+                    self.column_classes.append(k + ' current')
+                else:
+                    self.column_classes.append(k)
+            self.ordered_cteams.append((cteam, cteam_members))
+            # self.group_lengths.append(len(cteam_members))
 
 
 class KnowledgeView(Knowledge):
     implements(interfaces.IKnowledgeView)
 
-    template = ViewPageTemplateFile('templates/knowledge.pt')
 
-    def set_column_totals(self, memberorder):
-        amount = 0
-        for cteam in memberorder:
-            amount += len(cteam[1])
-        self.column_totals = [0] * amount
-
-    def update_column_totals(self, i, value):
-        self.column_totals[i] += value
-
-    def __call__(self):
-        self.current()
-        return self.template()
-
-
-class ProfileView(KnowledgeView):
+class ProfileView(Knowledge):
     implements(interfaces.IProfileView)
 
-    template = ViewPageTemplateFile('templates/profile.pt')
+    # template = ViewPageTemplateFile('templates/profile.pt')
 
-    def current_skills(self):
-        grouped_skills = defaultdict(list)
 
-        for skill in self.skills():
+    # def __call__(self):
+    #     self.current()
+    #     return self.template()
+
+
+class CVView(Knowledge):
+    implements(interfaces.ICVView)
+
+    def data(self):
+        # Member handling
+        self.current()
+
+        skills = defaultdict(list)
+        order = []
+        for skill in self.skills:
             position, (member, level, show) = self.current_entry(skill)
 
             if level:
                 group = skill.group.split('|')[1]
                 if level == 'X':
-                    grouped_skills[group].append(skill.title)
+                    skills[group].append(skill.title)
                 else:
-                    grouped_skills[group].append('%s (%s)' % (
+                    skills[group].append('%s (%s)' % (
                         skill.title, level))
-                if ('o' not in grouped_skills or 
-                    group not in grouped_skills.get('o', [])):
-                    grouped_skills['o'].append(group)
+                if group not in order:
+                    order.append(group)
 
-        return grouped_skills
-
-    def __call__(self):
-        self.current()
-        return self.template()
-
-
-class CVView(ProfileView):
-    implements(interfaces.ICVView)
-
-    template = ViewPageTemplateFile('templates/cv.pt')
-
-    def __call__(self):
-        self.current()
-        return self.template()
+        return [(i, skills[i]) for i in order]
 
 
 class KnowledgeExport(Knowledge):
@@ -266,9 +331,9 @@ class KnowledgeExport(Knowledge):
         """ 
         """
         data = self.data()
-        levels = self.levels()
 
         # Add legend with some space
+        levels = self.levels
         data.append([])
         data.append([])
         data.append([self.context.translate(_(u"Legend"))])
@@ -287,7 +352,7 @@ class CleanupView(Knowledge):
     template = ViewPageTemplateFile('templates/cleanup.pt')
 
     def __call__(self):
-        skills = self.skills()
+        skills = self.skills
 
         form = self.request.form
         if 'remove' in form:
@@ -310,8 +375,8 @@ class CleanupView(Knowledge):
                     new_member_level_show.append(mls)
             skill.member_level_show = new_member_level_show
             self.context.plone_utils.addPortalMessage(
-                'The following users were removed from all skills: %s' % 
-                    ', '.join(remove))
+                _(u'The following users were removed from all skills: ')
+                + ', '.join(remove))
 
     def missing_members(self, skills):
         missing_members = set()
