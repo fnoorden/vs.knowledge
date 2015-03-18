@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: vs.knowledge\n"
-"POT-Creation-Date: 2015-03-17 10:34+0000\n"
+"POT-Creation-Date: 2015-03-18 09:30+0000\n"
 "PO-Revision-Date: 2015-03-16 10:05+0000\n"
 "Last-Translator: THijs <thijs.jonkman@virtualsciences.nl>\n"
 "Language-Team: VS <info@virtualsciences.nl>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: vs.knowledge\n"
 
-#: ./browser/templates/utils.pt:41
+#: ./browser/templates/utils.pt:43
 msgid "(Experience level unknown)"
 msgstr "(Kennis niveau onbekend)"
 
-#: ./browser/templates/cv.pt:26
+#: ./browser/templates/cv.pt:27
 msgid "Automation knowledge"
 msgstr "Automatiserings kennis"
 
@@ -30,7 +30,7 @@ msgstr "CSV Export"
 msgid "CV display"
 msgstr "CV weergave"
 
-#: ./browser/templates/utils.pt:34
+#: ./browser/templates/utils.pt:36
 msgid "Change profile"
 msgstr "Profiel wijzigen"
 
@@ -38,13 +38,12 @@ msgstr "Profiel wijzigen"
 msgid "Cleanup"
 msgstr "Opschonen"
 
-#: ./browser/templates/utils.pt:26
+#: ./browser/templates/utils.pt:28
 msgid "Complete profile"
 msgstr "Profiel aanvullen"
 
-#: ./browser/knowledge.py:95
-#: ./browser/templates/knowledge.pt:59
-#: ./browser/templates/profile.pt:39
+#: ./browser/knowledge.py:115
+#: ./browser/templates/profile_bu.pt:39
 msgid "Expertise"
 msgstr "Expertise"
 
@@ -52,8 +51,8 @@ msgstr "Expertise"
 msgid "Full profile"
 msgstr "Volledig profiel"
 
-#: ./browser/knowledge.py:274
-#: ./browser/templates/knowledge.pt:39
+#: ./browser/knowledge.py:339
+#: ./browser/templates/knowledge.pt:30
 msgid "Legend"
 msgstr "Legenda"
 
@@ -61,29 +60,42 @@ msgstr "Legenda"
 msgid "My profile"
 msgstr "Mijn profiel"
 
-#: ./browser/knowledge.py:97
-#: ./browser/templates/knowledge.pt:61
-#: ./browser/templates/profile.pt:41
+#: ./browser/knowledge.py:117
+#: ./browser/templates/profile_bu.pt:41
 msgid "Name"
 msgstr "Naam"
 
-#: ./browser/knowledge.py:98
-#: ./browser/templates/knowledge.pt:62
-#: ./browser/templates/profile.pt:42
+#: ./browser/knowledge.py:118
+#: ./browser/templates/profile_bu.pt:42
 msgid "Searchterms"
 msgstr "Zoektermen"
 
-#: ./browser/knowledge.py:96
-#: ./browser/templates/knowledge.pt:60
-#: ./browser/templates/profile.pt:40
+#: ./browser/knowledge.py:116
+#: ./browser/templates/profile_bu.pt:40
 msgid "Subgroup"
 msgstr "Subgroep"
 
-#: ./browser/knowledge.py:88
+#: ./browser/knowledge.py:378
+msgid "The following users were removed from all skills: "
+msgstr "De volgende gebruikers zijn opgeschoond uit alle skills: "
+
+#: ./browser/knowledge.py:120
 msgid "Total"
 msgstr "Totaal"
 
-#: ./browser/templates/utils.pt:30
+#: ./browser/templates/utils.pt:32
 msgid "Update profile"
 msgstr "Profiel bijwerken"
+
+#: ./browser/knowledge.py:98
+msgid "You have empty entries in your profile, please add an experience level."
+msgstr "Er zijn skills met een lege waarde in jouw profiel. Vul deze a.u.b. aan met een kennis niveau."
+
+#: ./browser/knowledge.py:93
+msgid "You have empty profile, please qualify your experience level for each skill."
+msgstr "Jouw kennis profiel is leeg. Vul je kennis profiel in en geef elke skill een kennis niveau."
+
+#: ./browser/knowledge.py:103
+msgid "You have entries with an x value in your profile, please qualify your experience level."
+msgstr "Er zijn skills met een 'X' waarde in jouw profiel. Vul deze a.u.b. aan met een kennis niveau."
 

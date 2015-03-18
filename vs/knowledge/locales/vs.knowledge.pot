@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-17 10:34+0000\n"
+"POT-Creation-Date: 2015-03-18 09:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: vs.knowledge\n"
 
-#: ./browser/templates/utils.pt:41
+#: ./browser/templates/utils.pt:43
 msgid "(Experience level unknown)"
 msgstr ""
 
-#: ./browser/templates/cv.pt:26
+#: ./browser/templates/cv.pt:27
 msgid "Automation knowledge"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr ""
 msgid "CV display"
 msgstr ""
 
-#: ./browser/templates/utils.pt:34
+#: ./browser/templates/utils.pt:36
 msgid "Change profile"
 msgstr ""
 
@@ -41,13 +41,12 @@ msgstr ""
 msgid "Cleanup"
 msgstr ""
 
-#: ./browser/templates/utils.pt:26
+#: ./browser/templates/utils.pt:28
 msgid "Complete profile"
 msgstr ""
 
-#: ./browser/knowledge.py:95
-#: ./browser/templates/knowledge.pt:59
-#: ./browser/templates/profile.pt:39
+#: ./browser/knowledge.py:115
+#: ./browser/templates/profile_bu.pt:39
 msgid "Expertise"
 msgstr ""
 
@@ -55,8 +54,8 @@ msgstr ""
 msgid "Full profile"
 msgstr ""
 
-#: ./browser/knowledge.py:274
-#: ./browser/templates/knowledge.pt:39
+#: ./browser/knowledge.py:339
+#: ./browser/templates/knowledge.pt:30
 msgid "Legend"
 msgstr ""
 
@@ -64,29 +63,42 @@ msgstr ""
 msgid "My profile"
 msgstr ""
 
-#: ./browser/knowledge.py:97
-#: ./browser/templates/knowledge.pt:61
-#: ./browser/templates/profile.pt:41
+#: ./browser/knowledge.py:117
+#: ./browser/templates/profile_bu.pt:41
 msgid "Name"
 msgstr ""
 
-#: ./browser/knowledge.py:98
-#: ./browser/templates/knowledge.pt:62
-#: ./browser/templates/profile.pt:42
+#: ./browser/knowledge.py:118
+#: ./browser/templates/profile_bu.pt:42
 msgid "Searchterms"
 msgstr ""
 
-#: ./browser/knowledge.py:96
-#: ./browser/templates/knowledge.pt:60
-#: ./browser/templates/profile.pt:40
+#: ./browser/knowledge.py:116
+#: ./browser/templates/profile_bu.pt:40
 msgid "Subgroup"
 msgstr ""
 
-#: ./browser/knowledge.py:88
+#: ./browser/knowledge.py:378
+msgid "The following users were removed from all skills: "
+msgstr ""
+
+#: ./browser/knowledge.py:120
 msgid "Total"
 msgstr ""
 
-#: ./browser/templates/utils.pt:30
+#: ./browser/templates/utils.pt:32
 msgid "Update profile"
+msgstr ""
+
+#: ./browser/knowledge.py:98
+msgid "You have empty entries in your profile, please add an experience level."
+msgstr ""
+
+#: ./browser/knowledge.py:93
+msgid "You have empty profile, please qualify your experience level for each skill."
+msgstr ""
+
+#: ./browser/knowledge.py:103
+msgid "You have entries with an x value in your profile, please qualify your experience level."
 msgstr ""
 

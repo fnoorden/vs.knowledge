@@ -91,17 +91,17 @@ class Knowledge(BrowserView):
             if self.e_count == self.skill_count:
                 ptools.addPortalMessage(
                     _(u'You have empty profile, '
-                       'please qualify your experise level for each skill.'),
+                       'please qualify your experience level for each skill.'),
                     'error')
             else:
                 ptools.addPortalMessage(
                     _(u'You have empty entries in your profile, '
-                       'please add an experise level.'),
+                       'please add an experience level.'),
                     'error')
         if self.x_count:
             ptools.addPortalMessage(
                 _(u'You have entries with an x value in your profile, '
-                   'please qualify your experise level.'),
+                   'please qualify your experience level.'),
                 'warning')
 
     def data(self, single=False):
