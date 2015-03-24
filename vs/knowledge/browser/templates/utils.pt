@@ -73,6 +73,15 @@
   <button tal:attributes="class python:'btn btn-mini btn-' + (cclass == 'empty' and 'danger' or cclass == 'update' and 'inverse' or 'primary')">&raquo;</button>
 </form>
 
+<table metal:define-macro="cv_table" class="knowledge cv">
+  <tbody>
+    <tr tal:repeat="group groups">
+      <th tal:content="python:group[0]">Group</th>
+      <td tal:content="python:', '.join(group[1])">Skills</td>
+    </tr>
+  </tbody>
+</table>
+
 <style>
 <metal:style define-macro="style">/* Generic vs.knowledge styles */
   .buttons { padding: 2em 0; }

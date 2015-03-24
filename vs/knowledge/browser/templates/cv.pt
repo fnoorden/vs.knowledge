@@ -18,22 +18,15 @@
   <metal:content-core define-macro="content-core">
     <style>
       <metal:style use-macro="view/context/@@knowledge-utils/style"/>
-      <metal:profile metal:use-macro="view/context/@@knowledge-utils/cv"/>
+      <metal:cv use-macro="view/context/@@knowledge-utils/cv"/>
     </style>
     <metal:links use-macro="view/context/@@knowledge-utils/links"/>
     <div class="table-wrap" i18n:domain="vs.knowledge"
-         tal:define="groups view/data"
+         tal:define="groups view/grouped_skills"
          tal:condition="groups">
 
       <h2 i18n:translate="">Automation knowledge</h2>
-      <table class="knowledge cv">
-        <tbody>
-          <tr tal:repeat="group groups">
-            <th tal:content="python:group[0]">Group</th>
-            <td tal:content="python:', '.join(group[1])">Skills</td>
-          </tr>
-        </tbody>
-      </table>
+      <table metal:use-macro="view/context/@@knowledge-utils/cv_table"/>
     </div>
   </metal:content-core>
 </metal:content-core>

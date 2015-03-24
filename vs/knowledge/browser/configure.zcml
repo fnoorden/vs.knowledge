@@ -54,6 +54,7 @@
   <browser:page
       name="skill"
       for="*"
+      template="templates/skill.pt"
       class=".skill.SkillView"
       permission="zope2.View"
       />
