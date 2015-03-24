@@ -162,38 +162,42 @@ class Knowledge(BrowserView):
 
             # Parse member_level_show
             levels = dict([
-                (x.split('|')[0], x.split('|')[1]) 
+                (x.split('|')[0], (x.split('|')[1], x.split('|')[2])) 
                 for x in skill.member_level_show if len(x.split('|')) == 3])
             for i, member in enumerate(self.ordered_members):
-                value = levels.get(member, False)
+                level, show = levels.get(member, (False, False))
                 is_current = member == self.current_id
-                cell_class = ''
+                cell_class, x_val = '', False
 
                 # Calculations
-                if value:
+                if level:
                     try:
-                        amount = int(value)
+                        amount = int(level)
                     except ValueError:
-                        if value in ['x', 'X']:
+                        if level in ['x', 'X']:
                             amount = 1
+                            x_val = True
                             if is_current:
                                 self.x_count += 1
                                 cell_class = 'update'
                 else:
                     amount = 0
-                if value is False and is_current:
+                if level is False and is_current:
                     self.e_count += 1
                     cell_class = 'empty'
 
-                # Add value to row
+                # Add level to row
                 if not single:
-                    row.append(value if value else '')
+                    row.append(level if level else '')
                     row_total += amount
                     total += amount
                     totals[i + 4] += amount
                 else:
                     row.append({
-                        "value": value if value else '',
+                        "level": level if level else '',
+                        "x_val": x_val,
+                        "show": (
+                            True if show not in ['', 'n', False] else False),
                         'url': skill.absolute_url(),
                         'cclass': cell_class
                     })
@@ -229,7 +233,6 @@ class Knowledge(BrowserView):
 
         self.ordered_cteams = [] # Tuples of (cteam, member_ids)
         self.ordered_members = [] # Memberids ordered on cteam
-        # self.group_lengths = []
         self.column_classes = []
         self.fullnames = []
         for k in sorted(members.keys()):
@@ -244,7 +247,6 @@ class Knowledge(BrowserView):
                 else:
                     self.column_classes.append(k)
             self.ordered_cteams.append((cteam, cteam_members))
-            # self.group_lengths.append(len(cteam_members))
 
 
 class KnowledgeView(Knowledge):
@@ -253,13 +255,6 @@ class KnowledgeView(Knowledge):
 
 class ProfileView(Knowledge):
     implements(interfaces.IProfileView)
-
-    # template = ViewPageTemplateFile('templates/profile.pt')
-
-
-    # def __call__(self):
-    #     self.current()
-    #     return self.template()
 
 
 class CVView(Knowledge):

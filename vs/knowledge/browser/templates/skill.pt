@@ -4,16 +4,16 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      tal:define="current_level view/level|nothing;
-                  x_val python:current_level == 'X';
-                  current_show view/show|nothing;
+      tal:define="level view/level|nothing;
+                  x_val python:level == 'X';
+                  show view/show|nothing;
                   back view/back|nothing;
                   forward view/forward|nothing;"
       i18n:domain="plone">
 
 <head>
     <metal:block fill-slot="top_slot"
-                 tal:define="dummy python:request.set('disable_border',1);
+                 tal:define="dummy python:context.portal_membership.checkPermission('Modify portal content', context) or request.set('disable_border',1);
                              disable_column_one python:request.set('disable_plone.leftcolumn',1);
                              disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 </head>
@@ -37,16 +37,16 @@
         <metal:select use-macro="view/context/@@knowledge-utils/select" />
       </div>
       <div>
-        <label tal:define="show python:current_show not in ['', 'n']">
+        <label tal:define="show python:show not in ['', 'n']">
           <input type="checkbox" name="show" tal:condition="show" checked="checked"/>
           <input type="checkbox" name="show" tal:condition="not:show"/>
           Show on profile page
         </label>
       </div>
       <div class="formControls">
-        <input type="submit" name="update" value="<<" tal:condition="back"/>
-        <input type="submit" name="update" value="Update"/>
-        <input type="submit" name="update" value=">>" tal:condition="forward"/>
+        <input type="submit" name="change" value="<<" tal:condition="back"/>
+        <input type="submit" name="change" value="Update"/>
+        <input type="submit" name="change" value=">>" tal:condition="forward"/>
       </div>
     </form>
   </metal:content-core>

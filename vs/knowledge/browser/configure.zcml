@@ -58,4 +58,11 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="change"
+      for="*"
+      class=".skill.ChangeSkill"
+      permission="zope2.View"
+      />
+
 </configure>

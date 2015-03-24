@@ -42,10 +42,10 @@
 <select name="level" metal:define-macro="select" i18n:domain="vs.knowledge">
   <option value="X" selected="selected" tal:condition="x_val"
           i18n:translate="">(Experience level unknown)</option>
-  <tal:level repeat="level view/levels">
-    <tal:selected tal:define="value python:level[0];
-                              title python:level[1];
-                              selected python:value == current_level">
+  <tal:level repeat="l view/levels">
+    <tal:selected tal:define="value python:l[0];
+                              title python:l[1];
+                              selected python:value == level">
       <option tal:attributes="value value;"
               tal:condition="not:selected"
               tal:content="title"/>
@@ -57,10 +57,20 @@
   </tal:level>
 </select>
 
-<form metal:define-macro="levels"
-      tal:attributes="action string:${skill/absolute_url}/change">
-  <select metal:use-macro="view/context/@@knowledge-utils/select"/>
-  <input type="submit" value=">"/>
+<form metal:define-macro="change" class="form-inline" i18n:domain="vs.knowledge"
+      tal:attributes="action string:${url}/change">
+  <span class="control-group"
+        tal:attributes="class python:'control-group' + (cclass == 'empty' and ' error' or cclass == 'update' and ' warning' or '')">
+    <select metal:use-macro="view/context/@@knowledge-utils/select"/>
+    <label>
+      <input type="checkbox" name="show" tal:condition="not:show"/>
+      <input type="checkbox" name="show" tal:condition="show" checked/>
+      <tal:public i18n:translate>Public</tal:public>
+    </label>
+  </span>
+  <input type="hidden" name="from_url"
+         tal:attributes="value from_url"/>
+  <button tal:attributes="class python:'btn btn-mini btn-' + (cclass == 'empty' and 'danger' or cclass == 'update' and 'inverse' or 'primary')">&raquo;</button>
 </form>
 
 <style>
@@ -108,7 +118,7 @@
   }
   .full th { width: 0; }
   .full th:nth-child(3) { max-width: 14em; }
-  .full th:nth-child(4) { max-width: 0; padding: 0; overflow: hidden; }
+  .full th:nth-child(4) { max-width: 0; padding: 0; overflow: hidden; color: #fff !important;}
   tbody th { border-top: 1px solid rgba(0,0,0,.1); }
   tbody .blank { border-top: 0; }
   tr:nth-child(odd) td { background-color: rgba(255, 255, 153, .5); }
@@ -163,9 +173,17 @@
   th:nth-child(3) {
     border-left: 1px solid  rgba(0,0,0,.1);
   }
+  .ancor {
+    position: relative;
+    top: -10em;
+  }
+  .form-inline { margin-bottom: 0;}
 /*  td {
     padding: .2em 0;
   }*/
+  td {
+    width: 350px;
+  }
   td a {
     float: right;
     padding: 0 .5em;
@@ -176,7 +194,6 @@
     background-color: #fdc !important;
     color: rgba(0,0,0,.4);
     font-weight: bold;
-    border-top: 1px solid red !important;
   }
   .empty a {
     color: red;
@@ -188,10 +205,6 @@
     background-color: #fd7 !important;
     color: #000;
     font-weight: bold;
-  }
-  .update td, 
-  .update th {
-    border-top: 1px solid #d80 !important;
   }
 </metal:profile>
 

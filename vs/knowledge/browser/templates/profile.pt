@@ -37,18 +37,26 @@
           <tal:row repeat="row data">
             <tr tal:define="headers python:row[:4];
                             cell python:row[4];
-                            value cell/value;
+                            level cell/level;
+                            x_val cell/x_val;
+                            show cell/show;
                             url cell/url;
-                            cclass cell/cclass;"
-                tal:attributes="class cclass">
+                            cclass cell/cclass;
+                            index python:repeat['row'].index;
+                            row_id string:row-${index};
+                            from_url string:${context/absolute_url}/knowledge-profile#${row_id}"
+                tal:attributes="class cclass;">
               <tal:header repeat="header headers">
                 <th tal:omit-tag="python:header is ''" tal:content="header"></th>
                 <th tal:omit-tag="python:not header is ''" class="blank">&nbsp;</th>
               </tal:header>
               <td>
-                <a tal:content="python:cclass == 'update' and 'edit' or cclass == 'empty' and 'fill' or 'edit'"
+<!--                 <a tal:content="python:cclass == 'update' and 'edit' or cclass == 'empty' and 'fill' or 'edit'"
                    tal:attributes="href url"></a>
-                <tal:value content="value">X</tal:value>
+                <tal:level content="level">X</tal:level>
+                <tal:level content="show">True</tal:level> -->
+                <a class="ancor" tal:attributes="name row_id"/>
+                <metal:change use-macro="view/context/@@knowledge-utils/change"/>
               </td>
             </tr>
           </tal:row>

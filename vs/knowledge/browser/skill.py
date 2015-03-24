@@ -9,32 +9,13 @@ from zope.interface import implements
 from vs.knowledge.interfaces import ISkillView
 from vs.knowledge.browser.knowledge import Knowledge
 
+import time
 
-class SkillView(Knowledge):
-    implements(ISkillView)
+class Skill(Knowledge):
+    """ Skill base
+    """
 
-    template = ViewPageTemplateFile('templates/skill.pt')
-
-    def __call__(self):
-        self.current()
-        self.directions()
-        form = self.request.form
-        position, (member, self.level, self.show) = self.current_entry()
-
-        if form:
-            update = form.get('update', None)
-            self.update(position, member, self.level, self.show, form)
-
-            if update == 'Update' and self.up:
-                return self.request.response.redirect(self.up)
-            if update == '<<' and self.back:
-                return self.request.response.redirect(self.back)
-            if update == '>>' and self.forward:
-                return self.request.response.redirect(self.forward)
-
-        return self.template()
-
-    def update(self, position, member, level, show, form):
+    def change_skill(self, position, member, level, show, form):
         """
         """
 
@@ -48,6 +29,54 @@ class SkillView(Knowledge):
             mls.append(new)
         else:
             mls[position] = new
+
+        setattr(self.context, 'member_level_show', mls)
+
+
+class ChangeSkill(Skill):
+    """ Change skill values
+    """
+
+    def __call__(self):
+        request = self.request
+        form = request.form
+        self.current()
+        position, (member, self.level, self.show) = self.current_entry()
+
+        if form:
+            self.change_skill(position, member, self.level, self.show, form)
+            from_url = form.get('from_url', '')
+            return request.response.redirect(from_url)
+            # if from_url and self.level in ['X', 'x', False]:
+
+
+class SkillView(Skill):
+    implements(ISkillView)
+
+    template = ViewPageTemplateFile('templates/skill.pt')
+
+    def __call__(self):
+        self.current()
+        self.directions()
+
+        request = self.request
+        form = request.form
+        position, (member, self.level, self.show) = self.current_entry()
+
+        if form:
+            update = form.get('update', None)
+            self.change_skill(position, member, self.level, self.show, form)
+
+            response = request.response
+            if update == 'Update' and self.up:
+                return response.redirect(self.up)
+            if update == '<<' and self.back:
+                return response.redirect(self.back)
+            if update == '>>' and self.forward:
+                return response.redirect(self.forward)
+
+
+        return self.template()
 
     def directions(self):
         """
