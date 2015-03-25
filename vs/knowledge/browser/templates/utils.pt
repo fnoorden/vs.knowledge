@@ -1,13 +1,13 @@
-
-<div class="buttons btn-group"
-     metal:define-macro="links"
-     i18n:domain="vs.knowledge"
-     tal:define="template_id view/__name__">
+<metal:links define-macro="links"
+    tal:define="template_id view/__name__;
+                other_id view/other_id|nothing;"
+    i18n:domain="vs.knowledge">
+<div class="buttons btn-group">
   <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge' else 'btn btn-info'" 
      class="btn btn-info" href="knowledge" i18n:translate="" >Full profile</a>
-  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-profile' else 'btn btn-info'" 
+  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-profile' and not other_id else 'btn btn-info'" 
      class="btn btn-info" href="knowledge-profile" i18n:translate="">My profile</a>
-  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-cv' else 'btn btn-info'" 
+  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-cv' and not other_id else 'btn btn-info'" 
      class="btn btn-info" href="knowledge-cv" i18n:translate="">CV display</a>
   <tal:checkPermission condition="python:context.portal_membership.checkPermission('Review portal content', context)">
     <a class="btn btn-info" href="knowledge.csv" i18n:translate="">CSV Export</a>
@@ -16,9 +16,19 @@
     <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-cleanup' else 'btn btn-info'" 
        class="btn btn-info" href="knowledge-cleanup" i18n:translate="">Cleanup</a>
   </tal:checkPermission>
+  <a tal:attributes="class python:'btn btn-success disabled' if template_id == 'knowledge-profile' and other_id else 'btn btn-success';
+                     href string:knowledge-profile?other=${other_id};"
+     tal:condition="other_id"
+     class="btn btn-info" href="knowledge-profile"><tal:other content="string:${view/other_firstname}'s "/><tal:profile i18n:translate="">profile</tal:profile></a>
+  <a tal:attributes="class python:'btn btn-success disabled' if template_id == 'knowledge-cv' and other_id else 'btn btn-success';
+                     href string:knowledge-cv?other=${other_id};"
+     tal:condition="other_id" 
+     class="btn btn-info" href="knowledge-cv"><tal:other content="string:${view/other_firstname}'s "/><tal:cv i18n:translate="">CV weergave</tal:cv></a>
 </div>
+</metal:links>
 
 <div class="buttons" metal:define-macro="actions"
+     tal:condition="not:view/other_id|nothing"
      i18n:domain="vs.knowledge"
      tal:define="url python:view.skills[0].absolute_url() if view.skills else '';
                  empty_count view/e_count;
@@ -116,7 +126,7 @@
     position: relative;
     height: 2em !important; 
   }
-  .employee span {
+  .employee a, .employee span {
     transform: rotate(-75deg); 
     white-space: nowrap; 
     display: block; 

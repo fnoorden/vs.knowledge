@@ -33,6 +33,8 @@ class SkillView(BrowserView, Skill):
     """
     implements(ISkillView)
 
+    template = ViewPageTemplateFile('templates/skill.pt')
+
     def __call__(self):
         self.current()
         self.directions()

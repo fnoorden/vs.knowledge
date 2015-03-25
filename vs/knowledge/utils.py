@@ -1,7 +1,7 @@
 from Acquisition import aq_parent
 from collections import defaultdict
 from plone import api
-
+from Products.CMFCore.utils import getToolByName
 from vs.knowledge import VSKnowledgeMessageFactory as _
 
 class Knowledge(object):
@@ -11,11 +11,30 @@ class Knowledge(object):
     def current(self):
         """ Current member
         """
-        current = api.user.get_current()
-        c_id = current.getId()
+
+        if hasattr(self, 'author'):
+            c_id = self.other_id = self.author
+        elif hasattr(self, 'other_id'):
+            c_id = self.other_id
+        else:
+            c_id = self.other_id = self.request.get('other', None)
+
+        if c_id:
+            current = api.user.get(c_id)
+        else:
+            current = api.user.get_current()
+            c_id = current.getId()
         self.current_id = c_id
         self.current_cteam = current.getProperty('cteam')
         self.current_fullname = current.getProperty('fullname') or c_id
+        self.current_firstname = self.current_fullname.split()[0]
+
+        if self.other_id:
+            other = api.user.get(self.other_id)
+            self.other_cteam = other.getProperty('cteam')
+            self.other_fullname = other.getProperty('fullname') or c_id
+            self.other_firstname = self.other_fullname.split()[0]
+
 
     @property
     def knowledge_profile(self):
@@ -23,14 +42,22 @@ class Knowledge(object):
         """
         context = self.context
 
+        # We are on a knowledge profile
         if context.portal_type == 'knowledge_profile':
             return context
 
+        # We are on a skill
         if context.portal_type == 'skill':
             parent = aq_parent(context)
-            if parent.portal_type != 'knowledge_profile':
-                return False
-            return parent
+            if parent.portal_type == 'knowledge_profile':
+                return parent
+
+        # We are somewhere else
+        pc = getToolByName(self.context, "portal_catalog")
+        kps = pc(portal_type="knowledge_profile")
+        if len(kps) > 0:
+            # Return the first knowledge profile
+            return kps[0].getObject()
 
         return False
 
@@ -39,11 +66,11 @@ class Knowledge(object):
         """ Return the skills sorted by the order of expertises and groups
             set on the knowledge_profile
         """
-        context = self.knowledge_profile
-        eg = context.expertises_groups
+        kp = self.knowledge_profile
+        eg = kp.expertises_groups
 
         skills = sorted(
-            context.contentValues(), key=lambda x: (eg.index(x.group), x.id))
+            kp.contentValues(), key=lambda x: (eg.index(x.group), x.id))
         self.skill_count = len(skills)
         return skills
 
@@ -209,19 +236,19 @@ class Knowledge(object):
         else:
             _d.insert(0, headers)
 
-        self._set_messages()
+        if not self.other_id:
+            self._set_messages()
 
         return _d
 
     def grouped_skills(self, only_show=False):
         self.current()
-
         skills = defaultdict(list)
         order = []
         for skill in self.skills:
             position, (member, level, show) = self.current_entry(skill)
 
-            if only_show and show in ['', 'n']:
+            if only_show and show in [False, '', 'n']:
                 continue
 
             if level:
@@ -254,18 +281,25 @@ class Knowledge(object):
         self.ordered_members = [] # Memberids ordered on cteam
         self.column_classes = []
         self.fullnames = []
+        self.memberids = []
         for k in sorted(members.keys()):
             cteam, cteam_members = k, []
+
             for m in members[k]:
                 m_id = m.getId()
                 cteam_members.append(m_id)
                 self.ordered_members.append(m_id)
-                self.fullnames.append(m.getProperty('fullname'))
+                fn = m.getProperty('fullname')
+                self.fullnames.append(fn)
                 if m_id == self.current_id:
+                    self.memberids.append((fn, None))
                     self.column_classes.append(k + ' current')
                 else:
+                    self.memberids.append((fn, m_id))
                     self.column_classes.append(k)
+
             self.ordered_cteams.append((cteam, cteam_members))
+        self.memberids = dict(self.memberids)
 
 
 class Skill(Knowledge):

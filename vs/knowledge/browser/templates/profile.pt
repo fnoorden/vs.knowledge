@@ -5,7 +5,8 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       tal:define="data python:view.data(single=True);
-                  levels view/levels;"
+                  levels view/levels;
+                  other_id view/other_id|nothing;"
       i18n:domain="plone">
 
 <head>
@@ -55,8 +56,11 @@
                    tal:attributes="href url"></a>
                 <tal:level content="level">X</tal:level>
                 <tal:level content="show">True</tal:level> -->
-                <a class="ancor" tal:attributes="name row_id"/>
-                <metal:change use-macro="view/context/@@knowledge-utils/change"/>
+                <a class="ancor" tal:attributes="name row_id"></a>
+                <metal:change use-macro="view/context/@@knowledge-utils/change"
+                   tal:condition="not:other_id"/>
+                <tal:level content="level"
+                   tal:condition="other_id">X</tal:level>
               </td>
             </tr>
           </tal:row>

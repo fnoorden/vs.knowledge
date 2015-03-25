@@ -48,11 +48,13 @@
         <thead tal:define="names python:data.pop(0);
                            headers python:names[:5];
                            names python:names[5:];
-                           totals python:data.pop(0);">
+                           totals python:data.pop(0);
+                           memberids view/memberids">
           <tr>
             <th tal:repeat="header headers" tal:content="header">Header</th>
             <th tal:repeat="name names" class="employee">
-              <span tal:content="name">Voornaam Achternaam</span>
+              <a tal:content="python:name"
+                 tal:attributes="href python:'%s%s' % (context.absolute_url(), '?other=%s' % memberids.get(name, name) if name else '')">Voornaam Achternaam</a>
             </th>
           </tr>
           <tr>
