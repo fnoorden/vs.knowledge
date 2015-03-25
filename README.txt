@@ -8,6 +8,12 @@ Content types
 Knowledge Profile (Content type)
 +++++++++++++++++++++++++++++++
 
+Container of Skills. This content type provides the main funtionality of 
+viewing the knowledge, either for all members or for single members.
+
+Fields
+------
+
 - ID (Default)
 - Title (Default)
 - Description (Default)
@@ -20,8 +26,25 @@ Knowledge Profile (Content type)
   ------
   Levels are used to set the competence level on skills
 
+Views
+-----
+
+Knowledge: Overview of the competences of all users, available to all users.
+
+Profile: Overview of a user's competences, with ability of changing the skills
+when the profile is viewed by the current user.
+
+CV: A CV friendly overview of a user's competences.
+
+Export: CSV export of the Knowledge table
+
+
+
 Skill (Content type) (inside Knowledge Profile)
 +++++++++++++++++++++++++++++++++++++++++++++++
+
+Fields
+------
 
 - ID (Default) => key, unique
 - Title (Default)
@@ -45,6 +68,17 @@ Skill (Content type) (inside Knowledge Profile)
     4 - > 5 jaar ervaring
     5 - expert
   - show in portlet
+
+Views
+-----
+
+Skill: View on the skill focussed on the current member. Filters the user's
+entry in the values field and displays it in the context of all skills. Works
+as a click through for setting a new member's skillset.
+
+Change: View to allow changing values through the Profile view on the 
+Knowledge Profile when viewed by the current user, with the current user's 
+profile active.
 
 Interaction
 ===========
@@ -83,17 +117,4 @@ Column order
 TODO
 ====
 
-V - Legenda's
-V - Buttons check!
-V - In overview table, give experience a visible que (darker == more experienced)
-V - Count value, X == 1
-X - Afschermen van volledige tabel
-V - translate
-
-V - CSV export
-V - Cleanup view
-
-- Edit throught dropdowns in table?
-- Portlet
-
-
+/ - Edit throught dropdowns in table?
