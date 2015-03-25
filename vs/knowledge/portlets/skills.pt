@@ -1,0 +1,22 @@
+<dl i18n:domain="vs.knowledge" class="string:portlet portletSkills"
+    tal:define="groups view/author_skills">
+  <dt class="portletHeader">
+    <span class="portletTopLeft"></span>
+    <tal:label tal:content="string:${view/other_firstname}'s skills">Firstname's skills</tal:label>
+    <span class="portletTopRight"></span>
+  </dt>
+
+  <dd class="portletItem odd table-wrap" tal:condition="groups"
+      tal:repeat="group groups">
+    <strong tal:content="python:group[0]"/>:
+    <tal:skill tal:content="python:', '.join(group[1])"/>
+  </dd>
+
+  <dd class="portletFooter">
+    <span class="portletBottomLeft"></span>
+    <a href=""
+       tal:attributes="href string:${view/knowledge_profile/absolute_url}/knowledge-cv?other=${view/other_id}"
+       i18n:translate="">View my full skill CV</a>
+    <span class="portletBottomRight"></span>
+  </dd>
+</dl>

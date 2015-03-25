@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="vs.knowledge">
+
+    <plone:portlet
+        name="vs.knowledge.portlet.skills"
+        interface=".skills.ISkillsPortlet"
+        assignment=".skills.Assignment"
+        renderer=".skills.Renderer"
+        addview=".skills.AddForm"
+        />
+
+</configure>
