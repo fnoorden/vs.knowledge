@@ -303,5 +303,6 @@
   .empty td,  .empty th { color: rgba(0,0,0,.4); }
   .update a { color: orange; }
   .empty a { color: red; }
+  .infoMessage { color: green; margin-left: 1em; }
 </metal:cv>
 </style>

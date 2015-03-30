@@ -30,6 +30,24 @@
       permission="zope2.View"
       />
 
+  <browser:resource
+      name="ZeroClipboard.js"
+      permission="zope2.View"
+      file="js/ZeroClipboard.js"
+      />
+
+  <browser:resource
+      name="ZeroClipboard.min.js"
+      permission="zope2.View"
+      file="js/ZeroClipboard.min.js"
+      />
+
+  <browser:resource
+      name="ZeroClipboard.swf"
+      permission="zope2.View"
+      file="sfw/ZeroClipboard.swf"
+      />
+
   <browser:page
       name="knowledge-utils"
       for="*"

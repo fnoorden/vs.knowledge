@@ -30,6 +30,31 @@
         <table metal:use-macro="view/context/@@knowledge-utils/cv_table"/>
       </tal:groups>
       <metal:filter use-macro="view/context/@@knowledge-utils/filter"/>
+      <tal:groups condition="groups">
+        <button id="zero-copy" class="btn btn-inverse" i18n:translate="">Copy to Clipboard</button>
+        <span class="infoMessage" i18n:translate="" style="display: none;">✓ Automation knowledge copied</span>
+        <script type="text/javascript" src="/++resource++ZeroClipboard.min.js"/>
+        <script type="text/javascript">
+          ZeroClipboard.config({swfPath: "/++resource++ZeroClipboard.swf"});
+          var $copyButton = $('#zero-copy'),
+              $copiedMessage = $('#zero-copy + .infoMessage'),
+              client = new ZeroClipboard($copyButton);
+          client.on("ready", function(e) {
+            client.on( "copy", function (e) {
+              var clipboard = e.clipboardData;
+              clipboard.setData("text/html", 
+                '<h2>' + $('.table-wrap > h2').html() + '</h2>' + 
+                '<table>' + $('.table-wrap > table').html() + '</table>');
+            });
+            client.on( 'aftercopy', function(e) {
+              $copiedMessage.fadeIn('slow');
+              setTimeout(function () {
+                $copiedMessage.fadeOut('slow');
+              }, 1000);
+            });
+          });
+        </script>
+      </tal:groups>
     </div>
   </metal:content-core>
 </metal:content-core>
