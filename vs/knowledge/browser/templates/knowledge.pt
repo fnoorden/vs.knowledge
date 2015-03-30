@@ -23,24 +23,8 @@
       <metal:full use-macro="view/context/@@knowledge-utils/full"/>
     </style>
 
-    <div class="table-wrap" i18n:domain="vs.knowledge">
-      <table class="legend">
-        <thead>
-          <tr>
-            <th colspan="2" i18n:translate="">Legend</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr tal:repeat="level view/legend">
-            <th tal:content="python:level[1]">Title</th>
-            <td>
-              <span tal:define="value python:level[0]"
-                    tal:attributes="class string:level-${value}"
-                    tal:content="value">0</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="table-wrap">
+      <table class="legend" metal:use-macro="view/context/@@knowledge-utils/legend"/>
 
       <metal:links use-macro="view/context/@@knowledge-utils/links"/>
 

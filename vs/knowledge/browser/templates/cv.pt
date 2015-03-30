@@ -17,16 +17,19 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core"
       tal:define="groups view/grouped_skills;
-                  other_id view/other_id|nothing;">
+                  other_id view/other_id|nothing;
+                  levels view/levels">
     <style>
       <metal:style use-macro="view/context/@@knowledge-utils/style"/>
       <metal:cv use-macro="view/context/@@knowledge-utils/cv"/>
     </style>
-    <metal:links use-macro="view/context/@@knowledge-utils/links"/>
-    <div class="table-wrap" i18n:domain="vs.knowledge"
-         tal:condition="groups">
-      <h2 i18n:translate="">Automation knowledge</h2>
-      <table metal:use-macro="view/context/@@knowledge-utils/cv_table"/>
+    <div class="table-wrap">
+      <metal:links use-macro="view/context/@@knowledge-utils/links"/>
+      <tal:groups condition="groups">
+        <h2 i18n:translate="">Automation knowledge</h2>
+        <table metal:use-macro="view/context/@@knowledge-utils/cv_table"/>
+      </tal:groups>
+      <metal:filter use-macro="view/context/@@knowledge-utils/filter"/>
     </div>
   </metal:content-core>
 </metal:content-core>

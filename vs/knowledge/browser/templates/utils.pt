@@ -49,7 +49,35 @@
      i18n:translate="">Change profile</a>
 </div>
 
-<select name="level" metal:define-macro="select" i18n:domain="vs.knowledge">
+<div class="buttons btn-group" metal:define-macro="filter"
+     tal:define="url context/absolute_url;
+                 other_id view/other_id|nothing;
+                 only_show python:'only_show' in request;
+                 from_level request/from_level|nothing;"
+     i18n:domain="vs.knowledge">
+  <a class="btn btn-primary" href="knowledge-cv"
+     tal:attributes="href python:'%s/knowledge-cv?other=%s' % (url, other_id) if other_id else '%s/knowledge-cv' % url;
+                     class python:'btn btn-primary disabled' if not only_show and not from_level else 'btn btn-primary';"
+     i18n:translate="">All</a>
+  <tal:levels repeat="level view/levels">
+    <a class="btn btn-primary" href="knowledge-cv"
+       tal:define="level python:level[0]"
+       tal:condition="python:level and int(level) > 1"
+       tal:attributes="href python:'%s/knowledge-cv?other=%s&from_level=%s' % (url, other_id, level) if other_id else '%s/knowledge-cv?from_level=%s' % (url, level);
+                       class python:'btn btn-primary disabled' if from_level == level else 'btn btn-primary';">
+      <tal:level_label i18n:translate="">From level</tal:level_label>
+      <tal:level content="level">x</tal:level>
+    </a>
+  </tal:levels>
+  <a class="btn btn-primary" href="knowledge-cv"
+     tal:attributes="href python:'%s/knowledge-cv?other=%s&only_show' % (url, other_id) if other_id else '%s/knowledge-cv?only_show' % url;
+                     class python:'btn btn-primary disabled' if only_show else 'btn btn-primary';"
+     i18n:translate="">Profile</a>
+</div>
+
+<select 
+     name="level" metal:define-macro="select"
+     i18n:domain="vs.knowledge">
   <option value="X" selected="selected" tal:condition="x_val"
           i18n:translate="">(Experience level unknown)</option>
   <tal:level repeat="l view/levels">
@@ -91,6 +119,33 @@
     <tr tal:repeat="group groups">
       <th tal:content="python:group[0]">Group</th>
       <td tal:content="python:', '.join(group[1])">Skills</td>
+    </tr>
+    <tr>
+      <th></th>
+      <td style="background: transparent">
+        <br/>
+        <br/>
+        <small tal:content="structure python:', '.join(['. '.join(x) for x in view.legend if x[0]])"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table metal:define-macro="legend" class="legend"
+       i18n:domain="vs.knowledge">
+  <thead>
+    <tr>
+      <th colspan="2" i18n:translate="">Legend</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr tal:repeat="level view/legend">
+      <th tal:content="python:level[1]">Title</th>
+      <td>
+        <span tal:define="value python:level[0]"
+              tal:attributes="class string:level-${value}"
+              tal:content="value">0</span>
+      </td>
     </tr>
   </tbody>
 </table>

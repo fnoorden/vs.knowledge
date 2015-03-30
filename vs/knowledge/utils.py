@@ -241,25 +241,38 @@ class Knowledge(object):
 
         return _d
 
-    def grouped_skills(self, only_show=False):
+    def grouped_skills(self, only_show=False, from_level=None):
         self.current()
         skills = defaultdict(list)
         order = []
+
+        # If we don't have the flags from code, do we have them in the request?
+        request = self.request
+        if not only_show and 'only_show' in request:
+            only_show = True
+        if not from_level and 'from_level' in request:
+            from_level = request.get('from_level')
+
         for skill in self.skills:
             position, (member, level, show) = self.current_entry(skill)
 
-            if only_show and show in [False, '', 'n']:
+            # Do we have level?
+            # Is level high enough (string comparison) and not 'X'?
+            # Does show have to be checked?
+            if (not level or
+                from_level and level in ['X', 'x'] or
+                from_level and level < from_level or
+                only_show and show in [False, '', 'n']):
                 continue
 
-            if level:
-                group = skill.group.split('|')[1]
-                if level == 'X':
-                    skills[group].append(skill.title)
-                else:
-                    skills[group].append('%s (%s)' % (
-                        skill.title, level))
-                if group not in order:
-                    order.append(group)
+            group = skill.group.split('|')[1]
+            if level in ['X', 'x']:
+                skills[group].append(skill.title)
+            else:
+                skills[group].append('%s (%s)' % (
+                    skill.title, level))
+            if group not in order:
+                order.append(group)
 
         return [(i, skills[i]) for i in order]
 
