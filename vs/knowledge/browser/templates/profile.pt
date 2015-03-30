@@ -45,17 +45,14 @@
                             cclass cell/cclass;
                             index python:repeat['row'].index;
                             row_id string:row-${index};
-                            from_url string:${context/absolute_url}/knowledge-profile#${row_id}"
+                            from_url string:${context/absolute_url}/knowledge-profile#${row_id};
+                            ajax nothing;"
                 tal:attributes="class cclass;">
               <tal:header repeat="header headers">
                 <th tal:omit-tag="python:header is ''" tal:content="header"></th>
                 <th tal:omit-tag="python:not header is ''" class="blank">&nbsp;</th>
               </tal:header>
               <td>
-<!--                 <a tal:content="python:cclass == 'update' and 'edit' or cclass == 'empty' and 'fill' or 'edit'"
-                   tal:attributes="href url"></a>
-                <tal:level content="level">X</tal:level>
-                <tal:level content="show">True</tal:level> -->
                 <a class="ancor" tal:attributes="name row_id"></a>
                 <metal:change use-macro="view/context/@@knowledge-utils/change"
                    tal:condition="not:other_id"/>
@@ -66,8 +63,30 @@
           </tal:row>
         </tbody>
       </table>
-
       <metal:actions use-macro="view/context/@@knowledge-utils/actions"/>
+      <script type="text/javascript" tal:condition="not:view/other_id|nothing">
+        var $forms = $('form[id^="change-skill-"]'),
+            formChange = function() {
+              var $form = $(this);
+              $.ajax({
+                type: "POST",
+                url: $form.attr('action'),
+                data: $form.serialize(),
+                success: function (html) { 
+                  var $cell = $form.parent(),
+                      $row = $cell.parent(),
+                      $new_form = $(html).change(formChange);
+                  $cell.html($new_form);
+                  $row.removeClass();
+                },
+                dataType: "html"
+              });
+              console.log( $form.serialize() );
+            };
+        $forms.find('button').remove();
+        $forms.find('[name="from_url"]').remove();
+        $forms.change(formChange);
+      </script>
     </div>
   </metal:content-core>
 </metal:content-core>

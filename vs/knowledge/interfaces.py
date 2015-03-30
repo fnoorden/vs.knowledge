@@ -24,3 +24,7 @@ class ICleanupView(Interface):
 
 class ISkillView(Interface):
     """ Marker interface """
+
+
+class IChangeSkill(Interface):
+    """ Marker interface """

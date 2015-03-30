@@ -67,15 +67,18 @@
   </tal:level>
 </select>
 
-<form metal:define-macro="change" class="form-inline" i18n:domain="vs.knowledge"
-      tal:attributes="action string:${url}/change">
+<form metal:define-macro="change" 
+      class="form-inline" method="POST"
+      tal:attributes="action string:${url}/change;
+                      id string:change-skill-${index}"
+      i18n:domain="vs.knowledge">
   <span class="control-group"
         tal:attributes="class python:'control-group' + (cclass == 'empty' and ' error' or cclass == 'update' and ' warning' or '')">
     <select metal:use-macro="view/context/@@knowledge-utils/select"/>
     <label>
       <input type="checkbox" name="show" tal:condition="not:show"/>
       <input type="checkbox" name="show" tal:condition="show" checked/>
-      <tal:public i18n:translate>Public</tal:public>
+      <tal:public i18n:translate>On profile</tal:public>
     </label>
   </span>
   <input type="hidden" name="from_url"
