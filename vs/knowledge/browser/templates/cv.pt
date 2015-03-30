@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="vs.knowledge">
 
 <head>
     <metal:block fill-slot="top_slot"
@@ -25,14 +25,17 @@
     </style>
     <div class="table-wrap">
       <metal:links use-macro="view/context/@@knowledge-utils/links"/>
+      <h2 i18n:translate="">Automation knowledge</h2>
       <tal:groups condition="groups">
-        <h2 i18n:translate="">Automation knowledge</h2>
         <table metal:use-macro="view/context/@@knowledge-utils/cv_table"/>
       </tal:groups>
+      <tal:not_groups condition="not:groups">
+        <p class="knowledge" i18n:translate="">No skills qualify for the current filter.</p>
+      </tal:not_groups>
       <metal:filter use-macro="view/context/@@knowledge-utils/filter"/>
       <tal:groups condition="groups">
         <button id="zero-copy" class="btn btn-inverse" i18n:translate="">Copy to Clipboard</button>
-        <span class="infoMessage" i18n:translate="" style="display: none;">✓ Automation knowledge copied</span>
+        <span class="infoMessage" i18n:translate="" style="display: none;">Automation knowledge copied</span>
         <script type="text/javascript" src="/++resource++ZeroClipboard.min.js"/>
         <script type="text/javascript">
           ZeroClipboard.config({swfPath: "/++resource++ZeroClipboard.swf"});

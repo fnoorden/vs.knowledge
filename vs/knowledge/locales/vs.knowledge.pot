@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-18 09:38+0000\n"
+"POT-Creation-Date: 2015-03-31 09:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,21 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: vs.knowledge\n"
 
-#: ./browser/templates/utils.pt:43
+#: ./browser/skill.py:58
+#: ./browser/templates/utils.pt:79
 msgid "(Experience level unknown)"
+msgstr ""
+
+#: ./browser/templates/utils.pt:56
+msgid "All"
 msgstr ""
 
 #: ./browser/templates/cv.pt:28
 msgid "Automation knowledge"
+msgstr ""
+
+#: ./browser/templates/cv.pt:38
+msgid "Automation knowledge copied"
 msgstr ""
 
 #: ./browser/templates/utils.pt:13
@@ -33,7 +42,7 @@ msgstr ""
 msgid "CV display"
 msgstr ""
 
-#: ./browser/templates/utils.pt:36
+#: ./browser/templates/utils.pt:44
 msgid "Change profile"
 msgstr ""
 
@@ -45,21 +54,28 @@ msgstr ""
 msgid "Cleanup"
 msgstr ""
 
-#: ./browser/templates/utils.pt:28
+#: ./browser/templates/utils.pt:36
 msgid "Complete profile"
 msgstr ""
 
-#: ./browser/knowledge.py:115
-#: ./browser/templates/profile_bu.pt:39
+#: ./browser/templates/cv.pt:37
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: ./utils.py:138
 msgid "Expertise"
+msgstr ""
+
+#: ./browser/templates/utils.pt:66
+msgid "From level"
 msgstr ""
 
 #: ./browser/templates/utils.pt:6
 msgid "Full profile"
 msgstr ""
 
-#: ./browser/knowledge.py:339
-#: ./browser/templates/knowledge.pt:30
+#: ./browser/knowledge.py:74
+#: ./browser/templates/utils.pt:137
 msgid "Legend"
 msgstr ""
 
@@ -67,43 +83,65 @@ msgstr ""
 msgid "My profile"
 msgstr ""
 
-#: ./browser/knowledge.py:117
-#: ./browser/templates/profile_bu.pt:41
+#: ./utils.py:140
 msgid "Name"
 msgstr ""
 
-#: ./browser/knowledge.py:118
-#: ./browser/templates/profile_bu.pt:42
+#: ./browser/templates/cv.pt:33
+msgid "No skills qualify for the current filter."
+msgstr ""
+
+#: ./browser/skill.py:68
+#: ./browser/templates/utils.pt:107
+msgid "On profile"
+msgstr ""
+
+#: ./browser/templates/utils.pt:70
+msgid "Profile"
+msgstr ""
+
+#: ./utils.py:141
 msgid "Searchterms"
 msgstr ""
 
-#: ./browser/knowledge.py:116
-#: ./browser/templates/profile_bu.pt:40
+#: ./portlets/skills.py:27
+msgid "Skills"
+msgstr ""
+
+#: ./utils.py:139
 msgid "Subgroup"
 msgstr ""
 
-#: ./browser/knowledge.py:378
+#: ./browser/knowledge.py:113
 msgid "The following users were removed from all skills: "
 msgstr ""
 
-#: ./browser/knowledge.py:120
+#: ./utils.py:143
 msgid "Total"
 msgstr ""
 
-#: ./browser/templates/utils.pt:32
+#: ./browser/templates/utils.pt:40
 msgid "Update profile"
 msgstr ""
 
-#: ./browser/knowledge.py:98
+#: ./portlets/skills.pt:17
+msgid "View my full skill CV"
+msgstr ""
+
+#: ./utils.py:121
 msgid "You have empty entries in your profile, please add an experience level."
 msgstr ""
 
-#: ./browser/knowledge.py:93
+#: ./utils.py:116
 msgid "You have empty profile, please qualify your experience level for each skill."
 msgstr ""
 
-#: ./browser/knowledge.py:103
+#: ./utils.py:126
 msgid "You have entries with an x value in your profile, please qualify your experience level."
+msgstr ""
+
+#: ./browser/templates/utils.pt:22
+msgid "profile"
 msgstr ""
 
 #. Default: "Remove users"

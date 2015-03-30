@@ -1,17 +1,13 @@
 from cStringIO import StringIO
-
 from plone import api
-
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from vs.knowledge import interfaces
 from vs.knowledge import VSKnowledgeMessageFactory as _
 from vs.knowledge.utils import Knowledge
-
 from zope.interface import implements
-
-import csv, time
+import csv
+import time
 
 
 class KnowledgeView(BrowserView, Knowledge):

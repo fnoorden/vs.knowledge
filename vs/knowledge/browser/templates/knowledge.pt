@@ -6,7 +6,7 @@
       metal:use-macro="context/main_template/macros/master"
       tal:define="data view/data;
                   levels view/levels;"
-      i18n:domain="plone">
+      i18n:domain="vs.knowledge">
 
 <head>
     <metal:block fill-slot="top_slot"
@@ -28,7 +28,7 @@
 
       <metal:links use-macro="view/context/@@knowledge-utils/links"/>
 
-      <table class="knowledge full">
+      <table class="knowledge full" id="knowledge">
         <thead tal:define="names python:data.pop(0);
                            headers python:names[:5];
                            names python:names[5:];

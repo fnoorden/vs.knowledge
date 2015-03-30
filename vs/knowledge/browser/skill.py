@@ -65,7 +65,7 @@ class ChangeSkill(BrowserView, Skill):
         levels = LEVELS % '\n'.join(levels)
         show = SHOW % (
             ' checked="checked"' if show not in ['', 'n', False] else '', 
-            context.translate(_(u'Public')))
+            context.translate(_(u'On profile')))
 
         return TEMPLATE % (url, position, levels, show, from_url)
 

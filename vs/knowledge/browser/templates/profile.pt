@@ -7,7 +7,7 @@
       tal:define="data python:view.data(single=True);
                   levels view/levels;
                   other_id view/other_id|nothing;"
-      i18n:domain="plone">
+      i18n:domain="vs.knowledge">
 
 <head>
     <metal:block fill-slot="top_slot"
@@ -24,7 +24,7 @@
       <metal:profile use-macro="view/context/@@knowledge-utils/profile"/>
     </style>
 
-    <div class="table-wrap" i18n:domain="vs.knowledge">
+    <div class="table-wrap">
       <metal:links use-macro="view/context/@@knowledge-utils/links"/>
 
       <table class="knowledge full"

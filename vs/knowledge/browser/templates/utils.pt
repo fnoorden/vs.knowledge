@@ -23,18 +23,16 @@
   <a tal:attributes="class python:'btn btn-success disabled' if template_id == 'knowledge-cv' and other_id else 'btn btn-success';
                      href string:knowledge-cv?other=${other_id};"
      tal:condition="other_id" 
-     class="btn btn-info" href="knowledge-cv"><tal:other content="string:${view/other_firstname}'s "/><tal:cv i18n:translate="">CV weergave</tal:cv></a>
+     class="btn btn-info" href="knowledge-cv"><tal:other content="string:${view/other_firstname}'s "/><tal:cv i18n:translate="">CV display</tal:cv></a>
 </div>
 </metal:links>
 
 <div class="buttons" metal:define-macro="actions"
      tal:condition="not:view/other_id|nothing"
-     i18n:domain="vs.knowledge"
      tal:define="url python:view.skills[0].absolute_url() if view.skills else '';
                  empty_count view/e_count;
                  update_count view/x_count;"
-     tal:attributes="data-empty-count empty_count;
-                     data-update-count update_count;">
+     i18n:domain="vs.knowledge">
   <a class="btn btn-danger" href="knowledge-cv"
      tal:condition="empty_count"
      tal:attributes="href url"
@@ -106,7 +104,7 @@
     <label>
       <input type="checkbox" name="show" tal:condition="not:show"/>
       <input type="checkbox" name="show" tal:condition="show" checked/>
-      <tal:public i18n:translate>On profile</tal:public>
+      <tal:public i18n:translate="">On profile</tal:public>
     </label>
   </span>
   <input type="hidden" name="from_url"
@@ -114,7 +112,8 @@
   <button tal:attributes="class python:'btn btn-mini btn-' + (cclass == 'empty' and 'danger' or cclass == 'update' and 'inverse' or 'primary')">&raquo;</button>
 </form>
 
-<table metal:define-macro="cv_table" class="knowledge cv">
+<table metal:define-macro="cv_table" class="knowledge cv"
+       i18n:domain="vs.knowledge">
   <tbody>
     <tr tal:repeat="group groups">
       <th tal:content="python:group[0]">Group</th>
@@ -304,5 +303,6 @@
   .update a { color: orange; }
   .empty a { color: red; }
   .infoMessage { color: green; margin-left: 1em; }
+  .infoMessage:before { content: '✓ '; }
 </metal:cv>
 </style>

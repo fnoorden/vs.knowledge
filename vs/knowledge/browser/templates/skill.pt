@@ -9,7 +9,7 @@
                   show view/show|nothing;
                   back view/back|nothing;
                   forward view/forward|nothing;"
-      i18n:domain="plone">
+      i18n:domain="vs.knowledge">
 
 <head>
     <metal:block fill-slot="top_slot"

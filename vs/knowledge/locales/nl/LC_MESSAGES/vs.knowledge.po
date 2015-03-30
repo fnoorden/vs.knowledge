@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: vs.knowledge\n"
-"POT-Creation-Date: 2015-03-18 09:38+0000\n"
+"POT-Creation-Date: 2015-03-31 09:24+0000\n"
 "PO-Revision-Date: 2015-03-16 10:05+0000\n"
 "Last-Translator: THijs <thijs.jonkman@virtualsciences.nl>\n"
 "Language-Team: VS <info@virtualsciences.nl>\n"
@@ -14,13 +14,22 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: vs.knowledge\n"
 
-#: ./browser/templates/utils.pt:43
+#: ./browser/skill.py:58
+#: ./browser/templates/utils.pt:79
 msgid "(Experience level unknown)"
 msgstr "(Kennis niveau onbekend)"
+
+#: ./browser/templates/utils.pt:56
+msgid "All"
+msgstr "Alles"
 
 #: ./browser/templates/cv.pt:28
 msgid "Automation knowledge"
 msgstr "Automatiserings kennis"
+
+#: ./browser/templates/cv.pt:38
+msgid "Automation knowledge copied"
+msgstr "Automatiserings kennis gekopieerd"
 
 #: ./browser/templates/utils.pt:13
 msgid "CSV Export"
@@ -30,7 +39,7 @@ msgstr "CSV Export"
 msgid "CV display"
 msgstr "CV weergave"
 
-#: ./browser/templates/utils.pt:36
+#: ./browser/templates/utils.pt:44
 msgid "Change profile"
 msgstr "Profiel wijzigen"
 
@@ -42,21 +51,28 @@ msgstr "Verwijder ex-medewerkers uit de skills"
 msgid "Cleanup"
 msgstr "Opschonen"
 
-#: ./browser/templates/utils.pt:28
+#: ./browser/templates/utils.pt:36
 msgid "Complete profile"
 msgstr "Profiel aanvullen"
 
-#: ./browser/knowledge.py:115
-#: ./browser/templates/profile_bu.pt:39
+#: ./browser/templates/cv.pt:37
+msgid "Copy to Clipboard"
+msgstr "Kopieer naar kladblok"
+
+#: ./utils.py:138
 msgid "Expertise"
 msgstr "Expertise"
+
+#: ./browser/templates/utils.pt:66
+msgid "From level"
+msgstr "Vanaf niveau"
 
 #: ./browser/templates/utils.pt:6
 msgid "Full profile"
 msgstr "Volledig profiel"
 
-#: ./browser/knowledge.py:339
-#: ./browser/templates/knowledge.pt:30
+#: ./browser/knowledge.py:74
+#: ./browser/templates/utils.pt:137
 msgid "Legend"
 msgstr "Legenda"
 
@@ -64,44 +80,66 @@ msgstr "Legenda"
 msgid "My profile"
 msgstr "Mijn profiel"
 
-#: ./browser/knowledge.py:117
-#: ./browser/templates/profile_bu.pt:41
+#: ./utils.py:140
 msgid "Name"
 msgstr "Naam"
 
-#: ./browser/knowledge.py:118
-#: ./browser/templates/profile_bu.pt:42
+#: ./browser/templates/cv.pt:33
+msgid "No skills qualify for the current filter."
+msgstr "Er voldoen geen skills aan het huidige filter."
+
+#: ./browser/skill.py:68
+#: ./browser/templates/utils.pt:107
+msgid "On profile"
+msgstr "Op profiel"
+
+#: ./browser/templates/utils.pt:70
+msgid "Profile"
+msgstr "Profiel"
+
+#: ./utils.py:141
 msgid "Searchterms"
 msgstr "Zoektermen"
 
-#: ./browser/knowledge.py:116
-#: ./browser/templates/profile_bu.pt:40
+#: ./portlets/skills.py:27
+msgid "Skills"
+msgstr "Skills"
+
+#: ./utils.py:139
 msgid "Subgroup"
 msgstr "Subgroep"
 
-#: ./browser/knowledge.py:378
+#: ./browser/knowledge.py:113
 msgid "The following users were removed from all skills: "
 msgstr "De volgende gebruikers zijn opgeschoond uit alle skills: "
 
-#: ./browser/knowledge.py:120
+#: ./utils.py:143
 msgid "Total"
 msgstr "Totaal"
 
-#: ./browser/templates/utils.pt:32
+#: ./browser/templates/utils.pt:40
 msgid "Update profile"
 msgstr "Profiel bijwerken"
 
-#: ./browser/knowledge.py:98
+#: ./portlets/skills.pt:17
+msgid "View my full skill CV"
+msgstr "Bekijk mijn volledige skill CV"
+
+#: ./utils.py:121
 msgid "You have empty entries in your profile, please add an experience level."
 msgstr "Er zijn skills met een lege waarde in jouw profiel. Vul deze a.u.b. aan met een kennis niveau."
 
-#: ./browser/knowledge.py:93
+#: ./utils.py:116
 msgid "You have empty profile, please qualify your experience level for each skill."
 msgstr "Jouw kennis profiel is leeg. Vul je kennis profiel in en geef elke skill een kennis niveau."
 
-#: ./browser/knowledge.py:103
+#: ./utils.py:126
 msgid "You have entries with an x value in your profile, please qualify your experience level."
 msgstr "Er zijn skills met een 'X' waarde in jouw profiel. Vul deze a.u.b. aan met een kennis niveau."
+
+#: ./browser/templates/utils.pt:22
+msgid "profile"
+msgstr "profiel"
 
 #. Default: "Remove users"
 #: ./browser/templates/cleanup.pt:33
