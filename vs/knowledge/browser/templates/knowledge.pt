@@ -30,9 +30,9 @@
 
       <table class="knowledge full" id="knowledge">
         <thead tal:define="names python:data.pop(0);
-                           headers python:names[:5];
+                           headers python:names[:5];dummy python:headers.pop(3);
                            names python:names[5:];
-                           totals python:data.pop(0);
+                           totals python:data.pop(0);dummy python:totals.pop(3);
                            memberids view/memberids">
           <tr>
             <th tal:repeat="header headers" tal:content="header">Header</th>
@@ -47,12 +47,23 @@
         </thead>
         <tbody>
           <tal:row repeat="row data">
-            <tr tal:define="headers python:row[:5];
+            <tr tal:define="headers python:row[:5]; 
+                            info python:headers.pop(3);
                             cells python:row[5:];
                             column_classes view/column_classes;">
               <tal:header repeat="header headers">
-                <th tal:omit-tag="python:header is ''" tal:content="header"></th>
-                <th tal:omit-tag="python:not header is ''" class="blank">&nbsp;</th>
+                <th tal:omit-tag="python:header is ''">
+                <div tal:omit-tag="">
+                <th tal:omit-tag="python:not header is ''" class="blank">
+                  <dl class="info"
+                      tal:condition="python:repeat['header'].index == 2">
+                      <dt>i</dt>
+                      <dd tal:content="info">Info</dd>
+                  </dl>
+                  <tal:th tal:content="structure python:header or '&nbsp;'"></tal:th>
+                </th>
+                </div>
+                </th>
               </tal:header>
               <tal:cell repeat="cell cells">
                 <td tal:content="cell"

@@ -3,27 +3,27 @@
                 other_id view/other_id|nothing;"
     i18n:domain="vs.knowledge">
 <div class="buttons btn-group">
-  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge' else 'btn btn-info'" 
-     class="btn btn-info" href="knowledge" i18n:translate="" >Full profile</a>
-  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-profile' and not other_id else 'btn btn-info'" 
-     class="btn btn-info" href="knowledge-profile" i18n:translate="">My profile</a>
-  <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-cv' and not other_id else 'btn btn-info'" 
-     class="btn btn-info" href="knowledge-cv" i18n:translate="">CV display</a>
+  <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge' else 'btn btn-small btn-info'" 
+     class="btn btn-small btn-info" href="knowledge" i18n:translate="" >Full profile</a>
+  <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge-profile' and not other_id else 'btn btn-small btn-info'" 
+     class="btn btn-small btn-info" href="knowledge-profile" i18n:translate="">My profile</a>
+  <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge-cv' and not other_id else 'btn btn-small btn-info'" 
+     class="btn btn-small btn-info" href="knowledge-cv" i18n:translate="">CV display</a>
   <tal:checkPermission condition="python:context.portal_membership.checkPermission('Review portal content', context)">
-    <a class="btn btn-info" href="knowledge.csv" i18n:translate="">CSV Export</a>
+    <a class="btn btn-small btn-info" href="knowledge.csv" i18n:translate="">CSV Export</a>
   </tal:checkPermission>
   <tal:checkPermission condition="python:context.portal_membership.checkPermission('Modify portal content', context)">
-    <a tal:attributes="class python:'btn btn-info disabled' if template_id == 'knowledge-cleanup' else 'btn btn-info'" 
-       class="btn btn-info" href="knowledge-cleanup" i18n:translate="">Cleanup</a>
+    <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge-cleanup' else 'btn btn-small btn-info'" 
+       class="btn btn-small btn-info" href="knowledge-cleanup" i18n:translate="">Cleanup</a>
   </tal:checkPermission>
-  <a tal:attributes="class python:'btn btn-success disabled' if template_id == 'knowledge-profile' and other_id else 'btn btn-success';
+  <a tal:attributes="class python:'btn btn-small btn-success disabled' if template_id == 'knowledge-profile' and other_id else 'btn btn-small btn-success';
                      href string:knowledge-profile?other=${other_id};"
      tal:condition="other_id"
-     class="btn btn-info" href="knowledge-profile"><tal:other content="string:${view/other_firstname}'s "/><tal:profile i18n:translate="">profile</tal:profile></a>
-  <a tal:attributes="class python:'btn btn-success disabled' if template_id == 'knowledge-cv' and other_id else 'btn btn-success';
+     class="btn btn-small btn-info" href="knowledge-profile"><tal:other content="string:${view/other_firstname}'s "/><tal:profile i18n:translate="">profile</tal:profile></a>
+  <a tal:attributes="class python:'btn btn-small btn-success disabled' if template_id == 'knowledge-cv' and other_id else 'btn btn-small btn-success';
                      href string:knowledge-cv?other=${other_id};"
      tal:condition="other_id" 
-     class="btn btn-info" href="knowledge-cv"><tal:other content="string:${view/other_firstname}'s "/><tal:cv i18n:translate="">CV display</tal:cv></a>
+     class="btn btn-small btn-info" href="knowledge-cv"><tal:other content="string:${view/other_firstname}'s "/><tal:cv i18n:translate="">CV display  </tal:cv></a>
 </div>
 </metal:links>
 
@@ -33,15 +33,15 @@
                  empty_count view/e_count;
                  update_count view/x_count;"
      i18n:domain="vs.knowledge">
-  <a class="btn btn-danger" href="knowledge-cv"
+  <a class="btn btn-small btn-danger" href="knowledge-cv"
      tal:condition="empty_count"
      tal:attributes="href url"
      i18n:translate="">Complete profile</a>
-  <a class="btn btn-warning" href="knowledge-cv"
+  <a class="btn btn-small btn-warning" href="knowledge-cv"
      tal:condition="python:not empty_count and update_count"
      tal:attributes="href url"
      i18n:translate="">Update profile</a>
-  <a class="btn btn-primary" href="knowledge-cv"
+  <a class="btn btn-small btn-primary" href="knowledge-cv"
      tal:condition="python:not empty_count and not update_count"
      tal:attributes="href url"
      i18n:translate="">Change profile</a>
@@ -53,23 +53,23 @@
                  only_show python:'only_show' in request;
                  from_level request/from_level|nothing;"
      i18n:domain="vs.knowledge">
-  <a class="btn btn-primary" href="knowledge-cv"
+  <a class="btn btn-small btn-primary" href="knowledge-cv"
      tal:attributes="href python:'%s/knowledge-cv?other=%s' % (url, other_id) if other_id else '%s/knowledge-cv' % url;
-                     class python:'btn btn-primary disabled' if not only_show and not from_level else 'btn btn-primary';"
+                     class python:'btn btn-small btn-primary disabled' if not only_show and not from_level else 'btn btn-small btn-primary';"
      i18n:translate="">All</a>
   <tal:levels repeat="level view/levels">
-    <a class="btn btn-primary" href="knowledge-cv"
+    <a class="btn btn-small btn-primary" href="knowledge-cv"
        tal:define="level python:level[0]"
        tal:condition="python:level and int(level) > 1"
        tal:attributes="href python:'%s/knowledge-cv?other=%s&from_level=%s' % (url, other_id, level) if other_id else '%s/knowledge-cv?from_level=%s' % (url, level);
-                       class python:'btn btn-primary disabled' if from_level == level else 'btn btn-primary';">
+                       class python:'btn btn-small btn-primary disabled' if from_level == level else 'btn btn-small btn-primary';">
       <tal:level_label i18n:translate="">From level</tal:level_label>
       <tal:level content="level">x</tal:level>
     </a>
   </tal:levels>
-  <a class="btn btn-primary" href="knowledge-cv"
+  <a class="btn btn-small btn-primary" href="knowledge-cv"
      tal:attributes="href python:'%s/knowledge-cv?other=%s&only_show' % (url, other_id) if other_id else '%s/knowledge-cv?only_show' % url;
-                     class python:'btn btn-primary disabled' if only_show else 'btn btn-primary';"
+                     class python:'btn btn-small btn-primary disabled' if only_show else 'btn btn-small btn-primary';"
      i18n:translate="">Profile</a>
 </div>
 
@@ -176,8 +176,57 @@
 
 <metal:full define-macro="full">/* Full knowledge profile styles */
   .table-wrap {
-      font-size: 75%;
+    font-size: 80%;
   }
+  .info {
+    float: right;
+    width: 1.5em;
+    height: 1.5em;
+    position: relative;
+    cursor: pointer;
+    margin-left: .5em;
+  }
+  .info dt, .info dd {
+    position: absolute;
+    background: #0860c4;
+    color: white;
+    border-radius: .75em;
+    top: 0;
+    left: 0;
+  }
+  .info dt {
+    height: 1.5em;
+    width: 1.5em;
+    font-style: italic;
+    line-height: 1.825;
+    text-align: center;
+  }
+  .info dd {
+    display: block;
+    position: absolute;
+    margin: 0 !important;
+    padding: 1.5em 3em;
+    visibility: hidden;
+    opacity: 0;
+    width: 16em;
+    -webkit-transition: visibility 0s linear 0.2s,opacity 0.2s linear;
+    -moz-transition:    visibility 0s linear 0.2s,opacity 0.2s linear;
+    -o-transition:      visibility 0s linear 0.2s,opacity 0.2s linear;
+    transition:         visibility 0s linear 0.2s,opacity 0.2s linear;
+  }
+  .info dt:hover {
+    z-index: 2;
+  }
+  .info dt:hover + dd {
+    z-index: 1;
+    visibility:visible;
+    opacity:1;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+  }
+  .knowledge { margin-right: 2em; margin-top: 10em; }
   thead .employee {
     max-width: 1em !important; 
     position: relative;
@@ -192,9 +241,10 @@
     top: -.5em;
     left: .15em;
   }
-  .full th { width: 0; }
+  /*.full th { width: 0; }*/
+  table, tr, td, th { height: 100%; }
   .full th:nth-child(3) { max-width: 14em; }
-  .full th:nth-child(4) { max-width: 0; padding: 0; overflow: hidden; color: #fff !important;}
+  .full th:nth-child(4) { text-align: right; }
   tbody th { border-top: 1px solid rgba(0,0,0,.1); }
   tbody .blank { border-top: 0; }
   tr:nth-child(odd) td { background-color: rgba(255, 255, 153, .5); }
