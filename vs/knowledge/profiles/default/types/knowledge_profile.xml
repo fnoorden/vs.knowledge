@@ -56,6 +56,13 @@
       &lt;title&gt;Expertises|Groups&lt;/title&gt;
       &lt;value_type type="zope.schema.TextLine"/&gt;
     &lt;/field&gt;
+    &lt;field name="exclude" type="zope.schema.List"&gt;
+      &lt;description&gt;
+          Exclude members by id (Click the header to see their id in the url). One member per line.
+      &lt;/description&gt;
+      &lt;title&gt;Exclude&lt;/title&gt;
+      &lt;value_type type="zope.schema.TextLine"/&gt;
+    &lt;/field&gt;
   &lt;/schema&gt;
 &lt;/model&gt;
  </property>
