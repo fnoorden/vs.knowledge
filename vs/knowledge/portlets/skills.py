@@ -42,7 +42,7 @@ class Renderer(base.Renderer, Knowledge):
 
     @property
     def author_skills(self):
-        return self.grouped_skills(only_show=True)
+        return self.grouped_skills(only_group=True, only_show=True)
 
     @property
     def available(self):

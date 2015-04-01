@@ -116,11 +116,14 @@
        i18n:domain="vs.knowledge">
   <tbody>
     <tr tal:repeat="group groups">
-      <th tal:content="python:group[0]">Group</th>
+      <th tal:repeat="header python:group[0]"
+          tal:attributes="class python:'blank' if header is '' else None"
+          tal:content="header">Group</th>
       <td tal:content="python:', '.join(group[1])">Skills</td>
     </tr>
     <tr>
       <th></th>
+      <th tal:condition="python:len(groups[0][0]) == 2"></th>
       <td style="background: transparent">
         <br/>
         <br/>

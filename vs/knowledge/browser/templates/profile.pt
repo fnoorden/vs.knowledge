@@ -34,7 +34,7 @@
             <th tal:repeat="header headers" tal:content="header">Header</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody tal:define="ld python:dict(levels)">
           <tal:row repeat="row data">
             <tr tal:define="headers python:row[:4];
                             cell python:row[4];
@@ -49,8 +49,8 @@
                             ajax nothing;"
                 tal:attributes="class cclass;">
               <tal:header repeat="header headers">
-                <th tal:omit-tag="python:header is ''" tal:content="header"></th>
-                <th tal:omit-tag="python:not header is ''" class="blank">&nbsp;</th>
+                <th tal:attributes="class python:'blank' if header is '' else None"
+                    tal:content="structure python:header or '&nbsp;'"></th>
               </tal:header>
               <td>
                 <a class="ancor" tal:attributes="name row_id"></a>

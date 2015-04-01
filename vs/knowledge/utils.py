@@ -241,7 +241,8 @@ class Knowledge(object):
 
         return _d
 
-    def grouped_skills(self, only_show=False, from_level=None):
+    def grouped_skills(
+        self, only_group=False, only_show=False, from_level=None):
         self.current()
         skills = defaultdict(list)
         order = []
@@ -253,6 +254,8 @@ class Knowledge(object):
         if not from_level and 'from_level' in request:
             from_level = request.get('from_level')
 
+        # Stricky exptertise
+        _expertise = ''
         for skill in self.skills:
             position, (member, level, show) = self.current_entry(skill)
 
@@ -265,7 +268,15 @@ class Knowledge(object):
                 only_show and show in [False, '', 'n']):
                 continue
 
-            group = skill.group.split('|')[1]
+            group = skill.group.split('|')
+            if only_group:
+                expertise = group.pop(0) # Remove expertise header
+            else:
+                expertise = group[0]
+                group[0] = expertise if expertise != _expertise else ''
+                _expertise = expertise
+            group = tuple(group)
+
             if level in ['X', 'x']:
                 skills[group].append(skill.title)
             else:

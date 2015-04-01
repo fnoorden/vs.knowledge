@@ -8,7 +8,7 @@
 
   <dd class="portletItem odd table-wrap" tal:condition="groups"
       tal:repeat="group groups">
-    <strong tal:content="python:group[0]"/>:
+    <strong tal:content="python:' | '.join(group[0])"/>:
     <tal:skill tal:content="python:', '.join(group[1])"/>
   </dd>
 
