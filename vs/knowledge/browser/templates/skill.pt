@@ -29,9 +29,9 @@
     <h2 tal:content="context/title"></h2>
     <div class="documentDescription"
          tal:content="context/description">Description</div>
-    <form action="." method="POST" i18n:domain="vs.online">
+    <form action="." method="POST">
       <div tal:attributes="class python:'field error' if x_val else None">
-        <label>Skill experience level</label>
+        <label i18n:translate="">Skill experience level</label>
         <div class="formHelp" tal:condition="x_val"
              i18n:translate="">This is an imported value. Please specify the level of your experience with this skill.</div>
         <metal:select use-macro="view/context/@@knowledge-utils/select" />
@@ -40,7 +40,7 @@
         <label tal:define="show python:show not in ['', 'n']">
           <input type="checkbox" name="show" tal:condition="show" checked="checked"/>
           <input type="checkbox" name="show" tal:condition="not:show"/>
-          Show on profile page
+          <tal:show i18n:translate="">Show on profile page</tal:show>
         </label>
       </div>
       <div class="formControls">

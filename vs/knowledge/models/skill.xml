@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf8'?>
+<model
+  xmlns:form="http://namespaces.plone.org/supermodel/form"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
+  xmlns:lingua="http://namespaces.plone.org/supermodel/lingua"
+  xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+  xmlns:security="http://namespaces.plone.org/supermodel/security"
+  xmlns="http://namespaces.plone.org/supermodel/schema"
+  i18n:domain="vs.knowledge">
+  <schema>
+    <field name="text" type="plone.app.textfield.RichText">
+      <description/>
+      <required>False</required>
+      <title>Text</title>
+    </field>
+    <field name="group" type="zope.schema.Choice">
+      <description i18n:translate="">Pick the group that applies to this Skill.</description>
+      <title i18n:translate="">Group</title>
+      <vocabulary>vs.knowledge.GroupsVocabularyFactory</vocabulary>
+    </field>
+    <fieldset name="values" label="Values" 
+        i18n:attributes="label values_label">
+      <field name="member_level_show" type="zope.schema.List">
+        <description i18n:translate="">Not meant for immediate editing. Only in case of emergency. Go through the available edit screens.</description>
+        <required>False</required>
+        <title i18n:translate="">Member | Level | Show in profile</title>
+        <value_type type="zope.schema.TextLine"/>
+      </field>
+    </fieldset>
+  </schema>
+</model>

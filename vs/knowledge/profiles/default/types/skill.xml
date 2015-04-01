@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
-<object name="skill" meta_type="Dexterity FTI" i18n:domain="plone"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<object name="skill" meta_type="Dexterity FTI"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="vs.knowledge">
  <property name="title" i18n:translate="">Skill</property>
  <property name="description"
     i18n:translate="">Skill, grouped by group within expertise.</property>
@@ -36,37 +37,8 @@
   <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
  </property>
  <property name="schema"></property>
- <property
-    name="model_source">&lt;model 
-    xmlns:security="http://namespaces.plone.org/supermodel/security" 
-    xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" 
-    xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" 
-    xmlns:form="http://namespaces.plone.org/supermodel/form" 
-    xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" 
-    xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-  &lt;schema&gt;
-    &lt;field name="text" type="plone.app.textfield.RichText"&gt;
-      &lt;description/&gt;
-      &lt;required&gt;False&lt;/required&gt;
-      &lt;title&gt;Text&lt;/title&gt;
-    &lt;/field&gt;
-    &lt;field name="group" type="zope.schema.Choice"&gt;
-      &lt;description&gt;Pick the group that applies to this Skill.&lt;/description&gt;
-      &lt;title&gt;Group&lt;/title&gt;
-      &lt;vocabulary&gt;vs.knowledge.GroupsVocabularyFactory&lt;/vocabulary&gt;
-    &lt;/field&gt;
-    &lt;fieldset name="values" label="Values"&gt;
-      &lt;field name="member_level_show" type="zope.schema.List"&gt;
-        &lt;description&gt;Not meant for immediate editing. Only in case of emergency. Go through the available edit screens.&lt;/description&gt;
-        &lt;required&gt;False&lt;/required&gt;
-        &lt;title&gt;Member | Level | Show in profile&lt;/title&gt;
-        &lt;value_type type="zope.schema.TextLine"/&gt;
-      &lt;/field&gt;
-    &lt;/fieldset&gt;
-  &lt;/schema&gt;
-&lt;/model&gt;
- </property>
- <property name="model_file"></property>
+ <property name="model_source"></property>
+ <property name="model_file">vs.knowledge:models/skill.xml</property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>

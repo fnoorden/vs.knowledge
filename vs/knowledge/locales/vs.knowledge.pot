@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-03-31 09:24+0000\n"
+"POT-Creation-Date: 2015-04-01 10:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,25 @@ msgstr ""
 msgid "(Experience level unknown)"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:69
+#: ./browser/templates/utils.pt:168
+msgid "Advanced beginner"
+msgstr ""
+
 #: ./browser/templates/utils.pt:56
 msgid "All"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:77
+msgid "All attributes and aspects are treated separately and given equal importance"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:122
+msgid "Analytic approaches used only in novel situations or when problems occur"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:58
+msgid "Analytically"
 msgstr ""
 
 #: ./browser/templates/cv.pt:28
@@ -46,6 +63,10 @@ msgstr ""
 msgid "Change profile"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:45
+msgid "Characteristics"
+msgstr ""
+
 #: ./browser/templates/cleanup.pt:25
 msgid "Clean old members from skills"
 msgstr ""
@@ -54,16 +75,58 @@ msgstr ""
 msgid "Cleanup"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:81
+#: ./browser/templates/utils.pt:178
+msgid "Competent"
+msgstr ""
+
 #: ./browser/templates/utils.pt:36
 msgid "Complete profile"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:89
+msgid "Conscious, deliberate planning"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:82
+msgid "Coping with crowdedness"
 msgstr ""
 
 #: ./browser/templates/cv.pt:37
 msgid "Copy to Clipboard"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:49
+msgid "Decision-making"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:107
+msgid "Decision-making less laboured"
+msgstr ""
+
+#: ./models/knowledge_profile.xml
+msgid "Exclude"
+msgstr ""
+
+#: ./models/knowledge_profile.xml
+msgid "Exclude members by id (Click the header to see their id in the url). One member per line."
+msgstr ""
+
+#: ./browser/knowledge.py:22
+msgid "Experience"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:114
+#: ./browser/templates/utils.pt:199
+msgid "Expert"
+msgstr ""
+
 #: ./utils.py:138
 msgid "Expertise"
+msgstr ""
+
+#: ./models/knowledge_profile.xml
+msgid "Expertises|Groups"
 msgstr ""
 
 #: ./browser/templates/utils.pt:66
@@ -74,11 +137,80 @@ msgstr ""
 msgid "Full profile"
 msgstr ""
 
-#: ./browser/knowledge.py:74
-#: ./browser/templates/utils.pt:137
+#: ./models/skill.xml
+msgid "Group"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:70
+msgid "Guidelines for action based on attributes or aspects (aspects are global characteristics of situations recognisable only after some prior experience)"
+msgstr ""
+
+#: ./browser/templates/utils.pt:192
+msgid "Has a deep understanding, sees actions holistically, can achieve a high standard routinely"
+msgstr ""
+
+#: ./browser/templates/utils.pt:181
+msgid "Has a good working and background understanding, sees actions at least partly in context, able to complete work independently to a standard that is acceptable though it may lack refinement."
+msgstr ""
+
+#: ./browser/templates/utils.pt:171
+msgid "Has a working understanding, tends to see actions as a series of steps, can complete simpler tasks without supervision."
+msgstr ""
+
+#: ./browser/templates/utils.pt:202
+msgid "Has an authoritative or deep holistic understanding, deals with routine matters intuitively, able to go beyond existing interpretations, achieves excellence with ease."
+msgstr ""
+
+#: ./browser/templates/utils.pt:161
+msgid "Has an incomplete understanding, approaches tasks mechanistically and needs supervision to complete them."
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:98
+msgid "Holistically"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:48
+msgid "How context is assessed"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:46
+msgid "How knowledge etc is treated"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:71
+msgid "In context"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:116
+msgid "Intuitive"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:119
+msgid "Intuitive grasp of situations based on deep tacit understanding"
+msgstr ""
+
+#: ./profiles/default/types/knowledge_profile.xml
+msgid "Knowledge profile"
+msgstr ""
+
+#: ./browser/knowledge.py:78
+#: ./browser/templates/utils.pt:138
 msgid "Legend"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:43
+msgid "Level"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:62
+msgid "Little situational perception"
+msgstr ""
+
+#: ./models/skill.xml
+msgid "Member | Level | Show in profile"
+msgstr ""
+
+#: ./browser/templates/profile.pt:28
 #: ./browser/templates/utils.pt:8
 msgid "My profile"
 msgstr ""
@@ -87,8 +219,37 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:65
+msgid "No discretionary judgement"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:115
+msgid "No longer relies on rules, guidelines or maxims"
+msgstr ""
+
 #: ./browser/templates/cv.pt:33
 msgid "No skills qualify for the current filter."
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:57
+msgid "None"
+msgstr ""
+
+#: ./models/skill.xml
+msgid "Not meant for immediate editing. Only in case of emergency. Go through the available edit screens."
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:54
+#: ./browser/templates/utils.pt:158
+msgid "Novice"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:21
+msgid "Novice to Expert"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:86
+msgid "Now sees actions at least partially in terms of longer-term goals"
 msgstr ""
 
 #: ./browser/skill.py:68
@@ -96,24 +257,122 @@ msgstr ""
 msgid "On profile"
 msgstr ""
 
+#: ./profiles/default/types/knowledge_profile.xml
+msgid "Overview of Skills per Member."
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:104
+msgid "Perceives deviations from the normal pattern"
+msgstr ""
+
+#: ./models/skill.xml
+msgid "Pick the group that applies to this Skill."
+msgstr ""
+
+#: ./models/knowledge_profile.xml
+msgid "Possible Skill levels. Add levels one per line with the value and title seperated by a pipe symbol, e.g. Level|Title."
+msgstr ""
+
+#: ./models/knowledge_profile.xml
+msgid "Possible groups within expertises to choose from on a Skill. In a table, the first column will show the expertise, the second will show the groups within the expertise, the third column will show the Skill and the fourth column will show the searchterms for the skill. Add expertises and groups, one group per line and the expertise and group seperated by a pipe symbol, e.g. Expertise|Group"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:83
+msgid "Present"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:96
+#: ./browser/templates/utils.pt:189
+msgid "Proficient"
+msgstr ""
+
 #: ./browser/templates/utils.pt:70
 msgid "Profile"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:59
+msgid "Rational"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:47
+msgid "Recognition of relevance"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:55
+msgid "Rigid adherence to taught rules or plans"
 msgstr ""
 
 #: ./utils.py:141
 msgid "Searchterms"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:97
+msgid "Sees situations holistically rather than in terms of aspects"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:101
+msgid "Sees what is most important in a situation"
+msgstr ""
+
+#: ./browser/templates/skill.pt:59
+msgid "Show on profile page"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:74
+msgid "Situational perception still limited"
+msgstr ""
+
+#: ./profiles/default/types/skill.xml
+msgid "Skill"
+msgstr ""
+
+#: ./browser/templates/skill.pt:50
+msgid "Skill experience level"
+msgstr ""
+
+#: ./browser/templates/utils.pt:154
+#: ./models/knowledge_profile.xml
+msgid "Skill levels"
+msgstr ""
+
+#: ./profiles/default/types/skill.xml
+msgid "Skill, grouped by group within expertise."
+msgstr ""
+
 #: ./portlets/skills.py:27
 msgid "Skills"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:44
+msgid "Stage"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:92
+msgid "Standardised and routinised procedures"
 msgstr ""
 
 #: ./utils.py:139
 msgid "Subgroup"
 msgstr ""
 
-#: ./browser/knowledge.py:113
+#: ./browser/templates/dreyfus.pt:35
+msgid "The 'expert' level does not signify that development stops, as expert practitioners need to evaluate their practice and keep up - to - date with new evidence."
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:24
+msgid "The Dreyfus model is used fairly widely (a) to provide a means of assessing and supporting progress in the development of skills or competencies, and (b) to provide a definition of accept able level for the assessment of competence or capability."
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:22
+msgid "The Dreyfus model of skill acquisition"
+msgstr ""
+
+#: ./browser/knowledge.py:117
 msgid "The following users were removed from all skills: "
+msgstr ""
+
+#: ./browser/templates/skill.pt:51
+msgid "This is an imported value. Please specify the level of your experience with this skill."
 msgstr ""
 
 #: ./utils.py:143
@@ -124,8 +383,20 @@ msgstr ""
 msgid "Update profile"
 msgstr ""
 
+#: ./browser/templates/dreyfus.pt:110
+msgid "Uses maxims for guidance, whose meanings vary according to the situation"
+msgstr ""
+
 #: ./portlets/skills.pt:17
 msgid "View my full skill CV"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:125
+msgid "Vision of what is possible"
+msgstr ""
+
+#: ./browser/templates/dreyfus.pt:56
+msgid "Without reference to context"
 msgstr ""
 
 #: ./utils.py:121
@@ -140,6 +411,7 @@ msgstr ""
 msgid "You have entries with an x value in your profile, please qualify your experience level."
 msgstr ""
 
+#: ./browser/templates/profile.pt:29
 #: ./browser/templates/utils.pt:22
 msgid "profile"
 msgstr ""
@@ -147,5 +419,10 @@ msgstr ""
 #. Default: "Remove users"
 #: ./browser/templates/cleanup.pt:33
 msgid "remove_users"
+msgstr ""
+
+#. Default: "Values"
+#: ./models/skill.xml
+msgid "values_label"
 msgstr ""
 

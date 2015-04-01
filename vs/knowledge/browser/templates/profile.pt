@@ -56,8 +56,7 @@
                 <a class="ancor" tal:attributes="name row_id"></a>
                 <metal:change use-macro="view/context/@@knowledge-utils/change"
                    tal:condition="not:other_id"/>
-                <tal:level content="level"
-                   tal:condition="other_id">X</tal:level>
+                <tal:level content="python:ld.get(level, view.experience) or level" condition="other_id">X</tal:level>
               </td>
             </tr>
           </tal:row>

@@ -56,6 +56,13 @@
       />
 
   <browser:page
+      name="knowledge-dreyfus"
+      for="*"
+      template="templates/dreyfus.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="knowledge.csv"
       for="*"
       class=".knowledge.KnowledgeExport"

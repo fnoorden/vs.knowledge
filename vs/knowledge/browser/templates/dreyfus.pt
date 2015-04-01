@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      tal:define="data python:view.data(single=True);
+                  levels view/levels;
+                  other_id view/other_id|nothing;"
+      i18n:domain="vs.knowledge">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+<metal:content_title fill-slot="content-title">
+  <h1 class="documentFirstHeading" i18n:translate="">Novice to Expert</h1>
+  <h2 i18n:translate="">The Dreyfus model of skill acquisition</h2>
+</metal:content_title>
+<div class="documentDescription" metal:fill-slot="content-description" i18n:translate="">
+  The Dreyfus model is used fairly widely (a) to provide a means of
+  assessing and supporting progress in the development of skills or
+  competencies, and (b) to provide a definition of accept
+  able level for the assessment of competence or capability.
+</div>
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+    <style>
+      <metal:style use-macro="view/context/@@knowledge-utils/dreyfus"/>
+    </style>
+    <p i18n:translate="">
+      The 'expert' level does not signify that development stops, as expert
+      practitioners need to evaluate their practice and keep up - to - date 
+      with new evidence.
+    </p>
+    <table class="scale">
+      <thead>
+        <tr>
+          <th i18n:translate="">Level</th>
+          <th i18n:translate="">Stage</th>
+          <th class="left" i18n:translate="">Characteristics</th>
+          <th i18n:translate="">How knowledge etc is treated</th>
+          <th i18n:translate="">Recognition of relevance</th>
+          <th i18n:translate="">How context is assessed</th>
+          <th i18n:translate="">Decision-making</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3"><a class="ancor" name="novice"></a> 1</td>
+          <td rowspan="3" i18n:translate="">Novice</td>
+          <td class="left" i18n:translate="">Rigid adherence to taught rules or plans</td>
+          <td rowspan="3" i18n:translate="">Without reference to context</td>
+          <td rowspan="6" i18n:translate="">None</td>
+          <td rowspan="10" i18n:translate="">Analytically</td>
+          <td rowspan="15" i18n:translate="">Rational</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Little situational perception</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">No discretionary judgement</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><a class="ancor" name="advanced-beginner"></a> 2</td>
+          <td rowspan="3" i18n:translate="">Advanced beginner</td>
+          <td class="left" i18n:translate="">Guidelines for action based on attributes or aspects (aspects are global characteristics of situations recognisable only after some prior experience)</td>
+          <td rowspan="16" i18n:translate="">In context</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Situational perception still limited</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">All attributes and aspects are treated separately and given equal importance</td>
+        </tr>
+        <tr>
+          <td rowspan="4"><a class="ancor" name="competent"></a> 3</td>
+          <td rowspan="4" i18n:translate="">Competent</td>
+          <td class="left" i18n:translate="">Coping with crowdedness</td>
+          <td rowspan="13" i18n:translate="">Present</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Now sees actions at least partially in terms of longer-term goals</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Conscious, deliberate planning</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Standardised and routinised procedures</td>
+        </tr>
+        <tr>
+          <td rowspan="5"><a class="ancor" name="proficient"></a> 4</td>
+          <td rowspan="5" i18n:translate="">Proficient</td>
+          <td class="left" i18n:translate="">Sees situations holistically rather than in terms of aspects</td>
+          <td rowspan="9" i18n:translate="">Holistically</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Sees what is most important in a situation</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Perceives deviations from the normal pattern</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Decision-making less laboured</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Uses maxims for guidance, whose meanings vary according to the situation</td>
+        </tr>
+        <tr>
+          <td rowspan="4"><a class="ancor" name="expert"></a> 5</td>
+          <td rowspan="4" i18n:translate="">Expert</td>
+          <td class="left" i18n:translate="">No longer relies on rules, guidelines or maxims</td>
+          <td rowspan="4" i18n:translate="">Intuitive</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Intuitive grasp of situations based on deep tacit understanding</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Analytic approaches used only in novel situations or when problems occur</td>
+        </tr>
+        <tr>
+          <td class="left" i18n:translate="">Vision of what is possible</td>
+        </tr>
+      </tbody>
+    </table>
+  </metal:content-core>
+</metal:content-core>
+</body>
+</html>

@@ -17,6 +17,10 @@ class KnowledgeView(BrowserView, Knowledge):
 class ProfileView(BrowserView, Knowledge):
     implements(interfaces.IProfileView)
 
+    @property
+    def experience(self):
+        return _(u"Experience")
+
 
 class CVView(BrowserView, Knowledge):
     implements(interfaces.ICVView)

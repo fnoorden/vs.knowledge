@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
-<object name="knowledge_profile" meta_type="Dexterity FTI" i18n:domain="plone"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">Knowledge Profile</property>
+<object name="knowledge_profile" meta_type="Dexterity FTI"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="vs.knowledge">
+ <property name="title" i18n:translate="">Knowledge profile</property>
  <property name="description"
     i18n:translate="">Overview of Skills per Member.</property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
@@ -33,40 +34,8 @@
   <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
  </property>
  <property name="schema"></property>
- <property
-    name="model_source">&lt;model 
-  xmlns:security="http://namespaces.plone.org/supermodel/security" 
-  xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" 
-  xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" 
-  xmlns:form="http://namespaces.plone.org/supermodel/form" 
-  xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" 
-  xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-  &lt;schema&gt;
-    &lt;field name="levels" type="zope.schema.List"&gt;
-      &lt;description&gt;
-          Possible Skill levels. Add levels one per line with the value and title seperated by a pipe symbol, e.g. Level|Title.
-      &lt;/description&gt;
-      &lt;title&gt;Skill Levels&lt;/title&gt;
-      &lt;value_type type="zope.schema.TextLine"/&gt;
-    &lt;/field&gt;
-    &lt;field name="expertises_groups" type="zope.schema.List"&gt;
-      &lt;description&gt;
-        Possible groups within expertises to choose from on a Skill. In a table, the first column will show the expertise, the second will show the groups within the expertise, the third column will show the Skill and the fourth column will show the searchterms for the skill. Add expertises and groups, one group per line and the expertise and group seperated by a pipe symbol, e.g. Expertise|Group
-      &lt;/description&gt;
-      &lt;title&gt;Expertises|Groups&lt;/title&gt;
-      &lt;value_type type="zope.schema.TextLine"/&gt;
-    &lt;/field&gt;
-    &lt;field name="exclude" type="zope.schema.List"&gt;
-      &lt;description&gt;
-          Exclude members by id (Click the header to see their id in the url). One member per line.
-      &lt;/description&gt;
-      &lt;title&gt;Exclude&lt;/title&gt;
-      &lt;value_type type="zope.schema.TextLine"/&gt;
-    &lt;/field&gt;
-  &lt;/schema&gt;
-&lt;/model&gt;
- </property>
- <property name="model_file"></property>
+ <property name="model_source"></property>
+ <property name="model_file">vs.knowledge:models/knowledge_profile.xml</property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>
