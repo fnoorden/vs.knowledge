@@ -135,11 +135,7 @@
 
 <table metal:define-macro="legend" class="legend"
        i18n:domain="vs.knowledge">
-  <thead>
-    <tr>
-      <th colspan="2" i18n:translate="">Legend</th>
-    </tr>
-  </thead>
+  <caption colspan="2" i18n:translate="">Legend</caption>
   <tbody>
     <tr tal:repeat="level view/legend">
       <th tal:content="python:level[1]">Title</th>
@@ -147,6 +143,66 @@
         <span tal:define="value python:level[0]"
               tal:attributes="class string:level-${value}"
               tal:content="value">0</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table metal:define-macro="legend_full" class="legend full"
+       i18n:domain="vs.knowledge"
+       tal:define="dreyfurl string:${view/knowledge_profile/absolute_url}/knowledge_dreyfus|nothing">
+  <caption i18n:translate="">Skill levels</caption>
+  <tbody>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#novice" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#novice">Novice</a>
+      </th>
+      <td class="level-1" i18n:translate="">
+        Has an incomplete understanding, approaches tasks mechanistically and
+        needs supervision to complete them.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#advanced-beginner" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#advanced-beginner">Advanced beginner</a>
+      </th>
+      <td class="level-2" i18n:translate="">
+        Has a working understanding, tends to see actions as a series of steps,
+        can complete simpler tasks without supervision.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#competent" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#competent">Competent</a>
+      </th>
+      <td class="level-3" i18n:translate="">
+        Has a good working and background understanding, sees actions at least
+        partly in context, able to complete work independently to a standard
+        that is acceptable though it may lack refinement.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#proficient" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#proficient">Proficient</a>
+      </th>
+      <td class="level-4" i18n:translate="">
+        Has a deep understanding, sees actions holistically, can achieve a high
+        standard routinely
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#expert" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#expert">Expert</a>
+      </th>
+      <td class="level-5" i18n:translate="">
+        Has an authoritative or deep holistic understanding, deals with routine
+        matters intuitively, able to go beyond existing interpretations,
+        achieves excellence with ease.
       </td>
     </tr>
   </tbody>
@@ -161,6 +217,7 @@
     overflow: auto;
   }
   table { background-color: #fff; }
+  caption { text-align: left; font-weight: bold; padding: .2em .5em; }
   thead th { white-space: nowrap; }
   tbody { border-top: 1px solid rgba(0,0,0,.1); }
   tbody th { vertical-align: top; }
@@ -186,7 +243,6 @@
     width: 1.5em;
     height: 1.5em;
     position: relative;
-    cursor: pointer;
     margin-left: .5em;
   }
   .info dt, .info dd {
@@ -214,6 +270,7 @@
     width: 16em;
     -webkit-transition: visibility 0s linear 0.2s,opacity 0.2s linear;
     -moz-transition:    visibility 0s linear 0.2s,opacity 0.2s linear;
+    -ms-transition:     visibility 0s linear 0.2s,opacity 0.2s linear;
     -o-transition:      visibility 0s linear 0.2s,opacity 0.2s linear;
     transition:         visibility 0s linear 0.2s,opacity 0.2s linear;
   }
@@ -225,9 +282,10 @@
     visibility:visible;
     opacity:1;
     -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    -o-transition-delay: 0s;
-    transition-delay: 0s;
+    -moz-transition-delay:    0s;
+    -ms-transition-delay:     0s;
+    -o-transition-delay:      0s;
+    transition-delay:         0s;
   }
   .knowledge { margin-right: 2em; margin-top: 10em; }
   thead .employee {
@@ -236,7 +294,11 @@
     height: 2em !important; 
   }
   .employee a, .employee span {
-    transform: rotate(-75deg); 
+    -webkit-transform: rotate(-75deg);
+    -moz-transform:    rotate(-75deg);
+    -ms-transform:     rotate(-75deg);
+    -o-transform:      rotate(-75deg);
+    transform:         rotate(-75deg);
     white-space: nowrap; 
     display: block; 
     text-align: right;
@@ -288,7 +350,8 @@
 </metal:full>
 
 <metal:profile define-macro="profile">
-  tbody, .mark { border-top: 1px solid rgba(0,0,0,.1); }
+  tbody, tbody th:nth-child(1), tbody th:nth-child(2) { border-top: 1px solid rgba(0,0,0,.1); }
+  .blank:nth-child(1), .blank:nth-child(2) { border-top: 0;}
   th { padding: .2em .5em; }
   /*tbody th { vertical-align: top; }*/
   tr:nth-child(odd) td,
@@ -310,8 +373,12 @@
 /*  td {
     padding: .2em 0;
   }*/
-  td {
+  .knowledge td {
     width: 350px;
+  }
+  .knowledge th:last-child,
+  .knowledge td:last-child {
+    text-align: center;
   }
   td a {
     float: right;
@@ -335,11 +402,73 @@
     color: #000;
     font-weight: bold;
   }
+  .legend td { 
+      min-width: 1em; 
+      border-color: rgba(0,0,0,.1);
+      border-left-width: 1px; 
+      border-left-style: solid; 
+      text-align: left;
+      padding: .2em .5em;
+      background-color: transparent;
+  }
+  /*
+  .legend .level-1, .legend .level-2, .legend .level-3 { text-shadow: 0 0 1px #fff; }
+  .legend .level-4, .legend .level-5 { color: #fff; text-shadow: 0 0 1px #000; }
+  .legend .level-1 { background-color: rgba(0,0,0,.05); }
+  .legend .level-2 { background-color: rgba(0,0,0,.125); }
+  .legend .level-3 { background-color: rgba(0,0,0,.2); }
+  .legend .level-4 { background-color: rgba(0,0,0,.3); }
+  .legend .level-5 { background-color: rgba(0,0,0,.4); }*/
 </metal:profile>
+
+<metal:dreyfus define-macro="dreyfus">
+  tbody, tbody th:nth-child(1), tbody th:nth-child(2) { border-top: 1px solid rgba(0,0,0,.1); }
+  .blank:nth-child(1), .blank:nth-child(2) { border-top: 0;}
+  th { padding: .2em .5em; }
+  /*tbody th { vertical-align: top; }*/
+  tr:nth-child(odd) td,
+  tr:nth-child(odd) th { background-color: #eee; }
+  thead tr:first-child th,
+  tr:nth-child(odd) th:first-child, 
+  tr:nth-child(odd) th:first-child + th {
+    background-color: transparent !important;
+    color: black !important;
+  }
+  th:nth-child(3) {
+    border-left: 1px solid  rgba(0,0,0,.1);
+  }
+  .ancor {
+    position: relative;
+    top: -10em;
+  }
+  .scale {
+    max-width: 99.9%;
+  }
+  .scale td, .scale th {
+      background-color: transparent !important;
+      padding: .2em .5em;
+      white-space: normal;
+      text-align: center;
+      vertical-align: middle;
+  }
+  .scale .left {
+      text-align: left;
+  }
+/*  .scale td:first-child, .scale th:first-child {
+      text-align: center;
+  }*/
+  .scale th {
+      border-left: 1px solid rgba(0,0,0,.1);
+      border-right: 1px solid rgba(0,0,0,.1);
+  }
+  .scale td {
+      border: 1px solid rgba(0,0,0,.1);
+  }
+</metal:dreyfus>
 
 <metal:cv define-macro="cv">
   /*tbody, .mark { border-top: 1px solid rgba(0,0,0,.1); }*/
-  th { padding: .2em; }
+  th { white-space: nowrap; }
   tbody th { vertical-align: top; }
   tr:nth-child(odd) td,
   tr:nth-child(odd) th { background-color: #eee; }
@@ -349,8 +478,11 @@
     background-color: transparent !important;
     color: black !important;
   }
+  th + td { border-left: 1px solid  rgba(0,0,0,.1); }
+  th { border-top: 1px solid  rgba(0,0,0,.1); }
+  .blank { border-top: 0; }
   th:nth-child(3) { border-left: 1px solid  rgba(0,0,0,.1); }
-  td { padding: .2em .5em; text-align: left; }
+  td, th { padding: .2em .5em; text-align: left; }
   td a { float: right; padding: 0 .2em; }
   .empty td,  .empty th { color: rgba(0,0,0,.4); }
   .update a { color: orange; }

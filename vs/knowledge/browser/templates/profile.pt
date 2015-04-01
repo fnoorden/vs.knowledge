@@ -23,10 +23,12 @@
       <metal:style use-macro="view/context/@@knowledge-utils/style"/>
       <metal:profile use-macro="view/context/@@knowledge-utils/profile"/>
     </style>
-
     <div class="table-wrap">
       <metal:links use-macro="view/context/@@knowledge-utils/links"/>
+      <h2 tal:condition="not:other_id" i18n:translate="">My profile</h2>
+      <h2 tal:condition="other_id"><tal:other content="string:${view/other_firstname}'s "/><tal:profile i18n:translate="">profile</tal:profile></h2>
 
+      <table metal:use-macro="view/context/@@knowledge-utils/legend_full" class="legend full"/>
       <table class="knowledge full"
              tal:condition="python:view.e_count != view.skill_count">
         <thead tal:define="headers python:data.pop(0)">

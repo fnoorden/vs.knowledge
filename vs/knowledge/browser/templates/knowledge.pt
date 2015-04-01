@@ -52,17 +52,13 @@
                             cells python:row[5:];
                             column_classes view/column_classes;">
               <tal:header repeat="header headers">
-                <th tal:omit-tag="python:header is ''">
-                <div tal:omit-tag="">
-                <th tal:omit-tag="python:not header is ''" class="blank">
+                <th tal:attributes="class python:'blank' if header is '' else None">
                   <dl class="info"
                       tal:condition="python:repeat['header'].index == 2">
                       <dt>i</dt>
                       <dd tal:content="info">Info</dd>
                   </dl>
                   <tal:th tal:content="structure python:header or '&nbsp;'"></tal:th>
-                </th>
-                </div>
                 </th>
               </tal:header>
               <tal:cell repeat="cell cells">
