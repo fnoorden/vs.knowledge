@@ -4,16 +4,14 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      tal:define="data python:view.data(single=True);
-                  levels view/levels;
-                  other_id view/other_id|nothing;"
       i18n:domain="vs.knowledge">
 
 <head>
-    <metal:block fill-slot="top_slot"
-                 tal:define="dummy python:request.set('disable_border',1);
-                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+  <metal:block
+    fill-slot="top_slot"
+    tal:define="dummy python:request.set('disable_border',1);
+                disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                disable_column_two python:request.set('disable_plone.rightcolumn',1);"/>
 </head>
 
 <body>
@@ -21,22 +19,19 @@
   <h1 class="documentFirstHeading" i18n:translate="">Novice to Expert</h1>
   <h2 i18n:translate="">The Dreyfus model of skill acquisition</h2>
 </metal:content_title>
+
 <div class="documentDescription" metal:fill-slot="content-description" i18n:translate="">
   The Dreyfus model is used fairly widely (a) to provide a means of
   assessing and supporting progress in the development of skills or
   competencies, and (b) to provide a definition of accept
   able level for the assessment of competence or capability.
 </div>
+
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
     <style>
       <metal:style use-macro="view/context/@@knowledge-utils/dreyfus"/>
     </style>
-    <p i18n:translate="">
-      The 'expert' level does not signify that development stops, as expert
-      practitioners need to evaluate their practice and keep up - to - date 
-      with new evidence.
-    </p>
     <table class="scale">
       <thead>
         <tr>
@@ -111,7 +106,7 @@
         </tr>
         <tr>
           <td rowspan="4"><a class="ancor" name="expert"></a> 5</td>
-          <td rowspan="4" i18n:translate="">Expert</td>
+          <td rowspan="4"><tal:expert i18n:translate="">Expert</tal:expert> *</td>
           <td class="left" i18n:translate="">No longer relies on rules, guidelines or maxims</td>
           <td rowspan="4" i18n:translate="">Intuitive</td>
         </tr>
@@ -126,6 +121,12 @@
         </tr>
       </tbody>
     </table>
+    <p><small>
+      * <tal:expert_2 i18n:translate="">The 'expert' level does not signify that development stops, as expert
+      practitioners need to evaluate their practice and keep up - to - date 
+      with new evidence.</tal:expert_2></small>
+    </p>
+
   </metal:content-core>
 </metal:content-core>
 </body>

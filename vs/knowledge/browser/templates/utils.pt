@@ -150,7 +150,7 @@
 
 <table metal:define-macro="legend_full" class="legend full"
        i18n:domain="vs.knowledge"
-       tal:define="dreyfurl string:${view/knowledge_profile/absolute_url}/knowledge_dreyfus|nothing">
+       tal:define="dreyfurl string:${view/knowledge_profile/absolute_url}/knowledge-dreyfus">
   <caption i18n:translate="">Skill levels</caption>
   <tbody>
     <tr>

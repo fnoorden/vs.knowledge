@@ -255,7 +255,7 @@ class Knowledge(object):
             from_level = request.get('from_level')
 
         # Stricky exptertise
-        _expertise = ''
+        _expertise, _group = '', ''
         for skill in self.skills:
             position, (member, level, show) = self.current_entry(skill)
 
@@ -269,6 +269,7 @@ class Knowledge(object):
                 continue
 
             group = skill.group.split('|')
+            _group = group[1]
             if only_group:
                 expertise = group.pop(0) # Remove expertise header
             else:
@@ -278,11 +279,18 @@ class Knowledge(object):
             group = tuple(group)
 
             if level in ['X', 'x']:
-                skills[group].append(skill.title)
+                if (_expertise, _group) in skills:
+                    skills[(_expertise, _group)].append(skill.title)
+                else:
+                    skills[group].append(skill.title)
             else:
-                skills[group].append('%s (%s)' % (
-                    skill.title, level))
-            if group not in order:
+                if (_expertise, _group) in skills:
+                    skills[(_expertise, _group)].append('%s (%s)' % (
+                        skill.title, level))
+                else:
+                    skills[group].append('%s (%s)' % (
+                        skill.title, level))
+            if (_expertise, _group) not in order and group not in order:
                 order.append(group)
 
         return [(i, skills[i]) for i in order]
