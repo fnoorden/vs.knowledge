@@ -221,7 +221,7 @@
   thead th { white-space: nowrap; }
   tbody { border-top: 1px solid rgba(0,0,0,.1); }
   tbody th { vertical-align: top; }
-  th { padding: .2em; }
+  th { padding: .2em; text-align: left; }
   tr:nth-child(odd) td { background-color: rgba(0,0,0,.05); }
   td {
     /*border-left: 1px solid rgba(0,0,0,.1);*/

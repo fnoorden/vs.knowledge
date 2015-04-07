@@ -62,8 +62,10 @@
                 </th>
               </tal:header>
               <tal:cell repeat="cell cells">
-                <td tal:content="cell"
-                    tal:attributes="class python:column_classes[repeat['cell'].index]"/>
+                <td tal:attributes="class python:column_classes[repeat['cell'].index]">
+                  <span tal:content="cell"
+                        tal:attributes="class string:level-${cell}">X</span>
+                </td>
               </tal:cell>
             </tr>
           </tal:row>

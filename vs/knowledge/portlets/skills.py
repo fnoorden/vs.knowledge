@@ -55,7 +55,8 @@ class Renderer(base.Renderer, Knowledge):
             if template_id:
                 if template_id() == 'author':
                     _available = True
-        if _available and self.author_skills:
+        if _available and hasattr(self, 'author_skills'
+            ) and self.author_skills:
             return _available
         return False
 
