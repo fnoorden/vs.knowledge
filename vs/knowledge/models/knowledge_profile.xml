@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf8'?>
+<model 
+  xmlns:form="http://namespaces.plone.org/supermodel/form"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
+  xmlns:lingua="http://namespaces.plone.org/supermodel/lingua"
+  xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+  xmlns:security="http://namespaces.plone.org/supermodel/security"
+  xmlns="http://namespaces.plone.org/supermodel/schema"
+  i18n:domain="vs.knowledge">
+  <schema>
+    <field name="levels" type="zope.schema.List">
+      <description i18n:translate=""
+        >Possible Skill levels. Add levels one per line with the value and title seperated by a pipe symbol, e.g. Level|Title.</description>
+      <title i18n:translate="">Skill levels</title>
+      <value_type type="zope.schema.TextLine"/>
+    </field>
+    <field name="expertises_groups" type="zope.schema.List">
+      <description i18n:translate=""
+        >Possible groups within expertises to choose from on a Skill. In a table, the first column will show the expertise, the second will show the groups within the expertise, the third column will show the Skill and the fourth column will show the searchterms for the skill. Add expertises and groups, one group per line and the expertise and group seperated by a pipe symbol, e.g. Expertise|Group</description>
+      <title i18n:translate="">Expertises|Groups</title>
+      <value_type type="zope.schema.TextLine"/>
+    </field>
+    <field name="exclude" type="zope.schema.List">
+      <description i18n:translate=""
+        >Exclude members by id (Click the header to see their id in the url). One member per line.</description>
+      <title i18n:translate="">Exclude</title>
+      <value_type type="zope.schema.TextLine"/>
+    </field>
+  </schema>
+</model>

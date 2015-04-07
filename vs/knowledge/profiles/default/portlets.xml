@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<portlets xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n_domain="plone">
+  <portlet
+      addview="vs.knowledge.portlet.skills" title="Skills portlet"
+      description="Portlet showing flagged skills from the knowledge profile"
+      i18n:attributes="title skills_portlet_title;
+                       description skills_portlet_description"/>
+  <assignment name="skills" category="context" key="/"
+      manager="plone.rightcolumn" type="vs.knowledge.portlet.skills"
+      visible="True"/>
+</portlets>

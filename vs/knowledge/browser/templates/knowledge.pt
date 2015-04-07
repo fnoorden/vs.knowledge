@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      tal:define="data view/data;
+                  levels view/levels;"
+      i18n:domain="vs.knowledge">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:context.portal_membership.checkPermission('Modify portal content', context) or request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+    <style>
+      <metal:style use-macro="view/context/@@knowledge-utils/style"/>
+      <metal:full use-macro="view/context/@@knowledge-utils/full"/>
+    </style>
+
+    <div class="table-wrap">
+      <table class="legend" metal:use-macro="view/context/@@knowledge-utils/legend"/>
+
+      <metal:links use-macro="view/context/@@knowledge-utils/links"/>
+
+      <table class="knowledge full" id="knowledge">
+        <thead tal:define="names python:data.pop(0);
+                           headers python:names[:5];dummy python:headers.pop(3);
+                           names python:names[5:];
+                           totals python:data.pop(0);dummy python:totals.pop(3);
+                           memberids view/memberids">
+          <tr>
+            <th tal:repeat="header headers" tal:content="header">Header</th>
+            <th tal:repeat="name names" class="employee">
+              <a tal:content="python:name"
+                 tal:attributes="href python:'%s%s' % (context.absolute_url(), '?other=%s' % memberids.get(name, name) if name else '')">Voornaam Achternaam</a>
+            </th>
+          </tr>
+          <tr>
+            <th tal:repeat="total totals" tal:content="total">total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tal:row repeat="row data">
+            <tr tal:define="headers python:row[:5]; 
+                            info python:headers.pop(3);
+                            cells python:row[5:];
+                            column_classes view/column_classes;">
+              <tal:header repeat="header headers">
+                <th tal:attributes="class python:'blank' if header is '' else None">
+                  <dl class="info"
+                      tal:condition="python:repeat['header'].index == 2">
+                      <dt>i</dt>
+                      <dd tal:content="info">Info</dd>
+                  </dl>
+                  <tal:th tal:content="structure python:header or '&nbsp;'"></tal:th>
+                </th>
+              </tal:header>
+              <tal:cell repeat="cell cells">
+                <td tal:attributes="class python:column_classes[repeat['cell'].index]">
+                  <span tal:content="cell"
+                        tal:attributes="class string:level-${cell}">X</span>
+                </td>
+              </tal:cell>
+            </tr>
+          </tal:row>
+        </tbody>
+      </table>
+
+      <metal:actions use-macro="view/context/@@knowledge-utils/actions"/>
+    </div>
+  </metal:content-core>
+</metal:content-core>
+</body>
+</html>

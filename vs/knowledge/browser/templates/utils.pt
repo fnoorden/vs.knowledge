@@ -1,0 +1,493 @@
+<metal:links define-macro="links"
+    tal:define="template_id view/__name__;
+                other_id view/other_id|nothing;"
+    i18n:domain="vs.knowledge">
+<div class="buttons btn-group">
+  <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge' else 'btn btn-small btn-info'" 
+     class="btn btn-small btn-info" href="knowledge" i18n:translate="" >Full profile</a>
+  <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge-profile' and not other_id else 'btn btn-small btn-info'" 
+     class="btn btn-small btn-info" href="knowledge-profile" i18n:translate="">My profile</a>
+  <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge-cv' and not other_id else 'btn btn-small btn-info'" 
+     class="btn btn-small btn-info" href="knowledge-cv" i18n:translate="">CV display</a>
+  <tal:checkPermission condition="python:context.portal_membership.checkPermission('Review portal content', context)">
+    <a class="btn btn-small btn-info" href="knowledge.csv" i18n:translate="">CSV Export</a>
+  </tal:checkPermission>
+  <tal:checkPermission condition="python:context.portal_membership.checkPermission('Modify portal content', context)">
+    <a tal:attributes="class python:'btn btn-small btn-info disabled' if template_id == 'knowledge-cleanup' else 'btn btn-small btn-info'" 
+       class="btn btn-small btn-info" href="knowledge-cleanup" i18n:translate="">Cleanup</a>
+  </tal:checkPermission>
+  <a tal:attributes="class python:'btn btn-small btn-success disabled' if template_id == 'knowledge-profile' and other_id else 'btn btn-small btn-success';
+                     href string:knowledge-profile?other=${other_id};"
+     tal:condition="other_id"
+     class="btn btn-small btn-info" href="knowledge-profile"><tal:other content="string:${view/other_firstname}'s "/><tal:profile i18n:translate="">profile</tal:profile></a>
+  <a tal:attributes="class python:'btn btn-small btn-success disabled' if template_id == 'knowledge-cv' and other_id else 'btn btn-small btn-success';
+                     href string:knowledge-cv?other=${other_id};"
+     tal:condition="other_id" 
+     class="btn btn-small btn-info" href="knowledge-cv"><tal:other content="string:${view/other_firstname}'s "/><tal:cv i18n:translate="">CV display  </tal:cv></a>
+</div>
+</metal:links>
+
+<div class="buttons" metal:define-macro="actions"
+     tal:condition="not:view/other_id|nothing"
+     tal:define="url python:view.skills[0].absolute_url() if view.skills else '';
+                 empty_count view/e_count;
+                 update_count view/x_count;"
+     i18n:domain="vs.knowledge">
+  <a class="btn btn-small btn-danger" href="knowledge-cv"
+     tal:condition="empty_count"
+     tal:attributes="href url"
+     i18n:translate="">Complete profile</a>
+  <a class="btn btn-small btn-warning" href="knowledge-cv"
+     tal:condition="python:not empty_count and update_count"
+     tal:attributes="href url"
+     i18n:translate="">Update profile</a>
+  <a class="btn btn-small btn-primary" href="knowledge-cv"
+     tal:condition="python:not empty_count and not update_count"
+     tal:attributes="href url"
+     i18n:translate="">Change profile</a>
+</div>
+
+<div class="buttons btn-group" metal:define-macro="filter"
+     tal:define="url context/absolute_url;
+                 other_id view/other_id|nothing;
+                 only_show python:'only_show' in request;
+                 from_level request/from_level|nothing;"
+     i18n:domain="vs.knowledge">
+  <a class="btn btn-small btn-primary" href="knowledge-cv"
+     tal:attributes="href python:'%s/knowledge-cv?other=%s' % (url, other_id) if other_id else '%s/knowledge-cv' % url;
+                     class python:'btn btn-small btn-primary disabled' if not only_show and not from_level else 'btn btn-small btn-primary';"
+     i18n:translate="">All</a>
+  <tal:levels repeat="level view/levels">
+    <a class="btn btn-small btn-primary" href="knowledge-cv"
+       tal:define="level python:level[0]"
+       tal:condition="python:level and int(level) > 1"
+       tal:attributes="href python:'%s/knowledge-cv?other=%s&from_level=%s' % (url, other_id, level) if other_id else '%s/knowledge-cv?from_level=%s' % (url, level);
+                       class python:'btn btn-small btn-primary disabled' if from_level == level else 'btn btn-small btn-primary';">
+      <tal:level_label i18n:translate="">From level</tal:level_label>
+      <tal:level content="level">x</tal:level>
+    </a>
+  </tal:levels>
+  <a class="btn btn-small btn-primary" href="knowledge-cv"
+     tal:attributes="href python:'%s/knowledge-cv?other=%s&only_show' % (url, other_id) if other_id else '%s/knowledge-cv?only_show' % url;
+                     class python:'btn btn-small btn-primary disabled' if only_show else 'btn btn-small btn-primary';"
+     i18n:translate="">Profile</a>
+</div>
+
+<select 
+     name="level" metal:define-macro="select"
+     i18n:domain="vs.knowledge">
+  <option value="X" selected="selected" tal:condition="x_val"
+          i18n:translate="">(Experience level unknown)</option>
+  <tal:level repeat="l view/levels">
+    <tal:selected tal:define="value python:l[0];
+                              title python:l[1];
+                              selected python:value == level">
+      <option tal:attributes="value value;"
+              tal:condition="not:selected"
+              tal:content="title"/>
+      <option tal:attributes="value value;"
+              selected="selected"
+              tal:condition="selected"
+              tal:content="title"/>
+    </tal:selected>
+  </tal:level>
+</select>
+
+<form metal:define-macro="change" 
+      class="form-inline" method="POST"
+      tal:attributes="action string:${url}/change;
+                      id string:change-skill-${index}"
+      i18n:domain="vs.knowledge">
+  <span class="control-group"
+        tal:attributes="class python:'control-group' + (cclass == 'empty' and ' error' or cclass == 'update' and ' warning' or '')">
+    <select metal:use-macro="view/context/@@knowledge-utils/select"/>
+    <label>
+      <input type="checkbox" name="show" tal:condition="not:show"/>
+      <input type="checkbox" name="show" tal:condition="show" checked/>
+      <tal:public i18n:translate="">On profile</tal:public>
+    </label>
+  </span>
+  <input type="hidden" name="from_url"
+         tal:attributes="value from_url"/>
+  <button tal:attributes="class python:'btn btn-mini btn-' + (cclass == 'empty' and 'danger' or cclass == 'update' and 'inverse' or 'primary')">&raquo;</button>
+</form>
+
+<table metal:define-macro="cv_table" class="knowledge cv"
+       i18n:domain="vs.knowledge">
+  <tbody>
+    <tr tal:repeat="group groups">
+      <th tal:repeat="header python:group[0]"
+          tal:attributes="class python:'blank' if header is '' else None"
+          tal:content="header">Group</th>
+      <td tal:content="python:', '.join(group[1])">Skills</td>
+    </tr>
+    <tr>
+      <th></th>
+      <th tal:condition="python:len(groups[0][0]) == 2"></th>
+      <td style="background: transparent">
+        <br/>
+        <br/>
+        <small tal:content="structure python:', '.join(['. '.join(x) for x in view.legend if x[0]])"/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table metal:define-macro="legend" class="legend"
+       i18n:domain="vs.knowledge">
+  <caption colspan="2" i18n:translate="">Legend</caption>
+  <tbody>
+    <tr tal:repeat="level view/legend">
+      <th tal:content="python:level[1]">Title</th>
+      <td>
+        <span tal:define="value python:level[0]"
+              tal:attributes="class string:level-${value}"
+              tal:content="value">0</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table metal:define-macro="legend_full" class="legend full"
+       i18n:domain="vs.knowledge"
+       tal:define="dreyfurl string:${view/knowledge_profile/absolute_url}/knowledge-dreyfus">
+  <caption i18n:translate="">Skill levels</caption>
+  <tbody>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#novice" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#novice">Novice</a>
+      </th>
+      <td class="level-1" i18n:translate="">
+        Has an incomplete understanding, approaches tasks mechanistically and
+        needs supervision to complete them.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#advanced-beginner" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#advanced-beginner">Advanced beginner</a>
+      </th>
+      <td class="level-2" i18n:translate="">
+        Has a working understanding, tends to see actions as a series of steps,
+        can complete simpler tasks without supervision.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#competent" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#competent">Competent</a>
+      </th>
+      <td class="level-3" i18n:translate="">
+        Has a good working and background understanding, sees actions at least
+        partly in context, able to complete work independently to a standard
+        that is acceptable though it may lack refinement.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#proficient" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#proficient">Proficient</a>
+      </th>
+      <td class="level-4" i18n:translate="">
+        Has a deep understanding, sees actions holistically, can achieve a high
+        standard routinely
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <a href="knowledge-dreyfus#expert" i18n:translate=""
+           tal:attributes="href string:${dreyfurl}#expert">Expert</a>
+      </th>
+      <td class="level-5" i18n:translate="">
+        Has an authoritative or deep holistic understanding, deals with routine
+        matters intuitively, able to go beyond existing interpretations,
+        achieves excellence with ease.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<style>
+<metal:style define-macro="style">/* Generic vs.knowledge styles */
+  .buttons { padding: 2em 0; }
+  .knowledge + .buttons { position: absolute; top: 0; right: 0; }
+  .table-wrap {
+    position: relative;
+    overflow: auto;
+  }
+  table { background-color: #fff; }
+  caption { text-align: left; font-weight: bold; padding: .2em .5em; }
+  thead th { white-space: nowrap; }
+  tbody { border-top: 1px solid rgba(0,0,0,.1); }
+  tbody th { vertical-align: top; }
+  th { padding: .2em; text-align: left; }
+  tr:nth-child(odd) td { background-color: rgba(0,0,0,.05); }
+  td {
+    /*border-left: 1px solid rgba(0,0,0,.1);*/
+    text-align: center;
+    padding: .2em 0;
+    position: relative;
+  }
+  .knowledge { margin-bottom: 2em; }
+  #content-core a.btn:link, #content-core a.btn:hover, #content-core a.btn:visited { color: white !important; }
+  dl.portalMessage { margin: 1em 30px; }
+</metal:style>
+
+<metal:full define-macro="full">/* Full knowledge profile styles */
+  .table-wrap {
+    font-size: 80%;
+  }
+  .info {
+    float: right;
+    width: 1.5em;
+    height: 1.5em;
+    position: relative;
+    margin-left: .5em;
+  }
+  .info dt, .info dd {
+    position: absolute;
+    background: #0860c4;
+    color: white;
+    border-radius: .75em;
+    top: 0;
+    left: 0;
+  }
+  .info dt {
+    height: 1.5em;
+    width: 1.5em;
+    font-style: italic;
+    line-height: 1.825;
+    text-align: center;
+  }
+  .info dd {
+    display: block;
+    position: absolute;
+    margin: 0 !important;
+    padding: 1.5em 3em;
+    visibility: hidden;
+    opacity: 0;
+    width: 16em;
+    -webkit-transition: visibility 0s linear 0.2s,opacity 0.2s linear;
+    -moz-transition:    visibility 0s linear 0.2s,opacity 0.2s linear;
+    -ms-transition:     visibility 0s linear 0.2s,opacity 0.2s linear;
+    -o-transition:      visibility 0s linear 0.2s,opacity 0.2s linear;
+    transition:         visibility 0s linear 0.2s,opacity 0.2s linear;
+  }
+  .info dt:hover {
+    z-index: 2;
+  }
+  .info dt:hover + dd {
+    z-index: 1;
+    visibility:visible;
+    opacity:1;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay:    0s;
+    -ms-transition-delay:     0s;
+    -o-transition-delay:      0s;
+    transition-delay:         0s;
+  }
+  .knowledge { margin-right: 2em; margin-top: 10em; }
+  thead .employee {
+    max-width: 1em !important; 
+    position: relative;
+    height: 2em !important; 
+  }
+  .employee a, .employee span {
+    -webkit-transform: rotate(-75deg);
+    -moz-transform:    rotate(-75deg);
+    -ms-transform:     rotate(-75deg);
+    -o-transform:      rotate(-75deg);
+    transform:         rotate(-75deg);
+    white-space: nowrap; 
+    display: block; 
+    text-align: right;
+    position: relative;
+    top: -.5em;
+    left: .15em;
+  }
+  /*.full th { width: 0; }*/
+  table, tr, td, th { height: 100%; }
+  .full th:nth-child(3) { max-width: 14em; }
+  .full th:nth-child(4) { text-align: right; }
+  tbody th { border-top: 1px solid rgba(0,0,0,.1); }
+  tbody .blank { border-top: 0; }
+  tr:nth-child(odd) td { background-color: rgba(255, 255, 153, .5); }
+  tr:nth-child(odd) td.ct-devops { background-color: rgba(204, 204, 255, .5); }
+  tr:nth-child(odd) td.ct-infrastructuur { background-color: rgba(204, 255, 204, .5); }
+  tr:nth-child(odd) td.ct-integratie { background-color: rgba(255, 204, 204, .5); }
+  td { border-left: 1px solid #CC6; }
+  .ct-devops { border-color: #99C; }
+  .ct-infrastructuur { border-color: #9C9; }
+  .ct-integratie { border-color: #C99; }
+  .current, .current-member { border: 1px solid #000; border-width: 0 1px; font-weight: bold; }
+  .legend { min-width: 20em; position: absolute; top: 0; left: 0; }
+  .legend + .buttons { padding-left: 25em; }
+  .legend td { min-width: 1em; border-color: rgba(0,0,0,.1); }
+  .legend tr:nth-child(odd) td { background-color: transparent; }
+  .level-1, .level-2, .level-3, .level-4, .level-5 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: -1px;
+    bottom: 0;
+    display: block;
+    padding: .2em;
+  } 
+  .level-1, .level-2, .level-3 { text-shadow: 0 0 1px #fff; }
+  .level-4, .level-5 { color: #fff; text-shadow: 0 0 1px #000; }
+  .level-1 { background-color: rgba(0,0,0,.05); }
+  .level-2 { background-color: rgba(0,0,0,.125); }
+  .level-3 { background-color: rgba(0,0,0,.2); }
+  .level-4 { background-color: rgba(0,0,0,.3); }
+  .level-5 { background-color: rgba(0,0,0,.4); }
+  .total {
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0,0,0,.1);
+    background: transparent !important;
+    font-weight: bold;
+  }
+</metal:full>
+
+<metal:profile define-macro="profile">
+  tbody, tbody th:nth-child(1), tbody th:nth-child(2) { border-top: 1px solid rgba(0,0,0,.1); }
+  .blank:nth-child(1), .blank:nth-child(2) { border-top: 0;}
+  th { padding: .2em .5em; }
+  /*tbody th { vertical-align: top; }*/
+  tr:nth-child(odd) td,
+  tr:nth-child(odd) th { background-color: #eee; }
+  thead tr:first-child th,
+  tr:nth-child(odd) th:first-child, 
+  tr:nth-child(odd) th:first-child + th {
+    background-color: transparent !important;
+    color: black !important;
+  }
+  th:nth-child(3) {
+    border-left: 1px solid  rgba(0,0,0,.1);
+  }
+  .ancor {
+    position: relative;
+    top: -10em;
+  }
+  .form-inline { margin-bottom: 0;}
+/*  td {
+    padding: .2em 0;
+  }*/
+  .knowledge td {
+    width: 350px;
+  }
+  .knowledge th:last-child,
+  .knowledge td:last-child {
+    text-align: center;
+  }
+  td a {
+    float: right;
+    padding: 0 .5em;
+  }
+  .empty,
+  .empty td, 
+  .empty th {
+    background-color: #fdc !important;
+    color: rgba(0,0,0,.4);
+    font-weight: bold;
+  }
+  .empty a {
+    color: red;
+  }
+  .update,
+  .update a,
+  .update td, 
+  .update th {
+    background-color: #fd7 !important;
+    color: #000;
+    font-weight: bold;
+  }
+  .legend td { 
+      min-width: 1em; 
+      border-color: rgba(0,0,0,.1);
+      border-left-width: 1px; 
+      border-left-style: solid; 
+      text-align: left;
+      padding: .2em .5em;
+      background-color: transparent;
+  }
+  /*
+  .legend .level-1, .legend .level-2, .legend .level-3 { text-shadow: 0 0 1px #fff; }
+  .legend .level-4, .legend .level-5 { color: #fff; text-shadow: 0 0 1px #000; }
+  .legend .level-1 { background-color: rgba(0,0,0,.05); }
+  .legend .level-2 { background-color: rgba(0,0,0,.125); }
+  .legend .level-3 { background-color: rgba(0,0,0,.2); }
+  .legend .level-4 { background-color: rgba(0,0,0,.3); }
+  .legend .level-5 { background-color: rgba(0,0,0,.4); }*/
+</metal:profile>
+
+<metal:dreyfus define-macro="dreyfus">
+  tbody, tbody th:nth-child(1), tbody th:nth-child(2) { border-top: 1px solid rgba(0,0,0,.1); }
+  .blank:nth-child(1), .blank:nth-child(2) { border-top: 0;}
+  th { padding: .2em .5em; }
+  /*tbody th { vertical-align: top; }*/
+  tr:nth-child(odd) td,
+  tr:nth-child(odd) th { background-color: #eee; }
+  thead tr:first-child th,
+  tr:nth-child(odd) th:first-child, 
+  tr:nth-child(odd) th:first-child + th {
+    background-color: transparent !important;
+    color: black !important;
+  }
+  th:nth-child(3) {
+    border-left: 1px solid  rgba(0,0,0,.1);
+  }
+  .ancor {
+    position: relative;
+    top: -10em;
+  }
+  .scale {
+    max-width: 99.9%;
+  }
+  .scale td, .scale th {
+      background-color: transparent !important;
+      padding: .2em .5em;
+      white-space: normal;
+      text-align: center;
+      vertical-align: middle;
+  }
+  .scale .left {
+      text-align: left;
+  }
+/*  .scale td:first-child, .scale th:first-child {
+      text-align: center;
+  }*/
+  .scale th {
+      border-left: 1px solid rgba(0,0,0,.1);
+      border-right: 1px solid rgba(0,0,0,.1);
+  }
+  .scale td {
+      border: 1px solid rgba(0,0,0,.1);
+  }
+</metal:dreyfus>
+
+<metal:cv define-macro="cv">
+  /*tbody, .mark { border-top: 1px solid rgba(0,0,0,.1); }*/
+  th { white-space: nowrap; }
+  tbody th { vertical-align: top; }
+  tr:nth-child(odd) td,
+  tr:nth-child(odd) th { background-color: #eee; }
+  thead tr:first-child th,
+  tr:nth-child(odd) th:first-child, 
+  tr:nth-child(odd) th:first-child + th {
+    background-color: transparent !important;
+    color: black !important;
+  }
+  th + td { border-left: 1px solid  rgba(0,0,0,.1); }
+  th { border-top: 1px solid  rgba(0,0,0,.1); }
+  .blank { border-top: 0; }
+  th:nth-child(3) { border-left: 1px solid  rgba(0,0,0,.1); }
+  td, th { padding: .2em .5em; text-align: left; }
+  td a { float: right; padding: 0 .2em; }
+  .empty td,  .empty th { color: rgba(0,0,0,.4); }
+  .update a { color: orange; }
+  .empty a { color: red; }
+  .infoMessage { color: green; margin-left: 1em; }
+  .infoMessage:before { content: '✓ '; }
+</metal:cv>
+</style>

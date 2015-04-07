@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vs.knowledge">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core"
+      tal:define="groups view/grouped_skills;
+                  other_id view/other_id|nothing;
+                  levels view/levels">
+    <style>
+      <metal:style use-macro="view/context/@@knowledge-utils/style"/>
+      <metal:cv use-macro="view/context/@@knowledge-utils/cv"/>
+    </style>
+    <div class="table-wrap">
+      <metal:links use-macro="view/context/@@knowledge-utils/links"/>
+      <h2 i18n:translate="">Automation knowledge</h2>
+      <tal:groups condition="groups">
+        <table metal:use-macro="view/context/@@knowledge-utils/cv_table"/>
+      </tal:groups>
+      <tal:not_groups condition="not:groups">
+        <p class="knowledge" i18n:translate="">No skills qualify for the current filter.</p>
+      </tal:not_groups>
+      <metal:filter use-macro="view/context/@@knowledge-utils/filter"/>
+      <tal:groups condition="groups">
+        <button id="zero-copy" class="btn btn-inverse" i18n:translate="">Copy to Clipboard</button>
+        <span class="infoMessage" i18n:translate="" style="display: none;">Automation knowledge copied</span>
+        <script type="text/javascript" src="/++resource++ZeroClipboard.min.js"/>
+        <script type="text/javascript">
+          ZeroClipboard.config({swfPath: "/++resource++ZeroClipboard.swf"});
+          var $copyButton = $('#zero-copy'),
+              $copiedMessage = $('#zero-copy + .infoMessage'),
+              client = new ZeroClipboard($copyButton);
+          client.on("ready", function(e) {
+            client.on( "copy", function (e) {
+              var clipboard = e.clipboardData;
+              clipboard.setData("text/html", 
+                '<h2>' + $('.table-wrap > h2').html() + '</h2>' + 
+                '<table>' + $('.table-wrap > table').html() + '</table>');
+            });
+            client.on( 'aftercopy', function(e) {
+              $copiedMessage.fadeIn('slow');
+              setTimeout(function () {
+                $copiedMessage.fadeOut('slow');
+              }, 1000);
+            });
+          });
+        </script>
+      </tal:groups>
+    </div>
+  </metal:content-core>
+</metal:content-core>
+</body>
+</html>

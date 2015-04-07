@@ -1,0 +1,425 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: vs.knowledge\n"
+"POT-Creation-Date: 2015-04-01 13:36+0000\n"
+"PO-Revision-Date: 2015-03-16 10:05+0000\n"
+"Last-Translator: THijs <thijs.jonkman@virtualsciences.nl>\n"
+"Language-Team: VS <info@virtualsciences.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: nl\n"
+"Language-Name: Dutch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: vs.knowledge\n"
+
+#: ./browser/skill.py:58
+#: ./browser/templates/utils.pt:79
+msgid "(Experience level unknown)"
+msgstr "(Kennis niveau onbekend)"
+
+#: ./browser/templates/dreyfus.pt:64
+#: ./browser/templates/utils.pt:168
+msgid "Advanced beginner"
+msgstr "Gevorderde beginner"
+
+#: ./browser/templates/utils.pt:56
+msgid "All"
+msgstr "Alles"
+
+#: ./browser/templates/dreyfus.pt:72
+msgid "All attributes and aspects are treated separately and given equal importance"
+msgstr "Alle attributen en aspecten worden afzonderlijk behandeld en als even belangrijk gezien"
+
+#: ./browser/templates/dreyfus.pt:117
+msgid "Analytic approaches used only in novel situations or when problems occur"
+msgstr "Analytische methoden alleen in nieuwe situaties, of wanneer zich problemen voordoen, gebruikt"
+
+#: ./browser/templates/dreyfus.pt:53
+msgid "Analytically"
+msgstr "Analytisch"
+
+#: ./browser/templates/cv.pt:28
+msgid "Automation knowledge"
+msgstr "Automatiserings kennis"
+
+#: ./browser/templates/cv.pt:38
+msgid "Automation knowledge copied"
+msgstr "Automatiserings kennis gekopieerd"
+
+#: ./browser/templates/utils.pt:13
+msgid "CSV Export"
+msgstr "CSV Export"
+
+#: ./browser/templates/utils.pt:10
+msgid "CV display"
+msgstr "CV weergave"
+
+#: ./browser/templates/utils.pt:44
+msgid "Change profile"
+msgstr "Profiel wijzigen"
+
+#: ./browser/templates/dreyfus.pt:40
+msgid "Characteristics"
+msgstr "Karakteristieken"
+
+#: ./browser/templates/cleanup.pt:25
+msgid "Clean old members from skills"
+msgstr "Verwijder ex-medewerkers uit de skills"
+
+#: ./browser/templates/utils.pt:16
+msgid "Cleanup"
+msgstr "Opschonen"
+
+#: ./browser/templates/dreyfus.pt:76
+#: ./browser/templates/utils.pt:178
+msgid "Competent"
+msgstr "Competent"
+
+#: ./browser/templates/utils.pt:36
+msgid "Complete profile"
+msgstr "Profiel aanvullen"
+
+#: ./browser/templates/dreyfus.pt:84
+msgid "Conscious, deliberate planning"
+msgstr "Bewuste, weloverwogen planning"
+
+#: ./browser/templates/dreyfus.pt:77
+msgid "Coping with crowdedness"
+msgstr "Omgaan met drukte"
+
+#: ./browser/templates/cv.pt:37
+msgid "Copy to Clipboard"
+msgstr "Kopieer naar kladblok"
+
+#: ./browser/templates/dreyfus.pt:44
+msgid "Decision-making"
+msgstr "Besluitvorming"
+
+#: ./browser/templates/dreyfus.pt:102
+msgid "Decision-making less laboured"
+msgstr "Minder moeizame besluitvorming"
+
+#: ./models/knowledge_profile.xml
+msgid "Exclude"
+msgstr "Sluit uit"
+
+#: ./models/knowledge_profile.xml
+msgid "Exclude members by id (Click the header to see their id in the url). One member per line."
+msgstr "Sluit gebruikers uit op basis van id (Klik de header op het overzicht om het id in de url te zien). Een gebruiker per regel."
+
+#: ./browser/knowledge.py:22
+msgid "Experience"
+msgstr "Ervaring"
+
+#: ./browser/templates/dreyfus.pt:109
+#: ./browser/templates/utils.pt:199
+msgid "Expert"
+msgstr "Expert"
+
+#: ./utils.py:138
+msgid "Expertise"
+msgstr "Expertise"
+
+#: ./models/knowledge_profile.xml
+msgid "Expertises|Groups"
+msgstr "Expertises|Groepen"
+
+#: ./browser/templates/utils.pt:66
+msgid "From level"
+msgstr "Vanaf niveau"
+
+#: ./browser/templates/utils.pt:6
+msgid "Full profile"
+msgstr "Volledig profiel"
+
+#: ./models/skill.xml
+msgid "Group"
+msgstr "Groep"
+
+#: ./browser/templates/dreyfus.pt:65
+msgid "Guidelines for action based on attributes or aspects (aspects are global characteristics of situations recognisable only after some prior experience)"
+msgstr "De richtlijnen voor acties op basis van attributen of aspecten (aspecten zijn pas na enige eerdere ervaring herkenbare globale kenmerken van situaties)"
+
+#: ./browser/templates/utils.pt:192
+msgid "Has a deep understanding, sees actions holistically, can achieve a high standard routinely"
+msgstr "Heeft een diep begrip, ziet acties holistisch, kan een hoge standaard routinematig te bereiken"
+
+#: ./browser/templates/utils.pt:181
+msgid "Has a good working and background understanding, sees actions at least partly in context, able to complete work independently to a standard that is acceptable though it may lack refinement."
+msgstr "Heeft een goed begrip van achtergrond en werking, ziet de acties ten minste gedeeltelijk in context, is in staat om zelfstandig werk te voltooien naar een aanvaardbare standaard, hoewel dit verfijning mag missen."
+
+#: ./browser/templates/utils.pt:171
+msgid "Has a working understanding, tends to see actions as a series of steps, can complete simpler tasks without supervision."
+msgstr "Heeft begrip van de werking, heeft de neiging om acties te zien als een reeks stappen, kan eenvoudige taken zonder toezicht te voltooien."
+
+#: ./browser/templates/utils.pt:202
+msgid "Has an authoritative or deep holistic understanding, deals with routine matters intuitively, able to go beyond existing interpretations, achieves excellence with ease."
+msgstr "Heeft gezaghebbend of diep holistisch begrip, handelt intuïtief met routinematige zaken, kan verder gaan dan de bestaande interpretaties, bereikt met gemak uitmuntend resultaat."
+
+#: ./browser/templates/utils.pt:161
+msgid "Has an incomplete understanding, approaches tasks mechanistically and needs supervision to complete them."
+msgstr "Heeft een onvolledig begrip, benadert taken mechanistisch en heeft toezicht nodig om ze te voltooien."
+
+#: ./browser/templates/dreyfus.pt:93
+msgid "Holistically"
+msgstr "Holistisch"
+
+#: ./browser/templates/dreyfus.pt:43
+msgid "How context is assessed"
+msgstr "Hoe context wordt beoordeeld"
+
+#: ./browser/templates/dreyfus.pt:41
+msgid "How knowledge etc is treated"
+msgstr "Hoe kennis etc wordt behandeld"
+
+#: ./browser/templates/dreyfus.pt:66
+msgid "In context"
+msgstr "In context"
+
+#: ./browser/templates/dreyfus.pt:111
+msgid "Intuitive"
+msgstr "Intuïtief"
+
+#: ./browser/templates/dreyfus.pt:114
+msgid "Intuitive grasp of situations based on deep tacit understanding"
+msgstr "Intuïtieve greep van situaties op basis van diep impliciet begrip"
+
+#: ./profiles/default/types/knowledge_profile.xml
+msgid "Knowledge profile"
+msgstr "Kennis profiel"
+
+#: ./browser/knowledge.py:78
+#: ./browser/templates/utils.pt:138
+msgid "Legend"
+msgstr "Legenda"
+
+#: ./browser/templates/dreyfus.pt:38
+msgid "Level"
+msgstr "Niveau"
+
+#: ./browser/templates/dreyfus.pt:57
+msgid "Little situational perception"
+msgstr "Weinig situationele waarneming"
+
+#: ./models/skill.xml
+msgid "Member | Level | Show in profile"
+msgstr "Gebruiker | Niveau | Toon op profiel pagina"
+
+#: ./browser/templates/profile.pt:28
+#: ./browser/templates/utils.pt:8
+msgid "My profile"
+msgstr "Mijn profiel"
+
+#: ./utils.py:140
+msgid "Name"
+msgstr "Naam"
+
+#: ./browser/templates/dreyfus.pt:60
+msgid "No discretionary judgement"
+msgstr "Geen discretionair critisch vermogen"
+
+#: ./browser/templates/dreyfus.pt:110
+msgid "No longer relies on rules, guidelines or maxims"
+msgstr "Steunt niet langer op regels of richtlijnen"
+
+#: ./browser/templates/cv.pt:33
+msgid "No skills qualify for the current filter."
+msgstr "Er voldoen geen skills aan het huidige filter."
+
+#: ./browser/templates/dreyfus.pt:52
+msgid "None"
+msgstr "Geen"
+
+#: ./models/skill.xml
+msgid "Not meant for immediate editing. Only in case of emergency. Go through the available edit screens."
+msgstr "Niet bedoeld voor handmatig aanpassen. Alleen in geval van nood. Gebruikers editten zelf via de gebruikelijke schermen."
+
+#: ./browser/templates/dreyfus.pt:49
+#: ./browser/templates/utils.pt:158
+msgid "Novice"
+msgstr "Beginner"
+
+#: ./browser/templates/dreyfus.pt:19
+msgid "Novice to Expert"
+msgstr "Beginner tot Expert"
+
+#: ./browser/templates/dreyfus.pt:81
+msgid "Now sees actions at least partially in terms of longer-term goals"
+msgstr "Ziet acties ten minste gedeeltelijk in termen van lange termijn doelen"
+
+#: ./browser/skill.py:68
+#: ./browser/templates/utils.pt:107
+msgid "On profile"
+msgstr "Op profiel"
+
+#: ./profiles/default/types/knowledge_profile.xml
+msgid "Overview of Skills per Member."
+msgstr "Overzicht van Skills per gebruiker."
+
+#: ./browser/templates/dreyfus.pt:99
+msgid "Perceives deviations from the normal pattern"
+msgstr "Waarneemt afwijkingen van het normale patroon"
+
+#: ./models/skill.xml
+msgid "Pick the group that applies to this Skill."
+msgstr "Kies de groep die op deze skill van toepassing is."
+
+#: ./models/knowledge_profile.xml
+msgid "Possible Skill levels. Add levels one per line with the value and title seperated by a pipe symbol, e.g. Level|Title."
+msgstr "Mogelijke Skill niveaus. Voeg niveaus toe, één per regel, met waarde en titel gescheiden door een '|', dus Niveau|Titel."
+
+#: ./models/knowledge_profile.xml
+msgid "Possible groups within expertises to choose from on a Skill. In a table, the first column will show the expertise, the second will show the groups within the expertise, the third column will show the Skill and the fourth column will show the searchterms for the skill. Add expertises and groups, one group per line and the expertise and group seperated by a pipe symbol, e.g. Expertise|Group"
+msgstr "Mogelijke groepen binnen expertises om uit te kiezen bij een Skill. In een tabel zal de eerste kolom de expertise tonen, de tweede de groepen binnen de expertise en de derde de skill. Voeg expertises en groepen toe, één per regel, met expertise en groep gescheiden door een '|', dus Expertise|Groep."
+
+#: ./browser/templates/dreyfus.pt:78
+msgid "Present"
+msgstr "Aanwezig"
+
+#: ./browser/templates/dreyfus.pt:91
+#: ./browser/templates/utils.pt:189
+msgid "Proficient"
+msgstr "Bedreven"
+
+#: ./browser/templates/utils.pt:70
+msgid "Profile"
+msgstr "Profiel"
+
+#: ./browser/templates/dreyfus.pt:54
+msgid "Rational"
+msgstr "Rationeel"
+
+#: ./browser/templates/dreyfus.pt:42
+msgid "Recognition of relevance"
+msgstr "Herkenning van relevantie"
+
+#: ./browser/templates/dreyfus.pt:50
+msgid "Rigid adherence to taught rules or plans"
+msgstr "Strak vasthouden aan geleerd regels of plannen"
+
+#: ./utils.py:141
+msgid "Searchterms"
+msgstr "Zoektermen"
+
+#: ./browser/templates/dreyfus.pt:92
+msgid "Sees situations holistically rather than in terms of aspects"
+msgstr "Ziet situaties holistisch in plaats van in termen van aspecten"
+
+#: ./browser/templates/dreyfus.pt:96
+msgid "Sees what is most important in a situation"
+msgstr "Ziet wat het belangrijkst is in een situatie"
+
+#: ./browser/templates/skill.pt:60
+msgid "Show on profile page"
+msgstr "Toon op profiel pagina"
+
+#: ./browser/templates/dreyfus.pt:69
+msgid "Situational perception still limited"
+msgstr "Beperkte situationele waarneming"
+
+#: ./profiles/default/types/skill.xml
+msgid "Skill"
+msgstr "Skill"
+
+#: ./browser/templates/skill.pt:51
+msgid "Skill experience level"
+msgstr "Skill niveau"
+
+#: ./browser/templates/utils.pt:154
+#: ./models/knowledge_profile.xml
+msgid "Skill levels"
+msgstr "Skill niveaus"
+
+#: ./profiles/default/types/skill.xml
+msgid "Skill, grouped by group within expertise."
+msgstr "Skill, per groep binnen expertise."
+
+#: ./portlets/skills.py:27
+msgid "Skills"
+msgstr "Skills"
+
+#: ./browser/templates/dreyfus.pt:39
+msgid "Stage"
+msgstr "Stadium"
+
+#: ./browser/templates/dreyfus.pt:87
+msgid "Standardised and routinised procedures"
+msgstr "Gestandaardiseerde en routinematige procedures"
+
+#: ./utils.py:139
+msgid "Subgroup"
+msgstr "Subgroep"
+
+#: ./browser/templates/dreyfus.pt:125
+msgid "The 'expert' level does not signify that development stops, as expert practitioners need to evaluate their practice and keep up - to - date with new evidence."
+msgstr "Het 'expert' niveau betekent niet dat de ontwikkeling stopt, omdat praktijkdeskundigen hun hun kennis op pijl dienen te houden met de huidige stand van zaken."
+
+#: ./browser/templates/dreyfus.pt:23
+msgid "The Dreyfus model is used fairly widely (a) to provide a means of assessing and supporting progress in the development of skills or competencies, and (b) to provide a definition of accept able level for the assessment of competence or capability."
+msgstr "Het Dreyfus-model is redelijk veel gebruikt als (a) een middel ter ondersteuning van het beoordelen van skill niveau, en (b) een aanvaardbare definitie voor de beoordeling van vakbekwaamheid."
+
+#: ./browser/templates/dreyfus.pt:20
+msgid "The Dreyfus model of skill acquisition"
+msgstr "Het Dreyfus-model voor het aanleren van vaardigheden"
+
+#: ./browser/knowledge.py:117
+msgid "The following users were removed from all skills: "
+msgstr "De volgende gebruikers zijn opgeschoond uit alle skills: "
+
+#: ./browser/templates/skill.pt:52
+msgid "This is an imported value. Please specify the level of your experience with this skill."
+msgstr "Dit is een geimporteerde waarde. Specificeer a.u.b. jouw kennis niveau."
+
+#: ./utils.py:143
+msgid "Total"
+msgstr "Totaal"
+
+#: ./browser/templates/utils.pt:40
+msgid "Update profile"
+msgstr "Profiel bijwerken"
+
+#: ./browser/templates/dreyfus.pt:105
+msgid "Uses maxims for guidance, whose meanings vary according to the situation"
+msgstr "Gebruikt richtlijnen voor steun, waarvan de betekenis is afhankelijk van de situatie"
+
+#: ./portlets/skills.pt:17
+msgid "View my full skill CV"
+msgstr "Bekijk mijn volledige skill CV"
+
+#: ./browser/templates/dreyfus.pt:120
+msgid "Vision of what is possible"
+msgstr "Inzicht in wat mogelijk is"
+
+#: ./browser/templates/dreyfus.pt:51
+msgid "Without reference to context"
+msgstr "Zonder verwijzing naar context"
+
+#: ./utils.py:121
+msgid "You have empty entries in your profile, please add an experience level."
+msgstr "Er zijn skills met een lege waarde in jouw profiel. Vul deze a.u.b. aan met een kennis niveau."
+
+#: ./utils.py:116
+msgid "You have empty profile, please qualify your experience level for each skill."
+msgstr "Jouw kennis profiel is leeg. Vul je kennis profiel in en geef elke skill een kennis niveau."
+
+#: ./utils.py:126
+msgid "You have entries with an x value in your profile, please qualify your experience level."
+msgstr "Er zijn skills met een 'X' waarde in jouw profiel. Vul deze a.u.b. aan met een kennis niveau."
+
+#: ./browser/templates/profile.pt:29
+#: ./browser/templates/utils.pt:22
+msgid "profile"
+msgstr "profiel"
+
+#. Default: "Remove users"
+#: ./browser/templates/cleanup.pt:33
+msgid "remove_users"
+msgstr "Verwijderen"
+
+#. Default: "Values"
+#: ./models/skill.xml
+msgid "values_label"
+msgstr "Waarden"
+

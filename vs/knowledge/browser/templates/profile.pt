@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      tal:define="data python:view.data(single=True);
+                  levels view/levels;
+                  other_id view/other_id|nothing;"
+      i18n:domain="vs.knowledge">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+    <style>
+      <metal:style use-macro="view/context/@@knowledge-utils/style"/>
+      <metal:profile use-macro="view/context/@@knowledge-utils/profile"/>
+    </style>
+    <div class="table-wrap">
+      <metal:links use-macro="view/context/@@knowledge-utils/links"/>
+      <h2 tal:condition="not:other_id" i18n:translate="">My profile</h2>
+      <h2 tal:condition="other_id"><tal:other content="string:${view/other_firstname}'s "/><tal:profile i18n:translate="">profile</tal:profile></h2>
+
+      <table metal:use-macro="view/context/@@knowledge-utils/legend_full" class="legend full"/>
+      <table class="knowledge full"
+             tal:condition="python:view.e_count != view.skill_count">
+        <thead tal:define="headers python:data.pop(0)">
+          <tr>
+            <th tal:repeat="header headers" tal:content="header">Header</th>
+          </tr>
+        </thead>
+        <tbody tal:define="ld python:dict(levels)">
+          <tal:row repeat="row data">
+            <tr tal:define="headers python:row[:4];
+                            cell python:row[4];
+                            level cell/level;
+                            x_val cell/x_val;
+                            show cell/show;
+                            url cell/url;
+                            cclass cell/cclass;
+                            index python:repeat['row'].index;
+                            row_id string:row-${index};
+                            from_url string:${context/absolute_url}/knowledge-profile#${row_id};
+                            ajax nothing;"
+                tal:attributes="class cclass;">
+              <tal:header repeat="header headers">
+                <th tal:attributes="class python:'blank' if header is '' else None"
+                    tal:content="structure python:header or '&nbsp;'"></th>
+              </tal:header>
+              <td>
+                <a class="ancor" tal:attributes="name row_id"></a>
+                <metal:change use-macro="view/context/@@knowledge-utils/change"
+                   tal:condition="not:other_id"/>
+                <tal:level content="python:ld.get(level, view.experience) or level" condition="other_id">X</tal:level>
+              </td>
+            </tr>
+          </tal:row>
+        </tbody>
+      </table>
+      <metal:actions use-macro="view/context/@@knowledge-utils/actions"/>
+      <script type="text/javascript" tal:condition="not:view/other_id|nothing">
+        var $forms = $('form[id^="change-skill-"]'),
+            formChange = function() {
+              var $form = $(this);
+              $.ajax({
+                type: "POST",
+                url: $form.attr('action'),
+                data: $form.serialize(),
+                success: function (html) { 
+                  var $cell = $form.parent(),
+                      $row = $cell.parent(),
+                      $new_form = $(html).change(formChange);
+                  $cell.html($new_form);
+                  $row.removeClass();
+                },
+                dataType: "html"
+              });
+              console.log( $form.serialize() );
+            };
+        $forms.find('button').remove();
+        $forms.find('[name="from_url"]').remove();
+        $forms.change(formChange);
+      </script>
+    </div>
+  </metal:content-core>
+</metal:content-core>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      tal:define="level view/level|nothing;
+                  x_val python:level == 'X';
+                  show view/show|nothing;
+                  back view/back|nothing;
+                  forward view/forward|nothing;"
+      i18n:domain="vs.knowledge">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:context.portal_membership.checkPermission('Modify portal content', context) or request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+<h1 metal:fill-slot="content-title" class="documentFirstHeading"
+    tal:content="python:' - '.join(context.group.split('|'))">Expertise - Group</h1>
+<metal:description fill-slot="content-description"/>
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+    <style>
+      <metal:style use-macro="view/context/@@knowledge-utils/style"/>
+      .legend th {
+          border-top: 1px solid rgba(0,0,0,.1);
+          padding: .2em .5em;
+      }
+      .legend td { 
+          min-width: 1em; 
+          border-left: 1px solid rgba(0,0,0,.1); 
+          text-align: left;
+          padding: .2em .5em;
+          background-color: transparent;
+      }
+      .legend { min-width: 20em; }
+      .legend td { min-width: 1em; border-color: rgba(0,0,0,.1); }
+      .legend tr:nth-child(odd) td { background-color: #eee; }
+    </style>
+    <p style="float: right"
+       tal:content="python:'(%s / %s)' % (view.index + 1, view.amount)"></p>
+    <h2 tal:content="context/title"></h2>
+    <div class="documentDescription"
+         tal:content="context/description">Description</div>
+    <form action="." method="POST">
+      <div tal:attributes="class python:'field error' if x_val else None">
+        <label i18n:translate="">Skill experience level</label>
+        <div class="formHelp" tal:condition="x_val"
+             i18n:translate="">This is an imported value. Please specify the level of your experience with this skill.</div>
+        <metal:select use-macro="view/context/@@knowledge-utils/select" />
+      </div>
+      <div>
+        <label tal:define="show python:show not in ['', 'n']">
+          <input type="checkbox" name="show" tal:condition="show" checked="checked"/>
+          <input type="checkbox" name="show" tal:condition="not:show"/>
+          <tal:show i18n:translate="">Show on profile page</tal:show>
+        </label>
+      </div>
+      <div class="formControls">
+        <input type="submit" name="change" value="<<" tal:condition="back"/>
+        <input type="submit" name="change" value="Update"/>
+        <input type="submit" name="change" value=">>" tal:condition="forward"/>
+      </div>
+    </form>
+    <table metal:use-macro="view/context/@@knowledge-utils/legend_full" class="legend full"/>
+  </metal:content-core>
+</metal:content-core>
+</body>
+</html>

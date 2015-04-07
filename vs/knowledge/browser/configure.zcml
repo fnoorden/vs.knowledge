@@ -1,0 +1,93 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="vs.knowledge">
+
+  <include package="Products.CMFCore" file="permissions.zcml" />
+  <include package="AccessControl" file="permissions.zcml" />
+
+  <browser:page
+      name="knowledge"
+      for="*"
+      class=".knowledge.KnowledgeView"
+      template="templates/knowledge.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="knowledge-profile"
+      for="*"
+      class=".knowledge.ProfileView"
+      template="templates/profile.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="knowledge-cv"
+      for="*"
+      class=".knowledge.CVView"
+      template="templates/cv.pt"
+      permission="zope2.View"
+      />
+
+  <browser:resource
+      name="ZeroClipboard.js"
+      permission="zope2.View"
+      file="js/ZeroClipboard.js"
+      />
+
+  <browser:resource
+      name="ZeroClipboard.min.js"
+      permission="zope2.View"
+      file="js/ZeroClipboard.min.js"
+      />
+
+  <browser:resource
+      name="ZeroClipboard.swf"
+      permission="zope2.View"
+      file="sfw/ZeroClipboard.swf"
+      />
+
+  <browser:page
+      name="knowledge-utils"
+      for="*"
+      template="templates/utils.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="knowledge-dreyfus"
+      for="*"
+      template="templates/dreyfus.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="knowledge.csv"
+      for="*"
+      class=".knowledge.KnowledgeExport"
+      permission="cmf.ReviewPortalContent"
+      />
+
+  <browser:page
+      name="knowledge-cleanup"
+      for="*"
+      class=".knowledge.CleanupView"
+      permission="cmf.ModifyPortalContent"
+      />
+
+  <browser:page
+      name="skill"
+      for="*"
+      class=".skill.SkillView"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="change"
+      for="*"
+      class=".skill.ChangeSkill"
+      permission="zope2.View"
+      />
+
+</configure>
