@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-04-01 10:44+0000\n"
+"POT-Creation-Date: 2015-04-01 13:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "(Experience level unknown)"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:69
+#: ./browser/templates/dreyfus.pt:64
 #: ./browser/templates/utils.pt:168
 msgid "Advanced beginner"
 msgstr ""
@@ -31,15 +31,15 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:77
+#: ./browser/templates/dreyfus.pt:72
 msgid "All attributes and aspects are treated separately and given equal importance"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:122
+#: ./browser/templates/dreyfus.pt:117
 msgid "Analytic approaches used only in novel situations or when problems occur"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:58
+#: ./browser/templates/dreyfus.pt:53
 msgid "Analytically"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Change profile"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:45
+#: ./browser/templates/dreyfus.pt:40
 msgid "Characteristics"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Cleanup"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:81
+#: ./browser/templates/dreyfus.pt:76
 #: ./browser/templates/utils.pt:178
 msgid "Competent"
 msgstr ""
@@ -84,11 +84,11 @@ msgstr ""
 msgid "Complete profile"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:89
+#: ./browser/templates/dreyfus.pt:84
 msgid "Conscious, deliberate planning"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:82
+#: ./browser/templates/dreyfus.pt:77
 msgid "Coping with crowdedness"
 msgstr ""
 
@@ -96,11 +96,11 @@ msgstr ""
 msgid "Copy to Clipboard"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:49
+#: ./browser/templates/dreyfus.pt:44
 msgid "Decision-making"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:107
+#: ./browser/templates/dreyfus.pt:102
 msgid "Decision-making less laboured"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Experience"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:114
+#: ./browser/templates/dreyfus.pt:109
 #: ./browser/templates/utils.pt:199
 msgid "Expert"
 msgstr ""
@@ -141,7 +141,7 @@ msgstr ""
 msgid "Group"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:70
+#: ./browser/templates/dreyfus.pt:65
 msgid "Guidelines for action based on attributes or aspects (aspects are global characteristics of situations recognisable only after some prior experience)"
 msgstr ""
 
@@ -165,27 +165,27 @@ msgstr ""
 msgid "Has an incomplete understanding, approaches tasks mechanistically and needs supervision to complete them."
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:98
+#: ./browser/templates/dreyfus.pt:93
 msgid "Holistically"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:48
+#: ./browser/templates/dreyfus.pt:43
 msgid "How context is assessed"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:46
+#: ./browser/templates/dreyfus.pt:41
 msgid "How knowledge etc is treated"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:71
+#: ./browser/templates/dreyfus.pt:66
 msgid "In context"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:116
+#: ./browser/templates/dreyfus.pt:111
 msgid "Intuitive"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:119
+#: ./browser/templates/dreyfus.pt:114
 msgid "Intuitive grasp of situations based on deep tacit understanding"
 msgstr ""
 
@@ -198,11 +198,11 @@ msgstr ""
 msgid "Legend"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:43
+#: ./browser/templates/dreyfus.pt:38
 msgid "Level"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:62
+#: ./browser/templates/dreyfus.pt:57
 msgid "Little situational perception"
 msgstr ""
 
@@ -219,11 +219,11 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:65
+#: ./browser/templates/dreyfus.pt:60
 msgid "No discretionary judgement"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:115
+#: ./browser/templates/dreyfus.pt:110
 msgid "No longer relies on rules, guidelines or maxims"
 msgstr ""
 
@@ -231,7 +231,7 @@ msgstr ""
 msgid "No skills qualify for the current filter."
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:57
+#: ./browser/templates/dreyfus.pt:52
 msgid "None"
 msgstr ""
 
@@ -239,16 +239,16 @@ msgstr ""
 msgid "Not meant for immediate editing. Only in case of emergency. Go through the available edit screens."
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:54
+#: ./browser/templates/dreyfus.pt:49
 #: ./browser/templates/utils.pt:158
 msgid "Novice"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:21
+#: ./browser/templates/dreyfus.pt:19
 msgid "Novice to Expert"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:86
+#: ./browser/templates/dreyfus.pt:81
 msgid "Now sees actions at least partially in terms of longer-term goals"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "Overview of Skills per Member."
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:104
+#: ./browser/templates/dreyfus.pt:99
 msgid "Perceives deviations from the normal pattern"
 msgstr ""
 
@@ -277,11 +277,11 @@ msgstr ""
 msgid "Possible groups within expertises to choose from on a Skill. In a table, the first column will show the expertise, the second will show the groups within the expertise, the third column will show the Skill and the fourth column will show the searchterms for the skill. Add expertises and groups, one group per line and the expertise and group seperated by a pipe symbol, e.g. Expertise|Group"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:83
+#: ./browser/templates/dreyfus.pt:78
 msgid "Present"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:96
+#: ./browser/templates/dreyfus.pt:91
 #: ./browser/templates/utils.pt:189
 msgid "Proficient"
 msgstr ""
@@ -290,15 +290,15 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:59
+#: ./browser/templates/dreyfus.pt:54
 msgid "Rational"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:47
+#: ./browser/templates/dreyfus.pt:42
 msgid "Recognition of relevance"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:55
+#: ./browser/templates/dreyfus.pt:50
 msgid "Rigid adherence to taught rules or plans"
 msgstr ""
 
@@ -306,19 +306,19 @@ msgstr ""
 msgid "Searchterms"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:97
+#: ./browser/templates/dreyfus.pt:92
 msgid "Sees situations holistically rather than in terms of aspects"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:101
+#: ./browser/templates/dreyfus.pt:96
 msgid "Sees what is most important in a situation"
 msgstr ""
 
-#: ./browser/templates/skill.pt:59
+#: ./browser/templates/skill.pt:60
 msgid "Show on profile page"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:74
+#: ./browser/templates/dreyfus.pt:69
 msgid "Situational perception still limited"
 msgstr ""
 
@@ -326,7 +326,7 @@ msgstr ""
 msgid "Skill"
 msgstr ""
 
-#: ./browser/templates/skill.pt:50
+#: ./browser/templates/skill.pt:51
 msgid "Skill experience level"
 msgstr ""
 
@@ -343,11 +343,11 @@ msgstr ""
 msgid "Skills"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:44
+#: ./browser/templates/dreyfus.pt:39
 msgid "Stage"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:92
+#: ./browser/templates/dreyfus.pt:87
 msgid "Standardised and routinised procedures"
 msgstr ""
 
@@ -355,15 +355,15 @@ msgstr ""
 msgid "Subgroup"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:35
+#: ./browser/templates/dreyfus.pt:125
 msgid "The 'expert' level does not signify that development stops, as expert practitioners need to evaluate their practice and keep up - to - date with new evidence."
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:24
+#: ./browser/templates/dreyfus.pt:23
 msgid "The Dreyfus model is used fairly widely (a) to provide a means of assessing and supporting progress in the development of skills or competencies, and (b) to provide a definition of accept able level for the assessment of competence or capability."
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:22
+#: ./browser/templates/dreyfus.pt:20
 msgid "The Dreyfus model of skill acquisition"
 msgstr ""
 
@@ -371,7 +371,7 @@ msgstr ""
 msgid "The following users were removed from all skills: "
 msgstr ""
 
-#: ./browser/templates/skill.pt:51
+#: ./browser/templates/skill.pt:52
 msgid "This is an imported value. Please specify the level of your experience with this skill."
 msgstr ""
 
@@ -383,7 +383,7 @@ msgstr ""
 msgid "Update profile"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:110
+#: ./browser/templates/dreyfus.pt:105
 msgid "Uses maxims for guidance, whose meanings vary according to the situation"
 msgstr ""
 
@@ -391,11 +391,11 @@ msgstr ""
 msgid "View my full skill CV"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:125
+#: ./browser/templates/dreyfus.pt:120
 msgid "Vision of what is possible"
 msgstr ""
 
-#: ./browser/templates/dreyfus.pt:56
+#: ./browser/templates/dreyfus.pt:51
 msgid "Without reference to context"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: vs.knowledge\n"
-"POT-Creation-Date: 2015-04-01 10:44+0000\n"
+"POT-Creation-Date: 2015-04-01 13:36+0000\n"
 "PO-Revision-Date: 2015-03-16 10:05+0000\n"
 "Last-Translator: THijs <thijs.jonkman@virtualsciences.nl>\n"
 "Language-Team: VS <info@virtualsciences.nl>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "(Experience level unknown)"
 msgstr "(Kennis niveau onbekend)"
 
-#: ./browser/templates/dreyfus.pt:69
+#: ./browser/templates/dreyfus.pt:64
 #: ./browser/templates/utils.pt:168
 msgid "Advanced beginner"
 msgstr "Gevorderde beginner"
@@ -28,15 +28,15 @@ msgstr "Gevorderde beginner"
 msgid "All"
 msgstr "Alles"
 
-#: ./browser/templates/dreyfus.pt:77
+#: ./browser/templates/dreyfus.pt:72
 msgid "All attributes and aspects are treated separately and given equal importance"
 msgstr "Alle attributen en aspecten worden afzonderlijk behandeld en als even belangrijk gezien"
 
-#: ./browser/templates/dreyfus.pt:122
+#: ./browser/templates/dreyfus.pt:117
 msgid "Analytic approaches used only in novel situations or when problems occur"
 msgstr "Analytische methoden alleen in nieuwe situaties, of wanneer zich problemen voordoen, gebruikt"
 
-#: ./browser/templates/dreyfus.pt:58
+#: ./browser/templates/dreyfus.pt:53
 msgid "Analytically"
 msgstr "Analytisch"
 
@@ -60,7 +60,7 @@ msgstr "CV weergave"
 msgid "Change profile"
 msgstr "Profiel wijzigen"
 
-#: ./browser/templates/dreyfus.pt:45
+#: ./browser/templates/dreyfus.pt:40
 msgid "Characteristics"
 msgstr "Karakteristieken"
 
@@ -72,7 +72,7 @@ msgstr "Verwijder ex-medewerkers uit de skills"
 msgid "Cleanup"
 msgstr "Opschonen"
 
-#: ./browser/templates/dreyfus.pt:81
+#: ./browser/templates/dreyfus.pt:76
 #: ./browser/templates/utils.pt:178
 msgid "Competent"
 msgstr "Competent"
@@ -81,11 +81,11 @@ msgstr "Competent"
 msgid "Complete profile"
 msgstr "Profiel aanvullen"
 
-#: ./browser/templates/dreyfus.pt:89
+#: ./browser/templates/dreyfus.pt:84
 msgid "Conscious, deliberate planning"
 msgstr "Bewuste, weloverwogen planning"
 
-#: ./browser/templates/dreyfus.pt:82
+#: ./browser/templates/dreyfus.pt:77
 msgid "Coping with crowdedness"
 msgstr "Omgaan met drukte"
 
@@ -93,11 +93,11 @@ msgstr "Omgaan met drukte"
 msgid "Copy to Clipboard"
 msgstr "Kopieer naar kladblok"
 
-#: ./browser/templates/dreyfus.pt:49
+#: ./browser/templates/dreyfus.pt:44
 msgid "Decision-making"
 msgstr "Besluitvorming"
 
-#: ./browser/templates/dreyfus.pt:107
+#: ./browser/templates/dreyfus.pt:102
 msgid "Decision-making less laboured"
 msgstr "Minder moeizame besluitvorming"
 
@@ -113,7 +113,7 @@ msgstr "Sluit gebruikers uit op basis van id (Klik de header op het overzicht om
 msgid "Experience"
 msgstr "Ervaring"
 
-#: ./browser/templates/dreyfus.pt:114
+#: ./browser/templates/dreyfus.pt:109
 #: ./browser/templates/utils.pt:199
 msgid "Expert"
 msgstr "Expert"
@@ -138,7 +138,7 @@ msgstr "Volledig profiel"
 msgid "Group"
 msgstr "Groep"
 
-#: ./browser/templates/dreyfus.pt:70
+#: ./browser/templates/dreyfus.pt:65
 msgid "Guidelines for action based on attributes or aspects (aspects are global characteristics of situations recognisable only after some prior experience)"
 msgstr "De richtlijnen voor acties op basis van attributen of aspecten (aspecten zijn pas na enige eerdere ervaring herkenbare globale kenmerken van situaties)"
 
@@ -162,27 +162,27 @@ msgstr "Heeft gezaghebbend of diep holistisch begrip, handelt intuïtief met rou
 msgid "Has an incomplete understanding, approaches tasks mechanistically and needs supervision to complete them."
 msgstr "Heeft een onvolledig begrip, benadert taken mechanistisch en heeft toezicht nodig om ze te voltooien."
 
-#: ./browser/templates/dreyfus.pt:98
+#: ./browser/templates/dreyfus.pt:93
 msgid "Holistically"
 msgstr "Holistisch"
 
-#: ./browser/templates/dreyfus.pt:48
+#: ./browser/templates/dreyfus.pt:43
 msgid "How context is assessed"
 msgstr "Hoe context wordt beoordeeld"
 
-#: ./browser/templates/dreyfus.pt:46
+#: ./browser/templates/dreyfus.pt:41
 msgid "How knowledge etc is treated"
 msgstr "Hoe kennis etc wordt behandeld"
 
-#: ./browser/templates/dreyfus.pt:71
+#: ./browser/templates/dreyfus.pt:66
 msgid "In context"
 msgstr "In context"
 
-#: ./browser/templates/dreyfus.pt:116
+#: ./browser/templates/dreyfus.pt:111
 msgid "Intuitive"
 msgstr "Intuïtief"
 
-#: ./browser/templates/dreyfus.pt:119
+#: ./browser/templates/dreyfus.pt:114
 msgid "Intuitive grasp of situations based on deep tacit understanding"
 msgstr "Intuïtieve greep van situaties op basis van diep impliciet begrip"
 
@@ -195,11 +195,11 @@ msgstr "Kennis profiel"
 msgid "Legend"
 msgstr "Legenda"
 
-#: ./browser/templates/dreyfus.pt:43
+#: ./browser/templates/dreyfus.pt:38
 msgid "Level"
 msgstr "Niveau"
 
-#: ./browser/templates/dreyfus.pt:62
+#: ./browser/templates/dreyfus.pt:57
 msgid "Little situational perception"
 msgstr "Weinig situationele waarneming"
 
@@ -216,11 +216,11 @@ msgstr "Mijn profiel"
 msgid "Name"
 msgstr "Naam"
 
-#: ./browser/templates/dreyfus.pt:65
+#: ./browser/templates/dreyfus.pt:60
 msgid "No discretionary judgement"
 msgstr "Geen discretionair critisch vermogen"
 
-#: ./browser/templates/dreyfus.pt:115
+#: ./browser/templates/dreyfus.pt:110
 msgid "No longer relies on rules, guidelines or maxims"
 msgstr "Steunt niet langer op regels of richtlijnen"
 
@@ -228,7 +228,7 @@ msgstr "Steunt niet langer op regels of richtlijnen"
 msgid "No skills qualify for the current filter."
 msgstr "Er voldoen geen skills aan het huidige filter."
 
-#: ./browser/templates/dreyfus.pt:57
+#: ./browser/templates/dreyfus.pt:52
 msgid "None"
 msgstr "Geen"
 
@@ -236,16 +236,16 @@ msgstr "Geen"
 msgid "Not meant for immediate editing. Only in case of emergency. Go through the available edit screens."
 msgstr "Niet bedoeld voor handmatig aanpassen. Alleen in geval van nood. Gebruikers editten zelf via de gebruikelijke schermen."
 
-#: ./browser/templates/dreyfus.pt:54
+#: ./browser/templates/dreyfus.pt:49
 #: ./browser/templates/utils.pt:158
 msgid "Novice"
 msgstr "Beginner"
 
-#: ./browser/templates/dreyfus.pt:21
+#: ./browser/templates/dreyfus.pt:19
 msgid "Novice to Expert"
 msgstr "Beginner tot Expert"
 
-#: ./browser/templates/dreyfus.pt:86
+#: ./browser/templates/dreyfus.pt:81
 msgid "Now sees actions at least partially in terms of longer-term goals"
 msgstr "Ziet acties ten minste gedeeltelijk in termen van lange termijn doelen"
 
@@ -258,7 +258,7 @@ msgstr "Op profiel"
 msgid "Overview of Skills per Member."
 msgstr "Overzicht van Skills per gebruiker."
 
-#: ./browser/templates/dreyfus.pt:104
+#: ./browser/templates/dreyfus.pt:99
 msgid "Perceives deviations from the normal pattern"
 msgstr "Waarneemt afwijkingen van het normale patroon"
 
@@ -274,11 +274,11 @@ msgstr "Mogelijke Skill niveaus. Voeg niveaus toe, één per regel, met waarde e
 msgid "Possible groups within expertises to choose from on a Skill. In a table, the first column will show the expertise, the second will show the groups within the expertise, the third column will show the Skill and the fourth column will show the searchterms for the skill. Add expertises and groups, one group per line and the expertise and group seperated by a pipe symbol, e.g. Expertise|Group"
 msgstr "Mogelijke groepen binnen expertises om uit te kiezen bij een Skill. In een tabel zal de eerste kolom de expertise tonen, de tweede de groepen binnen de expertise en de derde de skill. Voeg expertises en groepen toe, één per regel, met expertise en groep gescheiden door een '|', dus Expertise|Groep."
 
-#: ./browser/templates/dreyfus.pt:83
+#: ./browser/templates/dreyfus.pt:78
 msgid "Present"
 msgstr "Aanwezig"
 
-#: ./browser/templates/dreyfus.pt:96
+#: ./browser/templates/dreyfus.pt:91
 #: ./browser/templates/utils.pt:189
 msgid "Proficient"
 msgstr "Bedreven"
@@ -287,15 +287,15 @@ msgstr "Bedreven"
 msgid "Profile"
 msgstr "Profiel"
 
-#: ./browser/templates/dreyfus.pt:59
+#: ./browser/templates/dreyfus.pt:54
 msgid "Rational"
 msgstr "Rationeel"
 
-#: ./browser/templates/dreyfus.pt:47
+#: ./browser/templates/dreyfus.pt:42
 msgid "Recognition of relevance"
 msgstr "Herkenning van relevantie"
 
-#: ./browser/templates/dreyfus.pt:55
+#: ./browser/templates/dreyfus.pt:50
 msgid "Rigid adherence to taught rules or plans"
 msgstr "Strak vasthouden aan geleerd regels of plannen"
 
@@ -303,19 +303,19 @@ msgstr "Strak vasthouden aan geleerd regels of plannen"
 msgid "Searchterms"
 msgstr "Zoektermen"
 
-#: ./browser/templates/dreyfus.pt:97
+#: ./browser/templates/dreyfus.pt:92
 msgid "Sees situations holistically rather than in terms of aspects"
 msgstr "Ziet situaties holistisch in plaats van in termen van aspecten"
 
-#: ./browser/templates/dreyfus.pt:101
+#: ./browser/templates/dreyfus.pt:96
 msgid "Sees what is most important in a situation"
 msgstr "Ziet wat het belangrijkst is in een situatie"
 
-#: ./browser/templates/skill.pt:59
+#: ./browser/templates/skill.pt:60
 msgid "Show on profile page"
 msgstr "Toon op profiel pagina"
 
-#: ./browser/templates/dreyfus.pt:74
+#: ./browser/templates/dreyfus.pt:69
 msgid "Situational perception still limited"
 msgstr "Beperkte situationele waarneming"
 
@@ -323,7 +323,7 @@ msgstr "Beperkte situationele waarneming"
 msgid "Skill"
 msgstr "Skill"
 
-#: ./browser/templates/skill.pt:50
+#: ./browser/templates/skill.pt:51
 msgid "Skill experience level"
 msgstr "Skill niveau"
 
@@ -340,11 +340,11 @@ msgstr "Skill, per groep binnen expertise."
 msgid "Skills"
 msgstr "Skills"
 
-#: ./browser/templates/dreyfus.pt:44
+#: ./browser/templates/dreyfus.pt:39
 msgid "Stage"
 msgstr "Stadium"
 
-#: ./browser/templates/dreyfus.pt:92
+#: ./browser/templates/dreyfus.pt:87
 msgid "Standardised and routinised procedures"
 msgstr "Gestandaardiseerde en routinematige procedures"
 
@@ -352,15 +352,15 @@ msgstr "Gestandaardiseerde en routinematige procedures"
 msgid "Subgroup"
 msgstr "Subgroep"
 
-#: ./browser/templates/dreyfus.pt:35
+#: ./browser/templates/dreyfus.pt:125
 msgid "The 'expert' level does not signify that development stops, as expert practitioners need to evaluate their practice and keep up - to - date with new evidence."
 msgstr "Het 'expert' niveau betekent niet dat de ontwikkeling stopt, omdat praktijkdeskundigen hun hun kennis op pijl dienen te houden met de huidige stand van zaken."
 
-#: ./browser/templates/dreyfus.pt:24
+#: ./browser/templates/dreyfus.pt:23
 msgid "The Dreyfus model is used fairly widely (a) to provide a means of assessing and supporting progress in the development of skills or competencies, and (b) to provide a definition of accept able level for the assessment of competence or capability."
 msgstr "Het Dreyfus-model is redelijk veel gebruikt als (a) een middel ter ondersteuning van het beoordelen van skill niveau, en (b) een aanvaardbare definitie voor de beoordeling van vakbekwaamheid."
 
-#: ./browser/templates/dreyfus.pt:22
+#: ./browser/templates/dreyfus.pt:20
 msgid "The Dreyfus model of skill acquisition"
 msgstr "Het Dreyfus-model voor het aanleren van vaardigheden"
 
@@ -368,7 +368,7 @@ msgstr "Het Dreyfus-model voor het aanleren van vaardigheden"
 msgid "The following users were removed from all skills: "
 msgstr "De volgende gebruikers zijn opgeschoond uit alle skills: "
 
-#: ./browser/templates/skill.pt:51
+#: ./browser/templates/skill.pt:52
 msgid "This is an imported value. Please specify the level of your experience with this skill."
 msgstr "Dit is een geimporteerde waarde. Specificeer a.u.b. jouw kennis niveau."
 
@@ -380,7 +380,7 @@ msgstr "Totaal"
 msgid "Update profile"
 msgstr "Profiel bijwerken"
 
-#: ./browser/templates/dreyfus.pt:110
+#: ./browser/templates/dreyfus.pt:105
 msgid "Uses maxims for guidance, whose meanings vary according to the situation"
 msgstr "Gebruikt richtlijnen voor steun, waarvan de betekenis is afhankelijk van de situatie"
 
@@ -388,11 +388,11 @@ msgstr "Gebruikt richtlijnen voor steun, waarvan de betekenis is afhankelijk van
 msgid "View my full skill CV"
 msgstr "Bekijk mijn volledige skill CV"
 
-#: ./browser/templates/dreyfus.pt:125
+#: ./browser/templates/dreyfus.pt:120
 msgid "Vision of what is possible"
 msgstr "Inzicht in wat mogelijk is"
 
-#: ./browser/templates/dreyfus.pt:56
+#: ./browser/templates/dreyfus.pt:51
 msgid "Without reference to context"
 msgstr "Zonder verwijzing naar context"
 
