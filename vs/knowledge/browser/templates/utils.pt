@@ -238,14 +238,15 @@
   .table-wrap {
     font-size: 80%;
   }
-  .info {
+  /*overflow-x: auto;*/
+  .skillInfo {
     float: right;
     width: 1.5em;
     height: 1.5em;
     position: relative;
     margin-left: .5em;
   }
-  .info dt, .info dd {
+  .skillInfo dt, .skillInfo dd {
     position: absolute;
     background: #0860c4;
     color: white;
@@ -253,14 +254,14 @@
     top: 0;
     left: 0;
   }
-  .info dt {
+  .skillInfo dt {
     height: 1.5em;
     width: 1.5em;
     font-style: italic;
     line-height: 1.825;
     text-align: center;
   }
-  .info dd {
+  .skillInfo dd {
     display: block;
     position: absolute;
     margin: 0 !important;
@@ -274,10 +275,10 @@
     -o-transition:      visibility 0s linear 0.2s,opacity 0.2s linear;
     transition:         visibility 0s linear 0.2s,opacity 0.2s linear;
   }
-  .info dt:hover {
+  .skillInfo dt:hover {
     z-index: 2;
   }
-  .info dt:hover + dd {
+  .skillInfo dt:hover + dd {
     z-index: 1;
     visibility:visible;
     opacity:1;

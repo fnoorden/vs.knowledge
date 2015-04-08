@@ -53,7 +53,7 @@
                             column_classes view/column_classes;">
               <tal:header repeat="header headers">
                 <th tal:attributes="class python:'blank' if header is '' else None">
-                  <dl class="info"
+                  <dl class="skillInfo"
                       tal:condition="python:repeat['header'].index == 2">
                       <dt>i</dt>
                       <dd tal:content="info">Info</dd>
