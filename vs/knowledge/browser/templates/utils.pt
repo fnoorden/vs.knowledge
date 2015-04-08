@@ -212,10 +212,7 @@
 <metal:style define-macro="style">/* Generic vs.knowledge styles */
   .buttons { padding: 2em 0; }
   .knowledge + .buttons { position: absolute; top: 0; right: 0; }
-  .table-wrap {
-    position: relative;
-    overflow: auto;
-  }
+  .table-wrap { position: relative; }
   table { background-color: #fff; }
   caption { text-align: left; font-weight: bold; padding: .2em .5em; }
   thead th { white-space: nowrap; }
@@ -237,8 +234,8 @@
 <metal:full define-macro="full">/* Full knowledge profile styles */
   .table-wrap {
     font-size: 80%;
+    overflow: auto;
   }
-  /*overflow-x: auto;*/
   .skillInfo {
     float: right;
     width: 1.5em;
@@ -251,7 +248,7 @@
     background: #0860c4;
     color: white;
     border-radius: .75em;
-    top: 0;
+    bottom: 0;
     left: 0;
   }
   .skillInfo dt {
@@ -288,11 +285,11 @@
     -o-transition-delay:      0s;
     transition-delay:         0s;
   }
-  .knowledge { margin-right: 2em; margin-top: 10em; }
+  .knowledge { margin-right: 2em; }
   thead .employee {
     max-width: 1em !important; 
     position: relative;
-    height: 2em !important; 
+    height: 12em !important; 
   }
   .employee a, .employee span {
     -webkit-transform: rotate(-75deg);
