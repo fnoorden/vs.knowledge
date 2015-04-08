@@ -139,11 +139,9 @@
   <tbody>
     <tr tal:repeat="level view/legend">
       <th tal:content="python:level[1]">Title</th>
-      <td>
-        <span tal:define="value python:level[0]"
-              tal:attributes="class string:level-${value}"
-              tal:content="value">0</span>
-      </td>
+      <td tal:define="value python:level[0]"
+          tal:attributes="class string:level-${value}"
+          tal:content="value">0</td>
     </tr>
   </tbody>
 </table>
@@ -315,11 +313,11 @@
   /*tr:nth-child(odd) td.ct-infrastructuur { background-color: rgba(204, 255, 204, .5); }*/
   /*tr:nth-child(odd) td.ct-integratie { background-color: rgba(255, 204, 204, .5); }*/
 
-  td.level-1 { background-color: #f2f2f2; }
-  td.level-2 { background-color: #dfdfdf; }
-  td.level-3 { background-color: #ccc; }
-  td.level-4 { background-color: #d2d2d2; }
-  td.level-5 { background-color: #999; }
+  td.level-1, .legend tr:nth-child(odd) td.level-1 { background-color: #f2f2f2; }
+  td.level-2, .legend tr:nth-child(odd) td.level-2 { background-color: #dfdfdf; }
+  td.level-3, .legend tr:nth-child(odd) td.level-3 { background-color: #ccc; }
+  td.level-4, .legend tr:nth-child(odd) td.level-4 { background-color: #b2b2b2; }
+  td.level-5, .legend tr:nth-child(odd) td.level-5 { background-color: #999; }
 
   tr:nth-child(odd) td.other { background-color: #ffc; }
   tr:nth-child(odd) td.other.level-1 { background-color: #f2f2c1; }
@@ -361,7 +359,7 @@
   .legend { min-width: 20em; position: absolute; top: 0; left: 0; }
   .legend + .buttons { padding-left: 25em; }
   .legend td { min-width: 1em; border-color: rgba(0,0,0,.1); }
-  .legend tr:nth-child(odd) td { background-color: transparent; }
+  /*.legend tr:nth-child(odd) td { background-color: transparent; }*/
 /*  .level-1, .level-2, .level-3, .level-4, .level-5 {
     position: absolute;
     top: 0;
