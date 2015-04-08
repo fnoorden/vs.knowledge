@@ -24,6 +24,7 @@
     <field name="exclude" type="zope.schema.List">
       <description i18n:translate=""
         >Exclude members by id (Click the header to see their id in the url). One member per line.</description>
+      <required>False</required>
       <title i18n:translate="">Exclude</title>
       <value_type type="zope.schema.TextLine"/>
     </field>
