@@ -82,13 +82,22 @@ def setupVarious(context):
         container=portal,
         type="knowledge_profile",
         title="Competence Profiel",
-        levels = [
+        levels=[
             "|Geen ervaring",
             "1|Beginner",
             "2|Gevorderde beginner",
             "3|Competent",
             "4|Bedreven",
             "5|Expert",
+            ],
+        exclude=[
+            "cseegers",
+            "jvanrossum",
+            "kvanrossum",
+            "mvandenberg",
+            "pvanderwaals",
+            "rthoonsen",
+            "tliefting",
             ],
         expertises_groups = expertises_groups,
         )
