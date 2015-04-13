@@ -38,7 +38,8 @@
             <th tal:repeat="header headers" tal:content="header">Header</th>
             <th tal:repeat="name names" class="employee">
               <a tal:content="python:name"
-                 tal:attributes="href python:'%s%s' % (context.absolute_url(), '?other=%s' % memberids.get(name, name) if name else '')">Voornaam Achternaam</a>
+                 tal:define="m_id python:memberids.get(name, name)"
+                 tal:attributes="href python:'%s%s' % (context.absolute_url(), '?other=%s' % m_id if m_id else '')">Voornaam Achternaam</a>
             </th>
           </tr>
           <tr>
