@@ -12,7 +12,7 @@
     <metal:block fill-slot="top_slot"
                  tal:define="dummy python:context.portal_membership.checkPermission('Modify portal content', context) or request.set('disable_border',1);
                              disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);"/>
 </head>
 
 <body>
@@ -53,7 +53,7 @@
                             column_classes view/column_classes;">
               <tal:header repeat="header headers">
                 <th tal:attributes="class python:'blank' if header is '' else None">
-                  <dl class="info"
+                  <dl class="skillInfo"
                       tal:condition="python:repeat['header'].index == 2">
                       <dt>i</dt>
                       <dd tal:content="info">Info</dd>
@@ -62,10 +62,8 @@
                 </th>
               </tal:header>
               <tal:cell repeat="cell cells">
-                <td tal:attributes="class python:column_classes[repeat['cell'].index]">
-                  <span tal:content="cell"
-                        tal:attributes="class string:level-${cell}">X</span>
-                </td>
+                <td tal:attributes="class python:'%s level-%s' % (column_classes[repeat['cell'].index], cell)"
+                    tal:content="cell">X</td>
               </tal:cell>
             </tr>
           </tal:row>

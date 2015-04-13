@@ -2,7 +2,7 @@
     tal:define="groups view/author_skills">
   <dt class="portletHeader">
     <span class="portletTopLeft"></span>
-    <tal:label tal:content="string:${view/other_firstname}'s skills">Firstname's skills</tal:label>
+    <tal:label tal:content="string:${view/other_firstname|view/current_firstname}'s skills">Firstname's skills</tal:label>
     <span class="portletTopRight"></span>
   </dt>
 

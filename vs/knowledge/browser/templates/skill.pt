@@ -54,7 +54,7 @@
         <metal:select use-macro="view/context/@@knowledge-utils/select" />
       </div>
       <div>
-        <label tal:define="show python:show not in ['', 'n']">
+        <label tal:define="show python:show not in ['', 'n', None, False]">
           <input type="checkbox" name="show" tal:condition="show" checked="checked"/>
           <input type="checkbox" name="show" tal:condition="not:show"/>
           <tal:show i18n:translate="">Show on profile page</tal:show>

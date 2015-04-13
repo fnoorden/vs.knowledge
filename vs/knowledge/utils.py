@@ -306,7 +306,7 @@ class Knowledge(object):
         return userdict
 
     def order_members(self, members=None):
-        exclude = self.knowledge_profile.exclude
+        exclude = self.knowledge_profile.exclude or []
         if not members:
             members = self.members()
 
@@ -320,6 +320,7 @@ class Knowledge(object):
 
             for m in members[k]:
                 m_id = m.getId()
+
                 if m_id in exclude:
                     continue
                 cteam_members.append(m_id)
