@@ -16,9 +16,9 @@
 <body>
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core"
-      tal:define="groups view/grouped_skills;
-                  other_id view/other_id|nothing;
-                  levels view/levels">
+     tal:define="groups view/grouped_skills;
+                 other_id view/other_id|nothing;
+                 levels view/levels">
     <style>
       <metal:style use-macro="view/context/@@knowledge-utils/style"/>
       <metal:cv use-macro="view/context/@@knowledge-utils/cv"/>
