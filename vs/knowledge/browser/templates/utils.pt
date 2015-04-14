@@ -225,6 +225,7 @@
     position: relative;
   }
   .knowledge { margin-bottom: 2em; }
+  #content .knowledge { border-collapse: separate; }
   #content-core a.btn:link, #content-core a.btn:hover, #content-core a.btn:visited { color: white !important; }
   dl.portalMessage { margin: 1em 30px; }
 </metal:style>
@@ -302,7 +303,7 @@
     top: -.5em;
     left: .15em;
   }
-  /*.full th { width: 0; }*/
+  .full th { width: 0; }
   table, tr, td, th { height: 100%; }
   .full th:nth-child(3) { max-width: 14em; }
   .full th:nth-child(4) { text-align: right; }
@@ -341,7 +342,8 @@
   .ct-devops { border-color: #99C; }
   .ct-infrastructuur { border-color: #9C9; }
   .ct-integratie { border-color: #C99; }
-  .current, .current-member { border: 1px solid #000; border-width: 0 1px; font-weight: bold; }
+  .current, .current-member { font-weight: bold; }
+  .current, .current-member, .current + td, .current-member + td { border-left: 1px solid #000; }
   .legend { min-width: 20em; position: absolute; top: 0; left: 0; }
   .legend + .buttons { padding-left: 25em; }
   .legend td { min-width: 1em; border-color: rgba(0,0,0,.1); }
