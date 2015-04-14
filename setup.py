@@ -17,7 +17,7 @@ long_description = (
 
 setup(
     name='vs.knowledge',
-    version='0.1.1',
+    version='0.1.2',
     description="Knowledge Profiles",
     long_description=long_description,
     # Get more strings from

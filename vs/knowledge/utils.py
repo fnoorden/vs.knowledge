@@ -11,6 +11,8 @@ class Knowledge(object):
     def current(self):
         """ Current member
         """
+        current = api.user.get_current()
+        self.authenticated_id = current.getId()
 
         if hasattr(self, 'author'):
             c_id = self.other_id = self.author
@@ -22,7 +24,6 @@ class Knowledge(object):
         if c_id:
             current = api.user.get(c_id)
         else:
-            current = api.user.get_current()
             c_id = current.getId()
         self.current_id = c_id
         self.current_cteam = current.getProperty('cteam')
