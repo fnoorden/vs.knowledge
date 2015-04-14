@@ -30,16 +30,17 @@
 
       <table class="knowledge full" id="knowledge">
         <thead tal:define="names python:data.pop(0);
-                           headers python:names[:5];dummy python:headers.pop(3);
+                           headers python:names[:5]; dummy python:headers.pop(3);
                            names python:names[5:];
-                           totals python:data.pop(0);dummy python:totals.pop(3);
+                           totals python:data.pop(0); dummy python:totals.pop(3);
                            memberids view/memberids">
           <tr>
             <th tal:repeat="header headers" tal:content="header">Header</th>
             <th tal:repeat="name names" class="employee">
               <a tal:content="python:name"
                  tal:define="m_id python:memberids.get(name, name)"
-                 tal:attributes="href python:'%s%s' % (context.absolute_url(), '?other=%s' % m_id if m_id else '')">Voornaam Achternaam</a>
+                 tal:attributes="href python:'%s%s' % (context.absolute_url(), '?other=%s' % m_id if m_id and m_id != view.authenticated_id else '')"
+                 >Voornaam Achternaam</a>
             </th>
           </tr>
           <tr>
