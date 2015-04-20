@@ -78,18 +78,22 @@ class Knowledge(object):
     def current_entry(self, skill=None):
         """ Entry of the current member in member_level_show
         """
+        empty = (-1, (self.current_id, None, None))
         if not skill:
             skill = self.context
             # Check assumption and escape if necessary
             if skill.portal_type != 'skill':
-                return (-1, (self.current_id, None, None))
+                return empty
+
+        if not skill.member_level_show:
+            return empty
 
         for position, mls in enumerate(skill.member_level_show):
             member, level, show = tuple(mls.split('|'))
             if member == self.current_id:
                 return (position, (member, level, show))
 
-        return (-1, (self.current_id, None, None))
+        return empty
 
     @property
     def levels(self):
@@ -187,7 +191,8 @@ class Knowledge(object):
             # Parse member_level_show
             levels = dict([
                 (x.split('|')[0], (x.split('|')[1], x.split('|')[2])) 
-                for x in skill.member_level_show if len(x.split('|')) == 3])
+                for x in skill.member_level_show if len(x.split('|')) == 3]
+                if  skill.member_level_show else [])
             for i, member in enumerate(self.ordered_members):
                 level, show = levels.get(member, (False, False))
                 is_current = member == self.current_id
@@ -346,8 +351,7 @@ class Skill(Knowledge):
     def change_skill(self, position, member, level, show, form):
         """
         """
-
-        mls = self.context.member_level_show
+        mls = self.context.member_level_show or []
 
         new_level = form.get('level', '')
         new_show = form.get('show', '')

@@ -12,7 +12,14 @@ class GroupsVocabulary(object):
     implements(IVocabularyFactory)
 
     def __call__(uself, context):
-        kp = aq_parent(context)
+        parent = aq_parent(context)
+        if context.portal_type == 'knowledge_profile':
+            kp = context
+        elif parent.portal_type == 'knowledge_profile':
+            kp = parent
+        else:
+            return SimpleVocabulary([])
+
         return SimpleVocabulary([
             SimpleTerm(value=eg, token=eg, title=' / '.join(eg.split('|'))) 
             for eg in kp.expertises_groups])
