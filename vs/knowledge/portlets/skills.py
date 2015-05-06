@@ -47,7 +47,7 @@ class Renderer(base.Renderer, Knowledge):
     @property
     def available(self):
         _available = False
-        if self.author:
+        if hasattr(self, 'author') and self.author:
             _available = True
         else:
             template_id = getattr(
