@@ -2,7 +2,18 @@ from Acquisition import aq_parent
 from collections import defaultdict
 from plone import api
 from Products.CMFCore.utils import getToolByName
+
+try:
+    from plone.app import ldap
+    from Acquisition import aq_inner
+    from zope.component import getMultiAdapter
+    from itertools import chain
+    HAS_LDAP = True
+except ImportError:
+    HAS_LDAP = False
+
 from vs.knowledge import VSKnowledgeMessageFactory as _
+
 
 class Knowledge(object):
     """ Knowledge utils mixin
@@ -304,8 +315,17 @@ class Knowledge(object):
     def members(self):
         userdict = defaultdict(list)
 
-        for u in sorted(api.user.get_users(), 
-                        key=lambda x: x.getProperty('fullname')):
+        if HAS_LDAP:
+            searchString, ignore = '', []
+
+            mtool = getToolByName(self, 'portal_membership')
+            searchView = getMultiAdapter((aq_inner(self.context), self.request), name='pas_search')
+            userResults = searchView.merge(chain(*[searchView.searchUsers(**{field: searchString}) for field in ['name', 'fullname', 'email']]), 'userid')
+            userResults = [mtool.getMemberById(u['id']) for u in userResults if u['id'] not in ignore]
+        else:
+            userResults = api.user.get_users()
+
+        for u in sorted(userResults, key=lambda x: x.getProperty('fullname')):
             cteam = u.getProperty('cteam').strip()
             userdict[cteam if cteam else 'other'].append(u)
 
