@@ -9,7 +9,6 @@ from zope.interface import implements
 import time
 
 LEVEL = '                <option value="%s"%s>%s</option>'
-SELECTED = ' selected="selected"'
 LEVELS = """            <select
                 name="level">
 %s
@@ -19,6 +18,7 @@ SHOW = """
                 <input type="checkbox" name="show"%s/>
                 %s
             </label>"""
+SELECTED = ' selected="selected"'
 TEMPLATE = """<form 
     class="form-inline" method="POST" action="%s/change" id="change-skill-%s">
         <span class="control-group">
