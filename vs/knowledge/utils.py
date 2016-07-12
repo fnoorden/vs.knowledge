@@ -280,15 +280,15 @@ class Knowledge(object):
             # Is level high enough (string comparison) and not 'X'?
             # Does show have to be checked?
             if (not level or
-                from_level and level in ['X', 'x'] or
-                from_level and level < from_level or
-                only_show and show in [False, '', 'n']):
+                    from_level and level in ['X', 'x'] or
+                    from_level and level < from_level or
+                    only_show and show in [False, '', 'n']):
                 continue
 
             group = skill.group.split('|')
             _group = group[1]
             if only_group:
-                expertise = group.pop(0) # Remove expertise header
+                expertise = group.pop(0)  # Remove expertise header
             else:
                 expertise = group[0]
                 group[0] = expertise if expertise != _expertise else ''
@@ -319,9 +319,13 @@ class Knowledge(object):
             searchString, ignore = '', []
 
             mtool = getToolByName(self, 'portal_membership')
-            searchView = getMultiAdapter((aq_inner(self.context), self.request), name='pas_search')
-            userResults = searchView.merge(chain(*[searchView.searchUsers(**{field: searchString}) for field in ['name', 'fullname', 'email']]), 'userid')
-            userResults = [mtool.getMemberById(u['id']) for u in userResults if u['id'] not in ignore]
+            searchView = getMultiAdapter(
+                (aq_inner(self.context), self.request), name='pas_search')
+            userResults = searchView.merge(
+                chain(*[searchView.searchUsers(**{field: searchString})
+                      for field in ['name', 'fullname', 'email']]), 'userid')
+            userResults = [mtool.getMemberById(u['id'])
+                           for u in userResults if u['id'] not in ignore]
         else:
             userResults = api.user.get_users()
 
@@ -336,8 +340,8 @@ class Knowledge(object):
         if not members:
             members = self.members()
 
-        self.ordered_cteams = [] # Tuples of (cteam, member_ids)
-        self.ordered_members = [] # Memberids ordered on cteam
+        self.ordered_cteams = []   # Tuples of (cteam, member_ids)
+        self.ordered_members = []  # Memberids ordered on cteam
         self.column_classes = []
         self.fullnames = []
         self.memberids = []
