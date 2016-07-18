@@ -47,7 +47,6 @@ class Knowledge(object):
             self.other_fullname = other.getProperty('fullname') or c_id
             self.other_firstname = self.other_fullname.split()[0]
 
-
     @property
     def knowledge_profile(self):
         """ For contained skills and itself return the knowledge_profile object
@@ -329,9 +328,11 @@ class Knowledge(object):
         else:
             userResults = api.user.get_users()
 
-        for u in sorted(userResults, key=lambda x: x.getProperty('fullname')):
-            cteam = u.getProperty('cteam').strip()
-            userdict[cteam if cteam else 'other'].append(u)
+        for u in sorted(userResults,
+                        key=lambda u: u and u.getProperty('fullname')):
+            if u:
+                cteam = u.getProperty('cteam').strip()
+                userdict[cteam if cteam else 'other'].append(u)
 
         return userdict
 
