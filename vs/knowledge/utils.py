@@ -331,8 +331,12 @@ class Knowledge(object):
         for u in sorted(userResults,
                         key=lambda u: u and u.getProperty('fullname')):
             if u:
-                cteam = u.getProperty('cteam').strip()
-                userdict[cteam if cteam else 'other'].append(u)
+                cteam = u.getProperty('cteam', 'other')
+                if cteam:
+                    cteam = cteam.strip()
+                    userdict[cteam].append(u)
+                else:
+                    userdict['other'].append(u)
 
         return userdict
 
