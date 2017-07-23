@@ -129,17 +129,17 @@ class Knowledge(object):
             if self.e_count == self.skill_count:
                 ptools.addPortalMessage(
                     _(u'You have empty profile, '
-                       'please qualify your experience level for each skill.'),
+                      u'please qualify your experience level for each skill.'),
                     'error')
             else:
                 ptools.addPortalMessage(
                     _(u'You have empty entries in your profile, '
-                       'please add an experience level.'),
+                      u'please add an experience level.'),
                     'error')
         if self.x_count:
             ptools.addPortalMessage(
                 _(u'You have entries with an x value in your profile, '
-                   'please qualify your experience level.'),
+                  u'please qualify your experience level.'),
                 'warning')
 
     def data(self, single=False):
@@ -158,7 +158,7 @@ class Knowledge(object):
             Total = context.translate(_(u"Total"))
 
             # Row with employee names
-            names = [''] * 4 # Prefill with 5 empties
+            names = [''] * 4  # Prefill with 5 empties
             names.append(Total)
             names += self.fullnames
             employee_count = len(self.fullnames)
@@ -173,10 +173,10 @@ class Knowledge(object):
                 Expertise, Subgroup, Name, Searchterms, self.current_fullname]
 
         # Full data set
-        _d = [] # Data
+        _d = []  # Data
 
-        self.x_count, self.e_count = 0, 0 # Count
-        _expertise, _group = '', '' # Sticky expertise and group
+        self.x_count, self.e_count = 0, 0  # Count
+        _expertise, _group = '', ''  # Sticky expertise and group
 
         for skill in self.skills:
             row_total = 0
@@ -200,9 +200,9 @@ class Knowledge(object):
 
             # Parse member_level_show
             levels = dict([
-                (x.split('|')[0], (x.split('|')[1], x.split('|')[2])) 
+                (x.split('|')[0], (x.split('|')[1], x.split('|')[2]))
                 for x in skill.member_level_show if len(x.split('|')) == 3]
-                if  skill.member_level_show else [])
+                if skill.member_level_show else [])
             for i, member in enumerate(self.ordered_members):
                 level, show = levels.get(member, (False, False))
                 is_current = member == self.current_id
@@ -257,8 +257,8 @@ class Knowledge(object):
 
         return _d
 
-    def grouped_skills(
-        self, only_group=False, only_show=False, from_level=None):
+    def grouped_skills(self,
+                       only_group=False, only_show=False, from_level=None):
         self.current()
         skills = defaultdict(list)
         order = []
@@ -331,8 +331,12 @@ class Knowledge(object):
         for u in sorted(userResults,
                         key=lambda u: u and u.getProperty('fullname')):
             if u:
-                cteam = u.getProperty('cteam').strip()
-                userdict[cteam if cteam else 'other'].append(u)
+                cteam = u.getProperty('cteam', 'other')
+                if cteam:
+                    cteam = cteam.strip()
+                    userdict[cteam].append(u)
+                else:
+                    userdict['other'].append(u)
 
         return userdict
 
