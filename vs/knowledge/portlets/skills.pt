@@ -1,4 +1,4 @@
-<dl i18n:domain="vs.knowledge" class="string:portlet portletSkills"
+<dl i18n:domain="vs.knowledge" class="portlet portletSkills"
     tal:define="groups view/author_skills">
   <dt class="portletHeader">
     <span class="portletTopLeft"></span>
